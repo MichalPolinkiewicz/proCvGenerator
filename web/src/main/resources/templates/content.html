@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cv content</title>
+</head>
+
+<body>
+<div class="container" id="container">
+    <form action="#" th:action="@{/generate}" th:object="${cvContent}" method="post">
+        <div th:object="${cvContent.personalInfo}">
+            <p><input th:type="text" th:field="*{name}"></p>
+        </div>
+        <div th:object="${cvContent.educationList}"></div>
+        <div th:object="${cvContent.employments}"></div>
+        <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
+        <button th:type="submit">Send</button>
+    </form>
+
+</div>
+</body>
+</html>

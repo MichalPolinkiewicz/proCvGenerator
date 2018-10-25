@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cv content</title>
+</head>
+
+<body>
+<div id="container">
+    <h1>Example</h1>
+    <form action="#" th:action="@{/example}" th:object="${example}" th:name="example" method="post">
+        <h4><input th:type="text" th:field="*{name}"></h4>
+        <h4><input th:type="text" th:field="*{surname}"></h4>
+        <p><input type="hidden" name="hidden" th:value="abc">
+
+            <div th:object="${example.inside}">
+                <h4><input th:type="text" th:field="*{text}"></h4>
+                    <div th:object="${example.inside.insideInside}">
+                        <h4><input th:type="text" th:field="*{number}"></h4>
+                    </div>
+            </div>
+
+        <button type="submit">Send</button>
+    </form>
+
+</div>
+</body>
+</html>

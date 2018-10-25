@@ -1,0 +1,5 @@
+pl/proCvGenerator/validator/PatternValidator.class
+pl/proCvGenerator/config/Application.class
+pl/proCvGenerator/controller/MainController.class
+pl/proCvGenerator/config/RootConfig.class
+pl/proCvGenerator/config/WebConfig.class
