@@ -2,36 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" lang="pl" th:formenctype="UTF-8">
     <title>cv content</title>
 </head>
 
 <body>
 <div class="container" id="container">
-    <form action="#" th:action="@{/generate}" th:object="${cvContent}" method="post">
-
-        <div th:object="${cvContent.personalInfo}">
-            <p><input th:type="text" th:field="*{name}"></p>
-            <p><input th:type="text" th:field="*{surname}"></p>
-            <p><input th:type="text" th:field="*{email}"></p>
-            <p><input th:type="text" th:field="*{phone}"></p>
-            <p><input th:type="text" th:field="*{city}"></p>
-            <p><input th:type="text" th:field="*{description}"></p>
-        </div>
-
-        <!--<div th:object="${cvContent.educationList}">-->
-            <!--<div th:each="education : ${educationList}" th:object="${cvContent.educationList.education}">-->
-                <!--<p><input th:type="text" th:field="*{education.schoolName}">ddd</p>-->
-                <!--<p><input th:type="text" th:field="*{education.subject}">dd</p>-->
-                <!--<p><input th:type="text" th:field="*{education.degree}">dd</p>-->
-                <!--<p><input th:type="text" th:field="*{education.startDate}">gg</p>-->
-                <!--<p><input th:type="text" th:field="*{education.endDate}">gg</p>-->
-            <!--</div>-->
-        <!--</div>-->
-
+    <div id="cvContent">
+        <form action="#" th:action="@{/generate}" th:object="${cvContentDto}" method="post">
+            <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
+               <table>
+                   <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Description</th>
+                   </tr>
+                   <tr>
+                       <td><input type="text" th:field="*{name}"></td>
+                       <td><input type="text" th:field="*{surname}"></td>
+                       <td><input type="text" th:field="*{email}"></td>
+                       <td><input type="text" th:field="*{phone}"></td>
+                       <td><input type="text" th:field="*{city}"></td>
+                       <td><input type="text" th:field="*{description}"></td>
+                   </tr>
+               </table>
+            </div>
+            <div id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
+                <table>
+                    <tr>
+                        <th>School</th>
+                        <th>Subject</th>
+                        <th>Degree</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                    </tr>
+                    <tr th:each="education, iter : *{educationList}">
+                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}" /></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].subject}" /></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].degree}" /></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].startDate}" /></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].endDate}" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
+                <table>
+                    <tr>
+                        <th>Company</th>
+                        <th>Position</th>
+                        <th>Job description</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                    </tr>
+                    <tr th:each="employment, iter : *{employmentList}">
+                        <td><input th:field="*{employmentList[__${iter.index}__].company}" /></td>
+                        <td><input th:field="*{employmentList[__${iter.index}__].position}" /></td>
+                        <td><input th:field="*{employmentList[__${iter.index}__].jobDescription}" /></td>
+                        <td><input th:field="*{employmentList[__${iter.index}__].startDate}" /></td>
+                        <td><input th:field="*{employmentList[__${iter.index}__].endDate}" /></td>
+                    </tr>
+                </table>
+            </div>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
-        <button th:type="submit">Send</button>
-    </form>
+            <button th:type="submit">Send</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

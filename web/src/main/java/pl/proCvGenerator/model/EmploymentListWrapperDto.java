@@ -7,21 +7,21 @@ import java.util.List;
 
 public class EmploymentListWrapperDto {
 
-    private List<Employment> employments;
+    private List<Employment> employmentList;
 
     public EmploymentListWrapperDto() {
-        this.employments = new ArrayList<>();
+        this.employmentList = new ArrayList<>();
     }
 
     public void addEmployment(Employment employment){
-        employments.add(employment);
+        employmentList.add(employment);
     }
 
-    public List<Employment> getEmployments() {
-        return employments;
+    public List<Employment> getEmploymentList() {
+        return employmentList;
     }
 
-    public void setEmployments(List<Employment> employments) {
-        this.employments = employments;
+    public void setEmploymentList(List<Employment> employmentList) {
+        this.employmentList = employmentList;
     }
 }
