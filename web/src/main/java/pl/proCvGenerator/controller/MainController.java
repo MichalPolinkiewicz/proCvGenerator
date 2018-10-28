@@ -47,6 +47,11 @@ public class MainController {
         System.out.println(cvContentDto.getEmploymentListWrapperDto().getEmploymentList().get(0).getCompany());
         System.out.println("Generate: " + pattern);
 
+        return "redirect:/ok";
+    }
+
+    @GetMapping(path = "/ok")
+    public String ok(){
         return "ok";
     }
 
@@ -99,7 +104,7 @@ public class MainController {
 //        cvContent.setPersonalInfo(personalInfo);
 //
 //        return cvContentConverter.convertToDto(cvContent);
-//
+
 
         EducationListWrapperDto educationListWrapperDto = new EducationListWrapperDto();
         List<Education> educations = new ArrayList<>();

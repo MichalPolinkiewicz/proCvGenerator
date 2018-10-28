@@ -8,35 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="96551761-f2db-493d-be0c-0dab854c6c7a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Example.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Inside.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/InsideInside.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/pl/proCvGenerator/dto/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/pl/proCvGenerator/dto/Inside.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/pl/proCvGenerator/dto/InsideInside.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/target/classes/META-INF/core.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/target/core-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/core-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/EmploymentConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/EmploymentConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/model/EmploymentListWrapperDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/model/EmploymentListWrapperDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/resources/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/resources/templates/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/config/WebConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/converter/EmploymentConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/converter/EmploymentConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/model/EmploymentListWrapperDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/pl/proCvGenerator/model/EmploymentListWrapperDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/templates/content.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/config/WebConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/converter/EmploymentConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/converter/EmploymentConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/model/EmploymentListWrapperDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/pl/proCvGenerator/model/EmploymentListWrapperDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/classes/templates/content.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/lib/core-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT/WEB-INF/lib/core-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,81 +32,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-592">
-              <caret line="46" column="109" selection-start-line="46" selection-start-column="109" selection-end-line="46" selection-end-column="109" />
+            <state relative-caret-position="259">
+              <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/model/EducationListWrapperDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#248#249#0" expanded="true" />
-                <element signature="e#302#303#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2578#2579#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/resources/templates/content.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/model/PersonalInfoDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#601#602#0" expanded="true" />
-                <element signature="e#628#629#0" expanded="true" />
-                <element signature="e#668#669#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#734#735#0" expanded="true" />
-                <element signature="e#764#765#0" expanded="true" />
-                <element signature="e#810#811#0" expanded="true" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#950#951#0" expanded="true" />
-                <element signature="e#984#985#0" expanded="true" />
-                <element signature="e#1016#1017#0" expanded="true" />
-                <element signature="e#1044#1045#0" expanded="true" />
-                <element signature="e#1086#1087#0" expanded="true" />
-                <element signature="e#1120#1121#0" expanded="true" />
-                <element signature="e#1151#1152#0" expanded="true" />
-                <element signature="e#1178#1179#0" expanded="true" />
-                <element signature="e#1218#1219#0" expanded="true" />
-                <element signature="e#1250#1251#0" expanded="true" />
-                <element signature="e#1288#1289#0" expanded="true" />
-                <element signature="e#1322#1323#0" expanded="true" />
-                <element signature="e#1376#1377#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,6 +99,10 @@
         <option value="$PROJECT_DIR$/core/pom.xml" />
         <option value="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java" />
         <option value="$PROJECT_DIR$/web/src/main/resources/templates/content.html" />
+        <option value="$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/ConfigForConvertersTest.groovy" />
+        <option value="$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/config/WebConfigSpec.groovy" />
+        <option value="$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/PersonalInfoConverterSpec.groovy" />
+        <option value="$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/EmploymentConverterSpec.groovy" />
         <option value="$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/controller/MainController.java" />
       </list>
     </option>
@@ -220,6 +132,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,7 +181,9 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
@@ -276,22 +191,66 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="converter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proCvGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="proCvGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="converter" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540743704150" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540749997917" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -316,63 +275,62 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.10">
-    <configuration name="All Features in: test" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <option name="CUCUMBER_CORE_VERSION" value="3" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/web/src/test" />
-      <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
+    <configuration name="EmploymentConverterSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="web" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm3SMFormatter" />
-      <option name="SUGGESTED_NAME" value="All Features in: test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cucumber.api.cli.*" />
+          <option name="PATTERN" value="pl.proCvGenerator.converter.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="pl.proCvGenerator.converter" />
+      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.converter.EmploymentConverterSpec" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PatternValidatorSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmploymentConverterSpec.convertToList should return converted object with proper values" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="web" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pl.proCvGenerator.validator.*" />
+          <option name="PATTERN" value="pl.proCvGenerator.converter.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="pl.proCvGenerator.validator" />
-      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.validator.PatternValidatorSpec" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PatternValidatorSpec.patternValidator should return correct pattern" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.proCvGenerator.validator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pl.proCvGenerator.validator" />
-      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.validator.PatternValidatorSpec" />
-      <option name="METHOD_NAME" value="patternValidator should return correct pattern" />
+      <option name="PACKAGE_NAME" value="pl.proCvGenerator.converter" />
+      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.converter.EmploymentConverterSpec" />
+      <option name="METHOD_NAME" value="convertToList should return converted object with proper values" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RootConfigSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmploymentConverterSpec.convertToWrapper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="web" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pl.proCvGenerator.config.*" />
+          <option name="PATTERN" value="pl.proCvGenerator.converter.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="pl.proCvGenerator.config" />
-      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.config.RootConfigSpec" />
+      <option name="PACKAGE_NAME" value="pl.proCvGenerator.converter" />
+      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.converter.EmploymentConverterSpec" />
+      <option name="METHOD_NAME" value="convertToWrapper() should return converted object with proper values" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalInfoConverterSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.proCvGenerator.converter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.proCvGenerator.converter" />
+      <option name="MAIN_CLASS_NAME" value="pl.proCvGenerator.converter.PersonalInfoConverterSpec" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -474,20 +432,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Cucumber java.All Features in: test" />
-      <item itemvalue="JUnit.RootConfigSpec" />
+      <item itemvalue="JUnit.PersonalInfoConverterSpec" />
       <item itemvalue="JUnit.groovy in web" />
-      <item itemvalue="JUnit.PatternValidatorSpec" />
-      <item itemvalue="JUnit.PatternValidatorSpec.patternValidator should return correct pattern" />
+      <item itemvalue="JUnit.EmploymentConverterSpec.convertToWrapper" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.10" />
+      <item itemvalue="JUnit.EmploymentConverterSpec" />
+      <item itemvalue="JUnit.EmploymentConverterSpec.convertToList should return converted object with proper values" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PatternValidatorSpec.patternValidator should return correct pattern" />
-        <item itemvalue="JUnit.RootConfigSpec" />
-        <item itemvalue="JUnit.PatternValidatorSpec" />
+        <item itemvalue="JUnit.EmploymentConverterSpec" />
         <item itemvalue="JUnit.groovy in web" />
-        <item itemvalue="Cucumber java.All Features in: test" />
+        <item itemvalue="JUnit.EmploymentConverterSpec.convertToList should return converted object with proper values" />
+        <item itemvalue="JUnit.EmploymentConverterSpec.convertToWrapper" />
+        <item itemvalue="JUnit.PersonalInfoConverterSpec" />
       </list>
     </recent_temporary>
   </component>
@@ -519,44 +477,45 @@
       <workItem from="1540641101695" duration="198000" />
       <workItem from="1540647818049" duration="158000" />
       <workItem from="1540727992139" duration="5339000" />
-      <workItem from="1540736223185" duration="7492000" />
+      <workItem from="1540736223185" duration="10348000" />
+      <workItem from="1540748289489" duration="1592000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PatternValidatorSpec_patternValidator_should_return_correct_pattern - 2018.10.18 at 20h 24m 06s.xml">
-      <configuration name="PatternValidatorSpec.patternValidator should return correct pattern" configurationId="JUnit" />
+    <history-entry file="PersonalInfoConverterSpec - 2018.10.28 at 17h 56m 09s.xml">
+      <configuration name="PersonalInfoConverterSpec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RootConfigSpec_expected_beans_should_be_created - 2018.10.18 at 20h 24m 51s.xml">
-      <configuration name="RootConfigSpec.expected beans should be created" configurationId="JUnit" />
+    <history-entry file="EmploymentConverterSpec_convertToWrapper - 2018.10.28 at 18h 02m 54s.xml">
+      <configuration name="EmploymentConverterSpec.convertToWrapper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RootConfigSpec_expected_beans_should_be_created - 2018.10.18 at 20h 25m 07s.xml">
-      <configuration name="RootConfigSpec.expected beans should be created" configurationId="JUnit" />
+    <history-entry file="EmploymentConverterSpec_convertToWrapper - 2018.10.28 at 18h 03m 32s.xml">
+      <configuration name="EmploymentConverterSpec.convertToWrapper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RootConfigSpec - 2018.10.18 at 20h 36m 02s.xml">
-      <configuration name="RootConfigSpec" configurationId="JUnit" />
+    <history-entry file="EmploymentConverterSpec_convertToWrapper - 2018.10.28 at 18h 06m 49s.xml">
+      <configuration name="EmploymentConverterSpec.convertToWrapper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Features_in__test - 2018.10.18 at 20h 38m 46s.xml">
-      <configuration name="All Features in: test" configurationId="CucumberJavaRunConfigurationType" />
+    <history-entry file="EmploymentConverterSpec_convertToWrapper - 2018.10.28 at 18h 51m 02s.xml">
+      <configuration name="EmploymentConverterSpec.convertToWrapper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Features_in__test - 2018.10.18 at 20h 38m 59s.xml">
-      <configuration name="All Features in: test" configurationId="CucumberJavaRunConfigurationType" />
+    <history-entry file="EmploymentConverterSpec_convertToWrapper - 2018.10.28 at 18h 55m 46s.xml">
+      <configuration name="EmploymentConverterSpec.convertToWrapper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="groovy_in_web - 2018.10.18 at 20h 39m 27s.xml">
+    <history-entry file="EmploymentConverterSpec - 2018.10.28 at 18h 58m 47s.xml">
+      <configuration name="EmploymentConverterSpec" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmploymentConverterSpec_convertToList_should_return_converted_object_with_proper_values - 2018.10.28 at 18h 59m 12s.xml">
+      <configuration name="EmploymentConverterSpec.convertToList should return converted object with proper values" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="groovy_in_web - 2018.10.28 at 19h 00m 24s.xml">
       <configuration name="groovy in web" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PatternValidatorSpec - 2018.10.18 at 20h 40m 02s.xml">
-      <configuration name="PatternValidatorSpec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RootConfigSpec - 2018.10.18 at 22h 14m 39s.xml">
-      <configuration name="RootConfigSpec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PatternValidatorSpec_patternValidator_should_return_correct_pattern - 2018.10.18 at 22h 15m 31s.xml">
-      <configuration name="PatternValidatorSpec.patternValidator should return correct pattern" configurationId="JUnit" />
+    <history-entry file="EmploymentConverterSpec - 2018.10.28 at 19h 00m 54s.xml">
+      <configuration name="EmploymentConverterSpec" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76633000" />
+    <option name="totallyTimeSpent" value="81081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -569,8 +528,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="25" width="1321" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32941177" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33490196" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -580,7 +540,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.46579805" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34690553" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -589,7 +549,7 @@
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32899022" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.24104235" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.22312704" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.22312704" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.32899022" />
       <window_info anchor="bottom" id="CPU Profiler" order="14" />
@@ -607,7 +567,7 @@
       <window_info anchor="right" id="Maven" order="9" weight="0.32960895" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32941177" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32941177" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -617,7 +577,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46579805" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24104235" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -660,7 +620,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/pdf/PdfGenerator.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/kernel/7.1.3/kernel-7.1.3.jar!/com/itextpdf/kernel/font/PdfFontFactory.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -778,40 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/RootConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
-            <element signature="e#977#978#0" expanded="true" />
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/config/RootConfigSpec.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-          <folding>
-            <element signature="e#34#95#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/validator/PatternValidatorSpec.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#37#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/service/DbService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -826,27 +751,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Inside.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="59" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/InsideInside.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Inside.java" />
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/InsideInside.java" />
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/Example.java" />
     <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/facade/CvCreatorFacade.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -862,16 +769,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/Converter.java" />
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/PersonalInfoConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="105" selection-start-line="15" selection-start-column="105" selection-end-line="15" selection-end-column="105" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/EducationConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -886,53 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/PersonalInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#607#608#0" expanded="true" />
-            <element signature="e#632#633#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#752#753#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#858#859#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#972#973#0" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1032#1033#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1108#1109#0" expanded="true" />
-            <element signature="e#1140#1141#0" expanded="true" />
-            <element signature="e#1168#1169#0" expanded="true" />
-            <element signature="e#1210#1211#0" expanded="true" />
-            <element signature="e#1244#1245#0" expanded="true" />
-            <element signature="e#1275#1276#0" expanded="true" />
-            <element signature="e#1302#1303#0" expanded="true" />
-            <element signature="e#1342#1343#0" expanded="true" />
-            <element signature="e#1374#1375#0" expanded="true" />
-            <element signature="e#1412#1413#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-            <element signature="e#1546#1547#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/EmploymentConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1077,17 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/model/EmploymentListWrapperDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1131,10 +970,147 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/pl/proCvGenerator/dto/PersonalInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#632#633#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#792#793#0" expanded="true" />
+            <element signature="e#824#825#0" expanded="true" />
+            <element signature="e#858#859#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#972#973#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1275#1276#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+            <element signature="e#1342#1343#0" expanded="true" />
+            <element signature="e#1374#1375#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1446#1447#0" expanded="true" />
+            <element signature="e#1500#1501#0" expanded="true" />
+            <element signature="e#1546#1547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/validator/PatternValidatorSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="10" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#37#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/ConfigForConvertersTest.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#37#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/RootConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/config/WebConfigSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+          <folding>
+            <element signature="e#34#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/config/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/config/RootConfigSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding>
+            <element signature="e#34#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/PersonalInfoConverterSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+          <folding>
+            <element signature="e#37#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/PersonalInfoConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="105" selection-start-line="15" selection-start-column="105" selection-end-line="15" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/test/groovy/pl/proCvGenerator/converter/EmploymentConverterSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="e#37#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/converter/EmploymentConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/java/pl/proCvGenerator/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-592">
-          <caret line="46" column="109" selection-start-line="46" selection-start-column="109" selection-end-line="46" selection-end-column="109" />
+        <state relative-caret-position="259">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
