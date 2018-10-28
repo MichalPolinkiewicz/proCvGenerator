@@ -9,15 +9,29 @@
 <body>
 <div class="container" id="container">
     <form action="#" th:action="@{/generate}" th:object="${cvContent}" method="post">
+
         <div th:object="${cvContent.personalInfo}">
             <p><input th:type="text" th:field="*{name}"></p>
+            <p><input th:type="text" th:field="*{surname}"></p>
+            <p><input th:type="text" th:field="*{email}"></p>
+            <p><input th:type="text" th:field="*{phone}"></p>
+            <p><input th:type="text" th:field="*{city}"></p>
+            <p><input th:type="text" th:field="*{description}"></p>
         </div>
-        <div th:object="${cvContent.educationList}"></div>
-        <div th:object="${cvContent.employments}"></div>
-        <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
+
+        <!--<div th:object="${cvContent.educationList}">-->
+            <!--<div th:each="education : ${educationList}" th:object="${cvContent.educationList.education}">-->
+                <!--<p><input th:type="text" th:field="*{education.schoolName}">ddd</p>-->
+                <!--<p><input th:type="text" th:field="*{education.subject}">dd</p>-->
+                <!--<p><input th:type="text" th:field="*{education.degree}">dd</p>-->
+                <!--<p><input th:type="text" th:field="*{education.startDate}">gg</p>-->
+                <!--<p><input th:type="text" th:field="*{education.endDate}">gg</p>-->
+            <!--</div>-->
+        <!--</div>-->
+
+            <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
         <button th:type="submit">Send</button>
     </form>
-
 </div>
 </body>
 </html>

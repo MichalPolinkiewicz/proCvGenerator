@@ -1,0 +1,21 @@
+package pl.proCvGenerator.converter;
+
+import pl.proCvGenerator.dto.Education;
+import pl.proCvGenerator.model.EducationListWrapperDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EducationConverter {
+
+    public List<Education> convertToList(EducationListWrapperDto educationListWrapperDto) {
+        return new ArrayList<>(educationListWrapperDto.getEducationList());
+    }
+
+    public EducationListWrapperDto convertToWrapper(List<Education> educationList) {
+        EducationListWrapperDto wrapper = new EducationListWrapperDto();
+        wrapper.setEducationList(educationList);
+
+        return wrapper;
+    }
+}
