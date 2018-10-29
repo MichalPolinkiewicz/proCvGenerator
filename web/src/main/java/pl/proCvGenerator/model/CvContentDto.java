@@ -5,11 +5,15 @@ public class CvContentDto {
     private PersonalInfoDto personalInfoDto;
     private EducationListWrapperDto educationListWrapperDto;
     private EmploymentListWrapperDto employmentListWrapperDto;
+    private HobbyListWrapperDto hobbyListWrapperDto;
+    private String clause;
 
-    public CvContentDto(PersonalInfoDto personalInfoDto, EducationListWrapperDto educationListWrapperDto, EmploymentListWrapperDto employmentListWrapperDto) {
+    public CvContentDto(PersonalInfoDto personalInfoDto, EducationListWrapperDto educationListWrapperDto, EmploymentListWrapperDto employmentListWrapperDto, HobbyListWrapperDto hobbyListWrapperDto, String clause) {
         this.personalInfoDto = personalInfoDto;
         this.educationListWrapperDto = educationListWrapperDto;
         this.employmentListWrapperDto = employmentListWrapperDto;
+        this.hobbyListWrapperDto = hobbyListWrapperDto;
+        this.clause = clause;
     }
 
     public PersonalInfoDto getPersonalInfoDto() {
@@ -34,5 +38,21 @@ public class CvContentDto {
 
     public void setEmploymentListWrapperDto(EmploymentListWrapperDto employmentListWrapperDto) {
         this.employmentListWrapperDto = employmentListWrapperDto;
+    }
+
+    public HobbyListWrapperDto getHobbyListWrapperDto() {
+        return hobbyListWrapperDto;
+    }
+
+    public void setHobbyListWrapperDto(HobbyListWrapperDto hobbyListWrapperDto) {
+        this.hobbyListWrapperDto = hobbyListWrapperDto;
+    }
+
+    public String getClause() {
+        return clause;
+    }
+
+    public void setClause(String clause) {
+        this.clause = clause;
     }
 }

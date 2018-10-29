@@ -11,6 +11,7 @@
     <div id="cvContent">
         <form action="#" th:action="@{/generate}" th:object="${cvContentDto}" method="post">
             <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
+                <h3>Personal informations</h3>
                <table>
                    <tr>
                         <th>Name</th>
@@ -31,6 +32,7 @@
                </table>
             </div>
             <div id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
+                <h3>Education informations</h3>
                 <table>
                     <tr>
                         <th>School</th>
@@ -49,6 +51,7 @@
                 </table>
             </div>
             <div id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
+                <h3>Employment informations</h3>
                 <table>
                     <tr>
                         <th>Company</th>
@@ -63,6 +66,14 @@
                         <td><input th:field="*{employmentList[__${iter.index}__].jobDescription}" /></td>
                         <td><input th:field="*{employmentList[__${iter.index}__].startDate}" /></td>
                         <td><input th:field="*{employmentList[__${iter.index}__].endDate}" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="hobbiesList" th:object="${cvContentDto.hobbyListWrapperDto}">
+                <h3>Hobbies</h3>
+                <table>
+                    <tr>
+                        <td th:each="hobby, iter : *{hobbyList}"><input th:field="*{hobbyList[__${iter.index}__]}" /></td>
                     </tr>
                 </table>
             </div>

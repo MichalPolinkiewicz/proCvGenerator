@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.proCvGenerator.converter.CvContentConverter;
-import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
-import pl.proCvGenerator.dto.PersonalInfo;
-import pl.proCvGenerator.model.CvContentDto;
-import pl.proCvGenerator.model.EducationListWrapperDto;
-import pl.proCvGenerator.model.EmploymentListWrapperDto;
-import pl.proCvGenerator.model.PersonalInfoDto;
+import pl.proCvGenerator.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +46,7 @@ public class MainController {
     }
 
     @GetMapping(path = "/ok")
-    public String ok(){
+    public String ok() {
         return "ok";
     }
 
@@ -107,15 +102,15 @@ public class MainController {
 
 
         EducationListWrapperDto educationListWrapperDto = new EducationListWrapperDto();
-        List<Education> educations = new ArrayList<>();
-        educations.add(new Education());
-        educationListWrapperDto.setEducationList(educations);
+        educationListWrapperDto.addEducation(new Education());
 
         EmploymentListWrapperDto employmentListWrapperDto = new EmploymentListWrapperDto();
-        List<Employment> employmentsList = new ArrayList<>();
-        employmentsList.add(new Employment("", "", "", "", ""));
-        employmentListWrapperDto.setEmploymentList(employmentsList);
+        employmentListWrapperDto.addEmployment(new Employment());
 
-        return new CvContentDto(new PersonalInfoDto(), educationListWrapperDto, employmentListWrapperDto);
+        HobbyListWrapperDto hobbies = new HobbyListWrapperDto();
+        hobbies.addHobby("");
+        hobbies.addHobby("");
+
+        return new CvContentDto(new PersonalInfoDto(), educationListWrapperDto, employmentListWrapperDto, hobbies, "");
     }
 }

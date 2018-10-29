@@ -14,10 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import pl.proCvGenerator.converter.CvContentConverter;
-import pl.proCvGenerator.converter.EducationConverter;
-import pl.proCvGenerator.converter.EmploymentConverter;
-import pl.proCvGenerator.converter.PersonalInfoConverter;
+import pl.proCvGenerator.converter.*;
 import pl.proCvGenerator.validator.PatternValidator;
 
 @Configuration
@@ -79,5 +76,9 @@ public class WebConfig implements WebMvcConfigurer {
         return new EmploymentConverter();
     }
 
+    @Bean
+    public HobbyConverter hobbyConverter(){
+        return new HobbyConverter();
+    }
 
 }
