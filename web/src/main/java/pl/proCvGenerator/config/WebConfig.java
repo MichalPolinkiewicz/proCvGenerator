@@ -1,11 +1,8 @@
 package pl.proCvGenerator.config;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,6 +12,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import pl.proCvGenerator.converter.*;
+import pl.proCvGenerator.facade.WebFacade;
 import pl.proCvGenerator.validator.PatternValidator;
 
 @Configuration
@@ -34,7 +32,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver() {
-
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setPrefix("templates/");
@@ -52,7 +49,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public PatternValidator helperValidator() {
+    public PatternValidator patternValidator() {
         return new PatternValidator();
     }
 
@@ -77,8 +74,9 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public HobbyConverter hobbyConverter(){
-        return new HobbyConverter();
-    }
+    public HobbyConverter hobbyConverter() { return new HobbyConverter(); }
+
+    @Bean
+    public WebFacade webFacade() { return new WebFacade(); }
 
 }

@@ -2,7 +2,6 @@ package pl.proCvGenerator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.proCvGenerator.facade.CvCreatorFacade;
 import pl.proCvGenerator.patterns.CustomPattern;
 import pl.proCvGenerator.patterns.Pattern;
 import pl.proCvGenerator.patterns.SimplePattern;
@@ -34,13 +33,8 @@ public class RootConfig {
     }
 
     @Bean
-    public PdfCreator pdfCreator(){
+    public PdfCreator pdfCreator() {
         return new PdfCreator();
-    }
-
-    @Bean
-    public CvCreatorFacade cvCreatorFacade(){
-        return new CvCreatorFacade(pdfCreator());
     }
 
 }

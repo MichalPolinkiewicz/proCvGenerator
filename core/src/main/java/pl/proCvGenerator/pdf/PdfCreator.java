@@ -19,7 +19,7 @@ public class PdfCreator {
     public void generate(User user, Pattern pattern) {
 
         try {
-            File file = new File(PATH_TO_FILE + "aa" + "cv.pdf");
+            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
             PdfWriter pdfWriter = new PdfWriter(file);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             pdfDocument.setDefaultPageSize(PageSize.A4);

@@ -2,6 +2,7 @@ pl\proCvGenerator\model\CvContentDto.class
 pl\proCvGenerator\model\EducationListWrapperDto.class
 pl\proCvGenerator\model\EmploymentListWrapperDto.class
 pl\proCvGenerator\converter\CvContentConverter.class
+pl\proCvGenerator\facade\WebFacade.class
 pl\proCvGenerator\validator\PatternValidator.class
 pl\proCvGenerator\model\PersonalInfoDto.class
 pl\proCvGenerator\converter\PersonalInfoConverter.class
