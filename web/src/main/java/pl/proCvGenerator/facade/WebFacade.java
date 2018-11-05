@@ -1,5 +1,8 @@
 package pl.proCvGenerator.facade;
 
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +14,10 @@ import pl.proCvGenerator.dto.PersonalInfo;
 import pl.proCvGenerator.model.CvContentDto;
 import pl.proCvGenerator.patterns.Pattern;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +29,25 @@ public class WebFacade {
     @Autowired
     private Map patterns;
 
-    public void generate(String patternId, CvContentDto cvContentDto, Document document) {
+    public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
+        ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
+        PdfWriter pdfWriter = new PdfWriter(baosPDF);
+        Document document = new Document(new PdfDocument(pdfWriter), PageSize.A4);
+        fillPattern(patternId, document, cvContentDto);
+        document.close();
+        response.setContentType("application/pdf");
+
+        try {
+            ServletOutputStream sos = response.getOutputStream();
+            baosPDF.writeTo(sos);
+            sos.flush();
+            baosPDF.close();
+        } catch (IOException e) {
+
+        }
+    }
+
+    private void fillPattern(String patternId, Document document, CvContentDto cvContentDto){
         Pattern pattern = (Pattern) patterns.get(patternId);
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
@@ -30,7 +55,6 @@ public class WebFacade {
         pattern.generateEmploymentSection(document, cvContent.getEmployments());
     }
 
-    @ModelAttribute(name = "cvContentDto")
     public CvContentDto init() {
         //if auth != null{uzupelnia model danymi z bazy}
         //else
