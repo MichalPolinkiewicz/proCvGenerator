@@ -1,5 +1,6 @@
 package pl.proCvGenerator.facade;
 
+import com.itextpdf.layout.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.proCvGenerator.converter.CvContentConverter;
@@ -7,18 +8,30 @@ import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
-import pl.proCvGenerator.model.*;
+import pl.proCvGenerator.model.CvContentDto;
+import pl.proCvGenerator.patterns.Pattern;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class WebFacade {
 
     @Autowired
     private CvContentConverter cvContentConverter;
+    @Autowired
+    private Map patterns;
+
+    public void generate(String patternId, CvContentDto cvContentDto, Document document) {
+        Pattern pattern = (Pattern) patterns.get(patternId);
+        CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
+        pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
+        pattern.generateEducationSection(document, cvContent.getEducationList());
+        pattern.generateEmploymentSection(document, cvContent.getEmployments());
+    }
 
     @ModelAttribute(name = "cvContentDto")
-    public CvContentDto init(){
+    public CvContentDto init() {
         //if auth != null{uzupelnia model danymi z bazy}
         //else
 
@@ -85,7 +98,7 @@ public class WebFacade {
         return cvContentConverter.convertToDto(cvContent);
     }
 
-    public void persist(){
+    public void persist() {
 
     }
 }

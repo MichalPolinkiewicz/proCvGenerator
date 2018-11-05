@@ -1,5 +1,10 @@
 package pl.proCvGenerator.controller;
 
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.proCvGenerator.facade.WebFacade;
 import pl.proCvGenerator.model.CvContentDto;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 @Controller
 public class MainController {
 
@@ -17,7 +27,9 @@ public class MainController {
     private WebFacade facade;
 
     @GetMapping(path = "/")
-    public String index() { return "index"; }
+    public String index() {
+        return "index";
+    }
 
     @GetMapping(path = "/pattern")
     public String pattern(@RequestParam(name = "pattern") String pattern, Model model) {
@@ -26,14 +38,28 @@ public class MainController {
     }
 
     @PostMapping(path = "/generate")
-    public String generate(String pattern, CvContentDto cvContentDto) {
-        return "redirect:/ok"; }
+    public void generate(String pattern, CvContentDto cvContentDto, HttpServletResponse response) {
+        ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
+        response.setHeader("Cache-Control", "no-store");
+        response.setContentType("application/pdf");
+        PdfWriter pdfWriter = new PdfWriter(baosPDF);
 
-    @GetMapping(path = "/ok")
-    public String ok() {
-        return "ok";
+        Document document = new Document(new PdfDocument(pdfWriter), PageSize.A4);
+        facade.generate("simplePattern", cvContentDto, document);
+        document.close();
+
+        try {
+            ServletOutputStream sos = response.getOutputStream();
+            baosPDF.writeTo(sos);
+            sos.flush();
+            baosPDF.close();
+        } catch (IOException e) {
+
+        }
     }
 
     @ModelAttribute(name = "cvContentDto")
-    public CvContentDto init(){ return facade.init(); }
+    public CvContentDto init() {
+        return facade.init();
+    }
 }
