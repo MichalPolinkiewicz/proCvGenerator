@@ -16,18 +16,18 @@ public class RootConfig {
     @Bean
     public Map patterns() {
         Map<String, Pattern> patterns = new HashMap<>();
-        patterns.put("simplePattern", simplePattern());
-        patterns.put("customPattern", customPattern());
+        patterns.put("1", simplePattern());
+        patterns.put("2", customPattern());
 
         return patterns;
     }
 
-    @Bean
+    @Bean(name = "1")
     public Pattern simplePattern() {
         return new SimplePattern();
     }
 
-    @Bean
+    @Bean(name = "2")
     public Pattern customPattern() {
         return new CustomPattern();
     }

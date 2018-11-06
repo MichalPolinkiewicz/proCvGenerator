@@ -32,7 +32,7 @@ class PatternValidatorSpec extends Specification {
         result == applicationContext.getBean(patternId)
 
         where:
-        patternId << ["simplePattern", "customPattern"]
+        patternId << ["1", "2"]
     }
 
 }

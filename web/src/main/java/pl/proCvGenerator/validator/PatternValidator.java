@@ -10,14 +10,5 @@ public class PatternValidator {
     @Autowired
     private Map<String, Pattern> patterns;
 
-    public Pattern choosePattern(String patternId) {
-        Pattern pattern = null;
-
-        for (Map.Entry<String, Pattern> e : patterns.entrySet()) {
-            if (e.getKey().equals(patternId)) {
-                pattern = e.getValue();
-            }
-        }
-        return pattern;
-    }
+    public Pattern choosePattern(String patternId) { return patterns.get(patternId); }
 }

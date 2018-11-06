@@ -16,8 +16,8 @@ class RootConfigSpec extends Specification {
 
     def "expected patterns beans should be created"() {
         expect:
-        patterns.get("simplePattern")
-        patterns.get("customPattern")
+        patterns.get("1")
+        patterns.get("2")
         patterns.size() == 2
     }
 

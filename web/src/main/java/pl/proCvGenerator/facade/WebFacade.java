@@ -5,7 +5,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.proCvGenerator.converter.CvContentConverter;
 import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
@@ -13,6 +12,7 @@ import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
 import pl.proCvGenerator.model.CvContentDto;
 import pl.proCvGenerator.patterns.Pattern;
+import pl.proCvGenerator.validator.PatternValidator;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -20,14 +20,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class WebFacade {
 
     @Autowired
     private CvContentConverter cvContentConverter;
     @Autowired
-    private Map patterns;
+    private PatternValidator patternValidator;
 
     public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
@@ -47,8 +46,8 @@ public class WebFacade {
         }
     }
 
-    private void fillPattern(String patternId, Document document, CvContentDto cvContentDto){
-        Pattern pattern = (Pattern) patterns.get(patternId);
+    private void fillPattern(String patternId, Document document, CvContentDto cvContentDto) {
+        Pattern pattern = patternValidator.choosePattern(patternId);
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
         pattern.generateEducationSection(document, cvContent.getEducationList());

@@ -23,6 +23,11 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(path = "/patterns")
+    public String patterns(){
+        return "patterns";
+    }
+
     @GetMapping(path = "/pattern")
     public String pattern(@RequestParam(name = "pattern") String pattern, Model model) {
         model.addAttribute("pattern", pattern);
@@ -31,7 +36,7 @@ public class MainController {
 
     @PostMapping(path = "/generate")
     public void generate(String pattern, CvContentDto cvContentDto, HttpServletResponse response) {
-        facade.generatePdf("simplePattern", cvContentDto, response);
+        facade.generatePdf(pattern, cvContentDto, response);
     }
 
     @ModelAttribute(name = "cvContentDto")
