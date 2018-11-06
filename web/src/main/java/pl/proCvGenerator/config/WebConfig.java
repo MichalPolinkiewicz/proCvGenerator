@@ -74,6 +74,9 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public SkillsConverter skillsConverter(){ return new SkillsConverter(); }
+
+    @Bean
     public HobbyConverter hobbyConverter() { return new HobbyConverter(); }
 
     @Bean

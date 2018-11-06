@@ -6,9 +6,12 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.LineSeparator;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.Education;
@@ -71,7 +74,7 @@ public class SimplePattern implements Pattern {
     public void generateEmploymentSection(Document document, List<Employment> employments) {
         Paragraph paragraph = new Paragraph("");
         document.add(paragraph);
-        paragraph = createHeaderParagraph("Doświadczenie zawodowe");
+        paragraph = createHeaderParagraph("Doświadczenie zawodowe:");
         document.add(paragraph);
         document.add(createSeparatorLine());
 
@@ -84,13 +87,37 @@ public class SimplePattern implements Pattern {
     }
 
     @Override
-    public void generateHobbySection(Document document, String hobby) {
+    public void generateSkillsSection(Document document, List<String> skills) {
+        Paragraph paragraph = new Paragraph("");
+        document.add(paragraph);
+        paragraph = createHeaderParagraph("Umiejętności:");
+        document.add(paragraph);
+        document.add(createSeparatorLine());
 
+        for (String skill : skills){
+            paragraph = createNormalParagraph("- " + skill);
+            document.add(paragraph);
+        }
     }
 
     @Override
-    public void generateClause(Document document) {
+    public void generateHobbySection(Document document, List<String> hobbyList) {
+        Paragraph paragraph = new Paragraph("");
+        document.add(paragraph);
+        paragraph = createHeaderParagraph("Zainteresowania:");
+        document.add(paragraph);
+        document.add(createSeparatorLine());
 
+        for (String hobby : hobbyList){
+            paragraph = createNormalParagraph("- " + hobby);
+            document.add(paragraph);
+        }
+    }
+
+    @Override
+    public void generateClause(Document document, String clause) {
+        Paragraph paragraph = createClauseParagraph(clause);
+        document.add(paragraph);
     }
 
     private Paragraph createNormalParagraph(String text) {
@@ -107,6 +134,16 @@ public class SimplePattern implements Pattern {
         paragraph.setFont(font);
         paragraph.setFontSize(14);
         paragraph.setMultipliedLeading(1);
+
+        return paragraph;
+    }
+
+    private Paragraph createClauseParagraph(String clause){
+        Paragraph paragraph = createNormalParagraph(clause);
+        paragraph.setFontSize(11);
+        paragraph.setTextAlignment(TextAlignment.CENTER);
+        paragraph.setItalic();
+        paragraph.setFixedPosition(0,15,600);
 
         return paragraph;
     }

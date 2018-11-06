@@ -5,14 +5,19 @@ public class CvContentDto {
     private PersonalInfoDto personalInfoDto;
     private EducationListWrapperDto educationListWrapperDto;
     private EmploymentListWrapperDto employmentListWrapperDto;
-    private HobbyListWrapperDto hobbyListWrapperDto;
+    private SkillsListWrapperDto skillsListWrapperDto;
+    private HobbiesListWrapperDto hobbiesListWrapperDto;
     private String clause;
 
-    public CvContentDto(PersonalInfoDto personalInfoDto, EducationListWrapperDto educationListWrapperDto, EmploymentListWrapperDto employmentListWrapperDto, HobbyListWrapperDto hobbyListWrapperDto, String clause) {
+    public CvContentDto() {
+    }
+
+    public CvContentDto(PersonalInfoDto personalInfoDto, EducationListWrapperDto educationListWrapperDto, EmploymentListWrapperDto employmentListWrapperDto, SkillsListWrapperDto skillsListWrapperDto, HobbiesListWrapperDto hobbiesListWrapperDto, String clause) {
         this.personalInfoDto = personalInfoDto;
         this.educationListWrapperDto = educationListWrapperDto;
         this.employmentListWrapperDto = employmentListWrapperDto;
-        this.hobbyListWrapperDto = hobbyListWrapperDto;
+        this.skillsListWrapperDto = skillsListWrapperDto;
+        this.hobbiesListWrapperDto = hobbiesListWrapperDto;
         this.clause = clause;
     }
 
@@ -40,12 +45,20 @@ public class CvContentDto {
         this.employmentListWrapperDto = employmentListWrapperDto;
     }
 
-    public HobbyListWrapperDto getHobbyListWrapperDto() {
-        return hobbyListWrapperDto;
+    public SkillsListWrapperDto getSkillsListWrapperDto() {
+        return skillsListWrapperDto;
     }
 
-    public void setHobbyListWrapperDto(HobbyListWrapperDto hobbyListWrapperDto) {
-        this.hobbyListWrapperDto = hobbyListWrapperDto;
+    public void setSkillsListWrapperDto(SkillsListWrapperDto skillsListWrapperDto) {
+        this.skillsListWrapperDto = skillsListWrapperDto;
+    }
+
+    public HobbiesListWrapperDto getHobbiesListWrapperDto() {
+        return hobbiesListWrapperDto;
+    }
+
+    public void setHobbiesListWrapperDto(HobbiesListWrapperDto hobbiesListWrapperDto) {
+        this.hobbiesListWrapperDto = hobbiesListWrapperDto;
     }
 
     public String getClause() {

@@ -8,16 +8,18 @@ public class CvContent {
     private PersonalInfo personalInfo;
     private List<Education> educationList;
     private List<Employment> employments;
+    private List<String> skills;
     private List<String> hobbies;
     private String clause;
 
     public CvContent() {
     }
 
-    public CvContent(PersonalInfo personalInfo, List<Education> educationList, List<Employment> employments, List<String> hobbies, String clause) {
+    public CvContent(PersonalInfo personalInfo, List<Education> educationList, List<Employment> employments, List<String> skills, List<String> hobbies, String clause) {
         this.personalInfo = personalInfo;
         this.educationList = educationList;
         this.employments = employments;
+        this.skills = skills;
         this.hobbies = hobbies;
         this.clause = clause;
     }
@@ -52,6 +54,14 @@ public class CvContent {
 
     public void setEmployments(List<Employment> employments) {
         this.employments = employments;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
     }
 
     public List<String> getHobbies() {

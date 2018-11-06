@@ -12,7 +12,7 @@ public class CustomPattern implements Pattern {
 
     @Override
     public void generateHeader(Document document) {
-        document.add(new Paragraph("Hello from custom pattern"));
+
     }
 
     @Override
@@ -31,12 +31,17 @@ public class CustomPattern implements Pattern {
     }
 
     @Override
-    public void generateHobbySection(Document document, String hobby) {
+    public void generateSkillsSection(Document document, List<String> skills) {
 
     }
 
     @Override
-    public void generateClause(Document document) {
+    public void generateHobbySection(Document document, List<String> hobbyList) {
+
+    }
+
+    @Override
+    public void generateClause(Document document, String clause) {
 
     }
 }

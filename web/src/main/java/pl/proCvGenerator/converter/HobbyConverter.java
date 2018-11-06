@@ -1,20 +1,20 @@
 package pl.proCvGenerator.converter;
 
-import pl.proCvGenerator.model.HobbyListWrapperDto;
+import pl.proCvGenerator.model.HobbiesListWrapperDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HobbyConverter {
 
-    public List<String> convertToList(HobbyListWrapperDto hobbyListWrapperDto){
-        return new ArrayList<>(hobbyListWrapperDto.getHobbyList());
+    public List<String> convertToList(HobbiesListWrapperDto hobbiesListWrapperDto){
+        return new ArrayList<>(hobbiesListWrapperDto.getHobbyList());
     }
 
-    public HobbyListWrapperDto convertToWrapper(List<String> hobbies){
-        HobbyListWrapperDto hobbyListWrapperDto = new HobbyListWrapperDto();
-        hobbyListWrapperDto.setHobbyList(hobbies);
+    public HobbiesListWrapperDto convertToWrapper(List<String> hobbies){
+        HobbiesListWrapperDto hobbiesListWrapperDto = new HobbiesListWrapperDto();
+        hobbiesListWrapperDto.setHobbyList(hobbies);
 
-        return hobbyListWrapperDto;
+        return hobbiesListWrapperDto;
     }
 }

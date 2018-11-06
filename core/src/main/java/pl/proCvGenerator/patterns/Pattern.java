@@ -13,6 +13,7 @@ public interface Pattern {
     void generatePersonalInfoSection(Document document, PersonalInfo personalInfo);
     void generateEducationSection(Document document, List<Education> education);
     void generateEmploymentSection(Document document, List<Employment> employments);
-    void generateHobbySection(Document document, String hobby);
-    void generateClause(Document document);
+    void generateSkillsSection(Document document, List<String> skills);
+    void generateHobbySection(Document document, List<String> hobbyList);
+    void generateClause(Document document, String clause);
 }

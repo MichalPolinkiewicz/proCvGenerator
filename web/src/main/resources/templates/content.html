@@ -69,13 +69,25 @@
                     </tr>
                 </table>
             </div>
-            <div id="hobbiesList" th:object="${cvContentDto.hobbyListWrapperDto}">
+            <div id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
+                <h3>Skills:</h3>
+                <table>
+                    <tr>
+                        <td th:each="skill, iter : *{skills}"><input th:field="*{skills[__${iter.index}__]}" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="hobbiesList" th:object="${cvContentDto.hobbiesListWrapperDto}">
                 <h3>Hobbies</h3>
                 <table>
                     <tr>
                         <td th:each="hobby, iter : *{hobbyList}"><input th:field="*{hobbyList[__${iter.index}__]}" /></td>
                     </tr>
                 </table>
+            </div>
+            <div id="clause">
+                <h3>Klauzula</h3>
+                <p><input th:field="${cvContentDto.clause}"></p>
             </div>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
             <button th:type="submit">Send</button>

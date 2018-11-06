@@ -30,6 +30,8 @@ public class PdfCreator {
             pattern.generatePersonalInfoSection(document, user.getCvContent().getPersonalInfo());
             pattern.generateEducationSection(document, user.getCvContent().getEducationList());
             pattern.generateEmploymentSection(document, user.getCvContent().getEmployments());
+            pattern.generateHobbySection(document, user.getCvContent().getHobbies());
+            pattern.generateClause(document, user.getCvContent().getClause());
 
 
             document.close();
@@ -93,7 +95,18 @@ public class PdfCreator {
 
         cvContent.setPersonalInfo(personalInfo);
 
+        List<String> hobbyList = new ArrayList<>();
+        hobbyList.add("muzyka");
+        hobbyList.add("sport");
+        hobbyList.add("turystyka");
+        hobbyList.add("mocny alkohol");
+        cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
+
+        String clause = "Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
+                "......................................................................" +
+                " w celu i zakresie niezbędnym w procesie rekrutacyjnym.";
+        cvContent.setClause(clause);
 
         return user;
     }

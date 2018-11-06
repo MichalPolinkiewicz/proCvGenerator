@@ -49,9 +49,13 @@ public class WebFacade {
     private void fillPattern(String patternId, Document document, CvContentDto cvContentDto) {
         Pattern pattern = patternValidator.choosePattern(patternId);
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
+        pattern.generateHeader(document);
         pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
         pattern.generateEducationSection(document, cvContent.getEducationList());
         pattern.generateEmploymentSection(document, cvContent.getEmployments());
+        pattern.generateSkillsSection(document, cvContent.getSkills());
+        pattern.generateHobbySection(document, cvContent.getHobbies());
+        pattern.generateClause(document, cvContent.getClause());
     }
 
     public CvContentDto init() {
@@ -62,7 +66,7 @@ public class WebFacade {
 //        educationListWrapperDto.addEducation(new Education());
 //        EmploymentListWrapperDto employmentListWrapperDto = new EmploymentListWrapperDto();
 //        employmentListWrapperDto.addEmployment(new Employment());
-//        HobbyListWrapperDto hobbies = new HobbyListWrapperDto();
+//        HobbiesListWrapperDto hobbies = new HobbiesListWrapperDto();
 //        hobbies.addHobby("");
 //        hobbies.addHobby("");
 //
@@ -90,17 +94,20 @@ public class WebFacade {
         xyz.setPosition("murarz");
         xyz.setJobDescription("murowanie i picie");
         xyz.setStartDate("1988");
-        xyz.setEndDate("2018");
+        xyz.setEndDate("2006");
         Employment zzz = new Employment();
         zzz.setCompany("zzz sp.z o.o");
         zzz.setPosition("murarz");
         zzz.setJobDescription("murowanie i picie");
-        zzz.setStartDate("2010");
-        zzz.setEndDate("nadal");
+        zzz.setStartDate("2007");
+        zzz.setEndDate("2016");
+        Employment xxx = new Employment("Firma x", "specjalista ds. bhp", "nadzór nad przestrzeganiem ogolnych zasad bhp",
+                "2016", "nadal");
 
         List<Employment> employments = new ArrayList<>();
         employments.add(xyz);
         employments.add(zzz);
+        employments.add(xxx);
 
         cvContent.setEmployments(employments);
 
@@ -115,8 +122,20 @@ public class WebFacade {
         cvContent.setPersonalInfo(personalInfo);
         List<String> hobbies = new ArrayList<>();
         hobbies.add("mechanika");
+        hobbies.add("sport");
+        hobbies.add("muzyka");
         cvContent.setHobbies(hobbies);
-        cvContent.setClause("");
+        cvContent.setClause("Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
+                "......................................................................" +
+                " w celu i zakresie niezbędnym w procesie rekrutacyjnym.");
+
+        List<String> skills = new ArrayList<>();
+        skills.add("umiejętność obsługi komputera");
+        skills.add("prawo jazdy kat b");
+        skills.add("znajomość języka angielskiego - poziom b2");
+        skills.add("znajomsc jezyka niemieckigo - poziom a2");
+        skills.add("znajomosc prawa pracy");
+        cvContent.setSkills(skills);
 
         return cvContentConverter.convertToDto(cvContent);
     }

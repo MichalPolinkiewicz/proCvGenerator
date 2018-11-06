@@ -13,6 +13,8 @@ public class CvContentConverter {
     @Autowired
     private EmploymentConverter employmentConverter;
     @Autowired
+    private SkillsConverter skillsConverter;
+    @Autowired
     private HobbyConverter hobbyConverter;
 
     public CvContent convertToContent(CvContentDto cvContentDto) {
@@ -20,7 +22,8 @@ public class CvContentConverter {
                 personalInfoConverter.convertToPersonalInfo(cvContentDto.getPersonalInfoDto()),
                 educationConverter.convertToList(cvContentDto.getEducationListWrapperDto()),
                 employmentConverter.convertToList(cvContentDto.getEmploymentListWrapperDto()),
-                hobbyConverter.convertToList(cvContentDto.getHobbyListWrapperDto()),
+                skillsConverter.convertToList(cvContentDto.getSkillsListWrapperDto()),
+                hobbyConverter.convertToList(cvContentDto.getHobbiesListWrapperDto()),
                 cvContentDto.getClause()
         );
     }
@@ -30,6 +33,7 @@ public class CvContentConverter {
                 personalInfoConverter.convertToDto(cvContent.getPersonalInfo()),
                 educationConverter.convertToWrapper(cvContent.getEducationList()),
                 employmentConverter.convertToWrapper(cvContent.getEmployments()),
+                skillsConverter.convertToWrapper(cvContent.getSkills()),
                 hobbyConverter.convertToWrapper(cvContent.getHobbies()),
                 cvContent.getClause()
         );
