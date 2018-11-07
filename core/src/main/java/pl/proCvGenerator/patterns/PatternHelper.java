@@ -55,6 +55,12 @@ public class PatternHelper {
         return paragraph;
     }
 
+    public static Paragraph createCvTitle(String text, Font font){
+        font.setSize(22);
+
+        return new Paragraph(text, font);
+    }
+
     public static LineSeparator createSeparatorLine(){
         LineSeparator lineSeparator = new LineSeparator(2,100, BaseColor.BLACK, 1,5);
 

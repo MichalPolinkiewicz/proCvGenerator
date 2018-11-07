@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface Pattern {
 
-    void prepareDocument(Document document);
+    Document prepareDocument();
     void generateHeader (Document document);
     void generatePersonalInfoSection(Document document, PersonalInfo personalInfo);
     void generateDescriptionSection(Document document, String description);

@@ -28,21 +28,19 @@ public class WebFacade {
 
     public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
-        Rectangle pageSize = new Rectangle(PageSize.A4);
-        pageSize.setBackgroundColor(new BaseColor(84, 141, 212));
-        Document document = new Document( pageSize );
+        Pattern pattern = patternValidator.choosePattern(patternId);
+        Document document = pattern.prepareDocument();
 
         try {
             PdfWriter.getInstance(document, baosPDF);
         } catch (DocumentException e) {
 
         }
-        document.open();
-        fillPattern(patternId, document, cvContentDto);
-        document.close();
-        response.setContentType("application/pdf");
+
+        fillPattern(pattern, document, cvContentDto);
 
         try {
+            response.setContentType("application/pdf");
             ServletOutputStream sos = response.getOutputStream();
             baosPDF.writeTo(sos);
             sos.flush();
@@ -52,10 +50,9 @@ public class WebFacade {
         }
     }
 
-    private void fillPattern(String patternId, Document document, CvContentDto cvContentDto) {
-        Pattern pattern = patternValidator.choosePattern(patternId);
+    private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) {
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
-        pattern.prepareDocument(document);
+        document.open();
         pattern.generateHeader(document);
         pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
         pattern.generateDescriptionSection(document, cvContent.getPersonalInfo().getDescription());
@@ -64,6 +61,7 @@ public class WebFacade {
         pattern.generateSkillsSection(document, cvContent.getSkills());
         pattern.generateHobbySection(document, cvContent.getHobbies());
         pattern.generateClause(document, cvContent.getClause());
+        document.close();
     }
 
     public CvContentDto init() {

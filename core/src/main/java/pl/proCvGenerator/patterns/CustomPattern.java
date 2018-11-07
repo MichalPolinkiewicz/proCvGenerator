@@ -10,8 +10,8 @@ import java.util.List;
 public class CustomPattern implements Pattern {
 
     @Override
-    public void prepareDocument(Document document) {
-
+    public Document prepareDocument() {
+        return new Document();
     }
 
     @Override

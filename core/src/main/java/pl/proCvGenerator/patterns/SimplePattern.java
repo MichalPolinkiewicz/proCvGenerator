@@ -1,22 +1,18 @@
 package pl.proCvGenerator.patterns;
 
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static pl.proCvGenerator.fonts.Fonts.UBUNTU_NORMAL;
 import static pl.proCvGenerator.fonts.Fonts.UBUNTU_BOLD;
+import static pl.proCvGenerator.fonts.Fonts.UBUNTU_NORMAL;
 import static pl.proCvGenerator.patterns.PatternHelper.*;
 
 public class SimplePattern implements Pattern {
@@ -24,18 +20,23 @@ public class SimplePattern implements Pattern {
     private static final Logger logger = LoggerFactory.getLogger(SimplePattern.class);
 
     @Override
-    public void prepareDocument(Document document) {
-        document.setMargins(20, 30, 10, 30);
+    public Document prepareDocument() {
+        Document document = new Document();
+        Rectangle pageSize = new Rectangle(PageSize.A4);
+        //pageSize.setBackgroundColor(new BaseColor(226, 222, 215));
+        document.setPageSize(pageSize);
+        document.setMargins(20, 20, 15, 15);
+
+        return document;
     }
 
     @Override
     public void generateHeader(Document document) {
         try {
-            Paragraph paragraph = createHeaderParagraph("CV", UBUNTU_BOLD);
+            Paragraph paragraph = createCvTitle("CV", UBUNTU_BOLD);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
         } catch (DocumentException e) {
-
         }
     }
 
@@ -162,23 +163,11 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = createClauseParagraph(clause, UBUNTU_NORMAL);
             document.add(paragraph);
+
         } catch (DocumentException e) {
-
         }
-    }
 
-    private List<Education> sortEducationList(List<Education> educationList) {
-        return educationList
-                .stream()
-                .sorted(Comparator.comparing(Education::getEndDate).reversed())
-                .collect(Collectors.toList());
-    }
 
-    private List<Employment> sortEmploymentList(List<Employment> employmentList) {
-        return employmentList
-                .stream()
-                .sorted(Comparator.comparing(Employment::getEndDate).reversed())
-                .collect(Collectors.toList());
     }
 
 }
