@@ -1,7 +1,6 @@
 package pl.proCvGenerator.patterns;
 
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.text.Document;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
@@ -11,12 +10,22 @@ import java.util.List;
 public class CustomPattern implements Pattern {
 
     @Override
+    public void prepareDocument(Document document) {
+
+    }
+
+    @Override
     public void generateHeader(Document document) {
 
     }
 
     @Override
     public void generatePersonalInfoSection(Document document, PersonalInfo personalInfo) {
+
+    }
+
+    @Override
+    public void generateDescriptionSection(Document document, String description) {
 
     }
 

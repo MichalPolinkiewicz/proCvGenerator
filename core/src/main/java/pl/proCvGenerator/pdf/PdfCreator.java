@@ -1,14 +1,8 @@
 package pl.proCvGenerator.pdf;
 
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
 import pl.proCvGenerator.dto.*;
 import pl.proCvGenerator.patterns.Pattern;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,26 +12,26 @@ public class PdfCreator {
 
     public void generate(User user, Pattern pattern) {
 
-        try {
-            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
-            PdfWriter pdfWriter = new PdfWriter(file);
-            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-            pdfDocument.setDefaultPageSize(PageSize.A4);
-
-            Document document = new Document(pdfDocument);
-
-            pattern.generateHeader(document);
-            pattern.generatePersonalInfoSection(document, user.getCvContent().getPersonalInfo());
-            pattern.generateEducationSection(document, user.getCvContent().getEducationList());
-            pattern.generateEmploymentSection(document, user.getCvContent().getEmployments());
-            pattern.generateHobbySection(document, user.getCvContent().getHobbies());
-            pattern.generateClause(document, user.getCvContent().getClause());
-
-
-            document.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
+//            PdfWriter pdfWriter = new PdfWriter(file);
+//            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+//            pdfDocument.setDefaultPageSize(PageSize.A4);
+//
+//            Document document = new Document(pdfDocument);
+//
+//            pattern.generateHeader(document);
+//            pattern.generatePersonalInfoSection(document, user.getCvContent().getPersonalInfo());
+//            pattern.generateEducationSection(document, user.getCvContent().getEducationList());
+//            pattern.generateEmploymentSection(document, user.getCvContent().getEmployments());
+//            pattern.generateHobbySection(document, user.getCvContent().getHobbies());
+//            pattern.generateClause(document, user.getCvContent().getClause());
+//
+//
+//            document.close();
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
 
     }
 

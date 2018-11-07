@@ -11,7 +11,7 @@
     <artifactId>core</artifactId>
 
     <properties>
-        <itext.version>7.1.3</itext.version>
+        <itext.version>7.1.4</itext.version>
     </properties>
 
     <dependencies>
@@ -22,18 +22,8 @@
         </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
-            <artifactId>kernel</artifactId>
-            <version>${itext.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>io</artifactId>
-            <version>${itext.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>layout</artifactId>
-            <version>${itext.version}</version>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

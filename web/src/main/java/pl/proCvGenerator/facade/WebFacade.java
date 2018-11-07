@@ -1,9 +1,9 @@
 package pl.proCvGenerator.facade;
 
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.proCvGenerator.converter.CvContentConverter;
 import pl.proCvGenerator.dto.CvContent;
@@ -30,8 +30,15 @@ public class WebFacade {
 
     public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
-        PdfWriter pdfWriter = new PdfWriter(baosPDF);
-        Document document = new Document(new PdfDocument(pdfWriter), PageSize.A4);
+
+        Document document = new Document(PageSize.A4);
+
+        try {
+            PdfWriter.getInstance(document, baosPDF);
+        } catch (DocumentException e) {
+
+        }
+        document.open();
         fillPattern(patternId, document, cvContentDto);
         document.close();
         response.setContentType("application/pdf");
@@ -49,8 +56,10 @@ public class WebFacade {
     private void fillPattern(String patternId, Document document, CvContentDto cvContentDto) {
         Pattern pattern = patternValidator.choosePattern(patternId);
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
+        pattern.prepareDocument(document);
         pattern.generateHeader(document);
         pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
+        pattern.generateDescriptionSection(document, cvContent.getPersonalInfo().getDescription());
         pattern.generateEducationSection(document, cvContent.getEducationList());
         pattern.generateEmploymentSection(document, cvContent.getEmployments());
         pattern.generateSkillsSection(document, cvContent.getSkills());
@@ -117,6 +126,7 @@ public class WebFacade {
         personalInfo.setCity("Bialystok");
         personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac");
         personalInfo.setEmail("zlotoreki69@gmail.com");
+        personalInfo.setPage("www.page.pl");
         personalInfo.setPhone("678-341-098");
 
         cvContent.setPersonalInfo(personalInfo);

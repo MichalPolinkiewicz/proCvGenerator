@@ -5,6 +5,7 @@ public class PersonalInfoDto {
     private String name;
     private String surname;
     private String email;
+    private String page;
     private String phone;
     private String city;
     private String description;
@@ -12,10 +13,11 @@ public class PersonalInfoDto {
     public PersonalInfoDto() {
     }
 
-    public PersonalInfoDto(String name, String surname, String email, String phone, String city, String description) {
+    public PersonalInfoDto(String name, String surname, String email, String page, String phone, String city, String description) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.page = page;
         this.phone = phone;
         this.city = city;
         this.description = description;
@@ -43,6 +45,14 @@ public class PersonalInfoDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 
     public String getPhone() {
