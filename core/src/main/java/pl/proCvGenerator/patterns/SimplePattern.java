@@ -3,25 +3,25 @@ package pl.proCvGenerator.patterns;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
-import pl.proCvGenerator.fonts.Fonts;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.proCvGenerator.fonts.Fonts.UBUNTU_NORMAL;
+import static pl.proCvGenerator.fonts.Fonts.UBUNTU_BOLD;
 import static pl.proCvGenerator.patterns.PatternHelper.*;
 
 public class SimplePattern implements Pattern {
 
     private static final Logger logger = LoggerFactory.getLogger(SimplePattern.class);
-    private Font timesNewRoman = Fonts.TIMES_12;
 
     @Override
     public void prepareDocument(Document document) {
@@ -31,7 +31,8 @@ public class SimplePattern implements Pattern {
     @Override
     public void generateHeader(Document document) {
         try {
-            Paragraph paragraph = createHeaderParagraph("CV", timesNewRoman);
+            Paragraph paragraph = createHeaderParagraph("CV", UBUNTU_BOLD);
+            paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
         } catch (DocumentException e) {
 
@@ -43,28 +44,27 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("Dane osobowe:", timesNewRoman);
+            paragraph = createHeaderParagraph("Dane osobowe:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
-            paragraph = createNormalParagraph(personalInfo.getName() + " " + personalInfo.getSurname(), timesNewRoman);
+            paragraph = createNormalParagraph(personalInfo.getName() + " " + personalInfo.getSurname(), UBUNTU_NORMAL);
             document.add(paragraph);
-            paragraph = createNormalParagraph(personalInfo.getCity(), timesNewRoman);
+            paragraph = createNormalParagraph(personalInfo.getCity(), UBUNTU_NORMAL);
             document.add(paragraph);
-            paragraph = createNormalParagraph(personalInfo.getPhone(), timesNewRoman);
+            paragraph = createNormalParagraph(personalInfo.getPhone(), UBUNTU_NORMAL);
             document.add(paragraph);
 
             if (!personalInfo.getEmail().equals("")) {
-                paragraph = createNormalParagraph(personalInfo.getEmail(), timesNewRoman);
+                paragraph = createNormalParagraph(personalInfo.getEmail(), UBUNTU_NORMAL);
                 document.add(paragraph);
             }
             if (!personalInfo.getPage().equals("")) {
-                paragraph = createNormalParagraph(personalInfo.getPage(), timesNewRoman);
+                paragraph = createNormalParagraph(personalInfo.getPage(), UBUNTU_NORMAL);
                 document.add(paragraph);
             }
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
@@ -72,15 +72,14 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("O mnie:", timesNewRoman);
+            paragraph = createHeaderParagraph("O mnie:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
-            paragraph = createNormalParagraph(description, timesNewRoman);
+            paragraph = createNormalParagraph(description, UBUNTU_NORMAL);
             document.add(paragraph);
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
@@ -88,19 +87,18 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("Edukacja:", timesNewRoman);
+            paragraph = createHeaderParagraph("Edukacja:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
 
             for (Education education : sortEducationList(educationList)) {
                 paragraph = createNormalParagraph(education.getStartDate() + " - " + education.getEndDate() + " - " + education.getSchoolName()
-                        + ", " + education.getSubject() + ", " + education.getDegree(), timesNewRoman);
+                        + ", " + education.getSubject() + ", " + education.getDegree(), UBUNTU_NORMAL);
                 document.add(paragraph);
             }
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
@@ -108,20 +106,19 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("Doświadczenie zawodowe:", timesNewRoman);
+            paragraph = createHeaderParagraph("Doświadczenie zawodowe:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
 
             for (Employment e : sortEmploymentList(employments)) {
-                paragraph = createNormalParagraph(e.getStartDate() + " - " + e.getEndDate() + " - " + e.getCompany() + ".", timesNewRoman);
+                paragraph = createNormalParagraph(e.getStartDate() + " - " + e.getEndDate() + " - " + e.getCompany() + ".", UBUNTU_NORMAL);
                 document.add(paragraph);
-                paragraph = createNormalParagraph("Stanowisko: " + e.getPosition() + ", zakres obowiązków: " + e.getJobDescription(), timesNewRoman);
+                paragraph = createNormalParagraph("Stanowisko: " + e.getPosition() + ", zakres obowiązków: " + e.getJobDescription(), UBUNTU_NORMAL);
                 document.add(paragraph);
             }
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
@@ -129,18 +126,17 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("Umiejętności:", timesNewRoman);
+            paragraph = createHeaderParagraph("Umiejętności:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
 
             for (String skill : skills) {
-                paragraph = createNormalParagraph("- " + skill, timesNewRoman);
+                paragraph = createNormalParagraph("- " + skill, UBUNTU_NORMAL);
                 document.add(paragraph);
             }
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
@@ -148,29 +144,27 @@ public class SimplePattern implements Pattern {
         try {
             Paragraph paragraph = new Paragraph("");
             document.add(paragraph);
-            paragraph = createHeaderParagraph("Zainteresowania:", timesNewRoman);
+            paragraph = createHeaderParagraph("Zainteresowania:", UBUNTU_BOLD);
             document.add(paragraph);
             document.add(createSeparatorLine());
 
             for (String hobby : hobbyList) {
-                paragraph = createNormalParagraph("- " + hobby, timesNewRoman);
+                paragraph = createNormalParagraph("- " + hobby, UBUNTU_NORMAL);
                 document.add(paragraph);
             }
         } catch (DocumentException e) {
 
         }
-
     }
 
     @Override
     public void generateClause(Document document, String clause) {
         try {
-            Paragraph paragraph = createClauseParagraph(clause, timesNewRoman);
+            Paragraph paragraph = createClauseParagraph(clause, UBUNTU_NORMAL);
             document.add(paragraph);
         } catch (DocumentException e) {
 
         }
-
     }
 
     private List<Education> sortEducationList(List<Education> educationList) {

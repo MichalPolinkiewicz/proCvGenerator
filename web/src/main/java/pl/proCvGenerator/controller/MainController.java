@@ -24,13 +24,14 @@ public class MainController {
     }
 
     @GetMapping(path = "/patterns")
-    public String patterns(){
+    public String patterns() {
         return "patterns";
     }
 
     @GetMapping(path = "/pattern")
     public String pattern(@RequestParam(name = "pattern") String pattern, Model model) {
         model.addAttribute("pattern", pattern);
+
         return "content";
     }
 

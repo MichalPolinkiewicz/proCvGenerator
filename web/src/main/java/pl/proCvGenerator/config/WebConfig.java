@@ -74,12 +74,18 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public SkillsConverter skillsConverter(){ return new SkillsConverter(); }
+    public SkillsConverter skillsConverter() {
+        return new SkillsConverter();
+    }
 
     @Bean
-    public HobbyConverter hobbyConverter() { return new HobbyConverter(); }
+    public HobbyConverter hobbyConverter() {
+        return new HobbyConverter();
+    }
 
     @Bean
-    public WebFacade webFacade() { return new WebFacade(); }
+    public WebFacade webFacade() {
+        return new WebFacade();
+    }
 
 }

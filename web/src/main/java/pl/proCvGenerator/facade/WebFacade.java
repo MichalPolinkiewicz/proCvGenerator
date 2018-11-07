@@ -1,8 +1,6 @@
 package pl.proCvGenerator.facade;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.PageSize;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.proCvGenerator.converter.CvContentConverter;
@@ -30,8 +28,9 @@ public class WebFacade {
 
     public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
-
-        Document document = new Document(PageSize.A4);
+        Rectangle pageSize = new Rectangle(PageSize.A4);
+        pageSize.setBackgroundColor(new BaseColor(84, 141, 212));
+        Document document = new Document( pageSize );
 
         try {
             PdfWriter.getInstance(document, baosPDF);
