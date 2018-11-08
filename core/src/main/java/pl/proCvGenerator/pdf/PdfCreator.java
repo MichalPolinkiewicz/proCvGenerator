@@ -3,6 +3,7 @@ package pl.proCvGenerator.pdf;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
 import pl.proCvGenerator.dto.*;
@@ -18,24 +19,17 @@ public class PdfCreator {
 
     public static final String PATH_TO_FILE = "/home/michal/IdeaProjects/proCvGenerator/";
 
-    public void generate(User user, Pattern pattern) {
+    public void generate(Pattern pattern) {
 
         try {
-            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-
             Document document = pattern.prepareDocument();
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
-            PdfWriter.getInstance(document, fileOutputStream);
             document.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (DocumentException e){
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     public static User createUser() {

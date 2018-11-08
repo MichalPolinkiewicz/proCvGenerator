@@ -14,7 +14,7 @@ public class App {
         Pattern pattern = new PatternImpl2();
         PdfCreator pdfCreator = new PdfCreator();
 
-        pdfCreator.generate(user, pattern);
+        pdfCreator.generate(pattern);
 
     }
 }

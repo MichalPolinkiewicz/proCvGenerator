@@ -30,10 +30,9 @@ public class WebFacade {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
         Pattern pattern = patternValidator.choosePattern(patternId);
         Document document = pattern.prepareDocument();
-        PdfWriter writer = null;
 
         try {
-            writer = PdfWriter.getInstance(document, baosPDF);
+            PdfWriter.getInstance(document, baosPDF);
         } catch (DocumentException e) {
 
         }
