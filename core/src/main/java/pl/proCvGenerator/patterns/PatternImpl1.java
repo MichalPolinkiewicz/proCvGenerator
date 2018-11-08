@@ -2,9 +2,9 @@ package pl.proCvGenerator.patterns;
 
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
@@ -13,17 +13,16 @@ import java.util.List;
 
 import static pl.proCvGenerator.fonts.Fonts.UBUNTU_BOLD;
 import static pl.proCvGenerator.fonts.Fonts.UBUNTU_NORMAL;
-import static pl.proCvGenerator.patterns.PatternHelper.*;
+import static pl.proCvGenerator.patterns.helpers.PatternImpl1Helper.*;
 
-public class SimplePattern implements Pattern {
+public class PatternImpl1 implements Pattern {
 
-    private static final Logger logger = LoggerFactory.getLogger(SimplePattern.class);
+    private static final Logger logger = LoggerFactory.getLogger(PatternImpl1.class);
 
     @Override
     public Document prepareDocument() {
         Document document = new Document();
         Rectangle pageSize = new Rectangle(PageSize.A4);
-        //pageSize.setBackgroundColor(new BaseColor(226, 222, 215));
         document.setPageSize(pageSize);
         document.setMargins(20, 20, 15, 15);
 
@@ -31,6 +30,16 @@ public class SimplePattern implements Pattern {
     }
 
     @Override
+    public void generateCv(Document document, CvContent cvContent) {
+        generateHeader(document);
+        generatePersonalInfoSection(document, cvContent.getPersonalInfo());
+        generateDescriptionSection(document, cvContent.getPersonalInfo().getDescription());
+        generateEducationSection(document, cvContent.getEducationList());
+        generateEmploymentSection(document, cvContent.getEmployments());
+        generateSkillsSection(document, cvContent.getSkills());
+        generateHobbySection(document, cvContent.getHobbies());
+    }
+
     public void generateHeader(Document document) {
         try {
             Paragraph paragraph = createCvTitle("CV", UBUNTU_BOLD);
@@ -40,7 +49,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generatePersonalInfoSection(Document document, PersonalInfo personalInfo) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -68,7 +76,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateDescriptionSection(Document document, String description) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -83,7 +90,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateEducationSection(Document document, List<Education> educationList) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -102,7 +108,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateEmploymentSection(Document document, List<Employment> employments) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -122,7 +127,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateSkillsSection(Document document, List<String> skills) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -140,7 +144,6 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateHobbySection(Document document, List<String> hobbyList) {
         try {
             Paragraph paragraph = new Paragraph("");
@@ -158,10 +161,13 @@ public class SimplePattern implements Pattern {
         }
     }
 
-    @Override
     public void generateClause(Document document, String clause) {
         try {
-            Paragraph paragraph = createClauseParagraph(clause, UBUNTU_NORMAL);
+            Paragraph paragraph = new Paragraph("");
+            paragraph.setSpacingAfter(30);
+            document.add(paragraph);
+            document.add(createSeparatorLine());
+            paragraph = createClauseParagraph(clause, UBUNTU_NORMAL);
             document.add(paragraph);
 
         } catch (DocumentException e) {

@@ -2,9 +2,9 @@ package pl.proCvGenerator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.proCvGenerator.patterns.CustomPattern;
+import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.Pattern;
-import pl.proCvGenerator.patterns.SimplePattern;
+import pl.proCvGenerator.patterns.PatternImpl1;
 import pl.proCvGenerator.pdf.PdfCreator;
 
 import java.util.HashMap;
@@ -24,12 +24,12 @@ public class RootConfig {
 
     @Bean(name = "1")
     public Pattern simplePattern() {
-        return new SimplePattern();
+        return new PatternImpl1();
     }
 
     @Bean(name = "2")
     public Pattern customPattern() {
-        return new CustomPattern();
+        return new PatternImpl2();
     }
 
     @Bean

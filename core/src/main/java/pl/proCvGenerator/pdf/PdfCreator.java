@@ -1,8 +1,16 @@
 package pl.proCvGenerator.pdf;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
 import pl.proCvGenerator.dto.*;
 import pl.proCvGenerator.patterns.Pattern;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,26 +20,21 @@ public class PdfCreator {
 
     public void generate(User user, Pattern pattern) {
 
-//        try {
-//            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
-//            PdfWriter pdfWriter = new PdfWriter(file);
-//            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-//            pdfDocument.setDefaultPageSize(PageSize.A4);
-//
-//            Document document = new Document(pdfDocument);
-//
-//            pattern.generateHeader(document);
-//            pattern.generatePersonalInfoSection(document, user.getCvContent().getPersonalInfo());
-//            pattern.generateEducationSection(document, user.getCvContent().getEducationList());
-//            pattern.generateEmploymentSection(document, user.getCvContent().getEmployments());
-//            pattern.generateHobbySection(document, user.getCvContent().getHobbies());
-//            pattern.generateClause(document, user.getCvContent().getClause());
-//
-//
-//            document.close();
-//        } catch (FileNotFoundException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            File file = new File(PATH_TO_FILE + "aa2" + "cv.pdf");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            Document document = pattern.prepareDocument();
+            document.open();
+            pattern.generateCv(document, createUser().getCvContent());
+            PdfWriter.getInstance(document, fileOutputStream);
+            document.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (DocumentException e){
+
+        }
 
     }
 

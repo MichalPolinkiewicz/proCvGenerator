@@ -1,4 +1,4 @@
-package pl.proCvGenerator.patterns;
+package pl.proCvGenerator.patterns.helpers;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PatternHelper {
+public class PatternImpl1Helper {
 
     public static List<Education> sortEducationList(List<Education> educationList){
         return educationList
@@ -39,7 +39,7 @@ public class PatternHelper {
     }
 
     public static Paragraph createClauseParagraph(String text, Font font){
-        font.setSize(11);
+        font.setSize(9);
         Paragraph paragraph = new Paragraph(text, font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
 

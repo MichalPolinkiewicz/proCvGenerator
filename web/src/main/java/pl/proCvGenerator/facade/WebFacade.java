@@ -30,13 +30,14 @@ public class WebFacade {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
         Pattern pattern = patternValidator.choosePattern(patternId);
         Document document = pattern.prepareDocument();
+        PdfWriter writer = null;
 
         try {
-            PdfWriter.getInstance(document, baosPDF);
+            writer = PdfWriter.getInstance(document, baosPDF);
         } catch (DocumentException e) {
 
         }
-
+        //writer.setPageEvent(new Footer(PatternImpl1Helper.createClauseParagraph(cvContentDto.getClause(), Fonts.UBUNTU_NORMAL)));
         fillPattern(pattern, document, cvContentDto);
 
         try {
@@ -53,14 +54,7 @@ public class WebFacade {
     private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) {
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         document.open();
-        pattern.generateHeader(document);
-        pattern.generatePersonalInfoSection(document, cvContent.getPersonalInfo());
-        pattern.generateDescriptionSection(document, cvContent.getPersonalInfo().getDescription());
-        pattern.generateEducationSection(document, cvContent.getEducationList());
-        pattern.generateEmploymentSection(document, cvContent.getEmployments());
-        pattern.generateSkillsSection(document, cvContent.getSkills());
-        pattern.generateHobbySection(document, cvContent.getHobbies());
-        pattern.generateClause(document, cvContent.getClause());
+        pattern.generateCv(document, cvContent);
         document.close();
     }
 
