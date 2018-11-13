@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.CvContent;
+import pl.proCvGenerator.dto.PersonalInfo;
 import pl.proCvGenerator.fonts.Fonts;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class PatternImpl2 implements Pattern {
 //        createHeader(document);
 //        createMainTable(document);
         test(document);
-        createGeneralInfoSection(document);
+        createGeneralInfoSection(document, cvContent.getPersonalInfo());
     }
 
     public void createHeader(Document document) {
@@ -56,7 +57,7 @@ public class PatternImpl2 implements Pattern {
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-            Image image = Image.getInstance("/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/phone.png");
+            Image image = Image.getInstance("/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitephone.png");
             image.scalePercent(2.5f);
 
             paragraph = new Paragraph(new Chunk(image, 0, -20));
@@ -121,7 +122,7 @@ public class PatternImpl2 implements Pattern {
             rectangle.setBackgroundColor(BaseColor.DARK_GRAY);
             document.add(rectangle);
 
-            rectangle = new Rectangle(0, 670, 595, 842);
+            rectangle = new Rectangle(0, 650, 595, 842);
             rectangle.setBackgroundColor(BaseColor.ORANGE);
 
             document.add(rectangle);
@@ -131,48 +132,82 @@ public class PatternImpl2 implements Pattern {
 
     }
 
-    public void createGeneralInfoSection(Document document) {
+    public void createGeneralInfoSection(Document document, PersonalInfo personalInfo) {
         try {
-            Paragraph p = createParagraph("Jan Nowak", Fonts.CALIBRI_BOLD, 36);
-            p.setSpacingBefore(-10);
+            Paragraph p = createParagraph((personalInfo.getName() + " " + personalInfo.getSurname()).toUpperCase(), Fonts.CALIBRI_BOLD, 28);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
 
+            //1 litera = 0.2
+
             PdfPTable table = new PdfPTable(6);
-            table.setWidths(new float[]{0.2f, 1, 0.2f, 1, 0.2f, 1});
-            Image image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/phone.png");
-            image.scalePercent(2);
+            table.setWidths(
+                    new float[]{
+                            0.3f,
+                            0.06f * personalInfo.getPhone().length(),
+                            0.3f,
+                            0.05f * personalInfo.getEmail().length(),
+                            0.3f,
+                            0.05f * personalInfo.getCity().length()});
 
-            table.setWidthPercentage(100);
+
+            //Image image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/phone.png");
+            Image image = Image.getInstance("/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitephone.png");
+            //image.scalePercent(6);
+            image.scaleAbsolute(35,35);
+
+            table.setWidthPercentage(90);
             PdfPCell cell = new PdfPCell(image);
-            cell.setBorder(Rectangle.NO_BORDER);
-            table.addCell(cell);
-
-            cell = new PdfPCell(createParagraph("656-987-345", Fonts.UBUNTU_NORMAL, 16));
-            cell.setBorder(Rectangle.NO_BORDER);
             cell.setHorizontalAlignment(Element.ALIGN_LEFT);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setBorder(Rectangle.NO_BORDER);
             table.addCell(cell);
 
+            p = createParagraph(personalInfo.getPhone(), Fonts.CALIBRI_NORMAL, 14);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.addElement(p);
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
+            image = Image.getInstance("/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitemessage.png");
+            //image.scalePercent(9);
+            image.scaleAbsolute(45,45);
             cell = new PdfPCell(image);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setBorder(Rectangle.NO_BORDER);
             table.addCell(cell);
 
-            cell = new PdfPCell(createParagraph("michal.polinkiewicz@gmail.com", Fonts.UBUNTU_NORMAL, 16));
+            cell = new PdfPCell(createParagraph(personalInfo.getEmail(), Fonts.CALIBRI_NORMAL, 14));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setBorder(Rectangle.NO_BORDER);
             table.addCell(cell);
 
-            table.addCell("3");
-            table.addCell("4");
-            table.addCell("5");
-            table.addCell("6");
+            image = Image.getInstance("/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitehouse.png");
+            //image.scalePercent(6);
+            image.scaleAbsolute(35,35);
+            cell = new PdfPCell(image);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
+
+            cell = new PdfPCell(createParagraph(personalInfo.getCity(), Fonts.CALIBRI_NORMAL, 14));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
 
             table.setSpacingBefore(30);
             document.add(table);
 
         } catch (IOException e) {
 
-        } catch (DocumentException e){
+        } catch (DocumentException e) {
 
         }
     }

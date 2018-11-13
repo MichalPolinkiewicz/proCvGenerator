@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -81,11 +81,10 @@ public class PdfCreator {
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Bialystok");
+        personalInfo.setCity("Bialystok i okolic"); //max 18
         personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac");
-        personalInfo.setEmail("zlotoreki69@gmail.com");
-        personalInfo.setPhone("678-341-098");
-
+        personalInfo.setEmail("norlakgMotherfuckerhe@wp.pl"); //max 27 znakow
+        personalInfo.setPhone("678341098"); //max 9
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
