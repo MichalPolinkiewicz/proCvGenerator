@@ -3,13 +3,11 @@ package pl.proCvGenerator.patterns;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.fonts.Fonts;
 
-import javax.print.Doc;
 import java.io.IOException;
 
 public class PatternImpl2 implements Pattern {
@@ -34,7 +32,7 @@ public class PatternImpl2 implements Pattern {
 //        createHeader(document);
 //        createMainTable(document);
         test(document);
-        test2(document);
+        createGeneralInfoSection(document);
     }
 
     public void createHeader(Document document) {
@@ -113,6 +111,72 @@ public class PatternImpl2 implements Pattern {
 
     }
 
+    public void test(Document document) {
+        try {
+            Rectangle rectangle = new Rectangle(0, 0, 200, 842);
+            rectangle.setBackgroundColor(BaseColor.CYAN);
+            document.add(rectangle);
+
+            rectangle = new Rectangle(201, 0, 595, 842);
+            rectangle.setBackgroundColor(BaseColor.DARK_GRAY);
+            document.add(rectangle);
+
+            rectangle = new Rectangle(0, 670, 595, 842);
+            rectangle.setBackgroundColor(BaseColor.ORANGE);
+
+            document.add(rectangle);
+        } catch (DocumentException e) {
+
+        }
+
+    }
+
+    public void createGeneralInfoSection(Document document) {
+        try {
+            Paragraph p = createParagraph("Jan Nowak", Fonts.CALIBRI_BOLD, 36);
+            p.setSpacingBefore(-10);
+            p.setAlignment(Element.ALIGN_CENTER);
+            document.add(p);
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidths(new float[]{0.2f, 1, 0.2f, 1, 0.2f, 1});
+            Image image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/phone.png");
+            image.scalePercent(2);
+
+            table.setWidthPercentage(100);
+            PdfPCell cell = new PdfPCell(image);
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
+            cell = new PdfPCell(createParagraph("656-987-345", Fonts.UBUNTU_NORMAL, 16));
+            cell.setBorder(Rectangle.NO_BORDER);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(cell);
+
+            cell = new PdfPCell(image);
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
+            cell = new PdfPCell(createParagraph("michal.polinkiewicz@gmail.com", Fonts.UBUNTU_NORMAL, 16));
+            cell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(cell);
+
+            table.addCell("3");
+            table.addCell("4");
+            table.addCell("5");
+            table.addCell("6");
+
+            table.setSpacingBefore(30);
+            document.add(table);
+
+        } catch (IOException e) {
+
+        } catch (DocumentException e){
+
+        }
+    }
+
     public Paragraph createParagraph(String text, Font font, int fontSize) {
         font.setSize(fontSize);
         Paragraph paragraph = new Paragraph(text, font);
@@ -122,39 +186,18 @@ public class PatternImpl2 implements Pattern {
         return paragraph;
     }
 
-    public Chunk createChunk(String text, Font font, int fontSize){
+    public Paragraph createHeaderParagraph(String text, Font font, int fontSize) {
+        Paragraph p = createParagraph(text, font, fontSize);
+        p.setSpacingBefore(10);
+        p.setSpacingAfter(10);
+
+        return p;
+    }
+
+    public Chunk createChunk(String text, Font font, int fontSize) {
         font.setSize(fontSize);
 
         return new Chunk(text, font);
-    }
-
-    public void test(Document document){
-        try {
-            Rectangle rectangle = new Rectangle(0, 0, 200, 842);
-            rectangle.setBackgroundColor(BaseColor.CYAN);
-            document.add(rectangle);
-
-            rectangle = new Rectangle(201, 0, 595, 842);
-            rectangle.setBackgroundColor(BaseColor.DARK_GRAY);
-
-            document.add(rectangle);
-        } catch (DocumentException e){
-
-        }
-
-    }
-
-    public void test2(Document document){
-        Paragraph p = createParagraph("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Fonts.CALIBRI_NORMAL, 14);
-        p.setIndentationRight(395);
-
-        try {
-
-            document.add(p);
-
-        } catch (DocumentException e){
-
-        }
     }
 
 

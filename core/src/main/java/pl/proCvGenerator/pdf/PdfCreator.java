@@ -18,12 +18,14 @@ import java.util.List;
 public class PdfCreator {
 
     public static final String PATH_TO_FILE = "/home/michal/IdeaProjects/proCvGenerator/";
+    public static final String PATH_TO_FILE_WINDOWS = "C:/Users/MPl/IdeaProjects/proCvGenerator/";
+
 
     public void generate(Pattern pattern) {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
