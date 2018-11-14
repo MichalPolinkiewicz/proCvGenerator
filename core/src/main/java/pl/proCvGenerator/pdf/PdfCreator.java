@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -81,9 +81,11 @@ public class PdfCreator {
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Bialystok i okolic"); //max 18
-        personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac");
-        personalInfo.setEmail("norlakgMotherfuckerhe@wp.pl"); //max 27 znakow
+        personalInfo.setCity("Bialystok i okolice"); //max 19
+        //System.out.println(personalInfo.getCity().length());
+        personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
+        personalInfo.setEmail("michal.polinkiewicz@gmail.com1"); //max 30 znakow
+        //System.out.println(personalInfo.getEmail().length());
         personalInfo.setPhone("678341098"); //max 9
         cvContent.setPersonalInfo(personalInfo);
 
@@ -92,14 +94,31 @@ public class PdfCreator {
         hobbyList.add("sport");
         hobbyList.add("turystyka");
         hobbyList.add("mocny alkohol");
+        hobbyList.add("inne");
+        hobbyList.add("inne");
+        hobbyList.add("inne");
+
+
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
+
+        List<String> skills = new ArrayList<>();
+        skills.add("prawo jazdy kat. B");
+        skills.add("umiejętność obsługi komputera");
+        skills.add("znajomość języka angielskiego - poziom B2");
+        skills.add("znajomość języka rosyjskiego - poziom B2");
+        skills.add("umiejetnośc pracy w grupie");
+        skills.add("znajomość branży gastronomicznej");
+        skills.add("zdolności przywódcze");
+
+
+        cvContent.setSkills(skills);
 
         String clause = "Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
                 "......................................................................" +
                 " w celu i zakresie niezbędnym w procesie rekrutacyjnym.";
         cvContent.setClause(clause);
-
+        System.out.println(personalInfo.getDescription().length());
         return user;
     }
 
