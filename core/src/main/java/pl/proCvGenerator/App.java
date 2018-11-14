@@ -1,6 +1,7 @@
 package pl.proCvGenerator;
 
 import pl.proCvGenerator.patterns.Pattern;
+import pl.proCvGenerator.patterns.Pattern3Impl;
 import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.pdf.PdfCreator;
 

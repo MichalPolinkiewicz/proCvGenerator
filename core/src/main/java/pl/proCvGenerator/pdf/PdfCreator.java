@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -61,14 +61,14 @@ public class PdfCreator {
         Employment xyz = new Employment();
         xyz.setCompany("XYZ sp.z o.o");
         xyz.setPosition("murarz");
-        xyz.setJobDescription("murowanie i picie");
+        xyz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
         xyz.setStartDate("1988");
         xyz.setEndDate("2018");
 
         Employment zzz = new Employment();
         zzz.setCompany("zzz sp.z o.o");
         zzz.setPosition("murarz");
-        zzz.setJobDescription("murowanie i picie");
+        zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
         zzz.setStartDate("2010");
         zzz.setEndDate("nadal");
 
@@ -84,7 +84,7 @@ public class PdfCreator {
         personalInfo.setCity("Bialystok i okolice"); //max 19
         //System.out.println(personalInfo.getCity().length());
         personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
-        personalInfo.setEmail("michal.polinkiewicz@gmail.com1"); //max 30 znakow
+        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
         //System.out.println(personalInfo.getEmail().length());
         personalInfo.setPhone("678341098"); //max 9
         cvContent.setPersonalInfo(personalInfo);
@@ -108,8 +108,6 @@ public class PdfCreator {
         skills.add("znajomość języka angielskiego - poziom B2");
         skills.add("znajomość języka rosyjskiego - poziom B2");
         skills.add("umiejetnośc pracy w grupie");
-        skills.add("znajomość branży gastronomicznej");
-        skills.add("zdolności przywódcze");
 
 
         cvContent.setSkills(skills);
