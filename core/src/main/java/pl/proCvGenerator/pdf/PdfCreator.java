@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -39,7 +39,7 @@ public class PdfCreator {
         CvContent cvContent = new CvContent();
 
         Education urBialystok = new Education();
-        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku");
+        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku i okolicach 788 89 i 7890");
         urBialystok.setSubject("Rozród trzody chlewnej");
         urBialystok.setDegree("inżynier");
         urBialystok.setStartDate("2010");
@@ -93,9 +93,7 @@ public class PdfCreator {
         hobbyList.add("muzyka");
         hobbyList.add("sport");
         hobbyList.add("turystyka");
-        hobbyList.add("mocny alkohol");
-        hobbyList.add("inne");
-        hobbyList.add("inne");
+        hobbyList.add("mocny alkohol. musi byc tani");
         hobbyList.add("inne");
 
 

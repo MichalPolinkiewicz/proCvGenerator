@@ -7,12 +7,15 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.CvContent;
+import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class PatternImpl2 implements Pattern {
@@ -38,9 +41,9 @@ public class PatternImpl2 implements Pattern {
         createGeneralInfoSection(document, cvContent.getPersonalInfo());
         createBody(document, cvContent);
 
-        System.out.println("Description: " + validateString(cvContent.getPersonalInfo().getDescription()));
-        System.out.println("Skills: " + validateList(cvContent.getSkills()));
-        System.out.println("Hobbies: " + validateList(cvContent.getHobbies()));
+        System.out.println("Description: " +validateString(cvContent.getPersonalInfo().getDescription()));
+        System.out.println("Schools: " + validateEducationsList(cvContent.getEducationList()));
+        System.out.println("Hobbies: " + validateStringList(cvContent.getHobbies()));
     }
 
     public void createLayout(Document document) {
@@ -71,23 +74,23 @@ public class PatternImpl2 implements Pattern {
             document.add(p);
 
             PdfPTable table = createHeaderTable(personalInfo);
-            Image image = Image.getInstance(PATH_TO_IMAGES + "whitephone.png");
-            //Image image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitephone.png");
+            //Image image = Image.getInstance(PATH_TO_IMAGES + "whitephone.png");
+            Image image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitephone.png");
 
             PdfPCell cell = matchImageToHeaderTable(image, 34, 34);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getPhone(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES + "whitemessage.png");
-            //image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitemessage.png");
+            //image = Image.getInstance(PATH_TO_IMAGES + "whitemessage.png");
+            image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitemessage.png");
             cell = matchImageToHeaderTable(image, 46, 46);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getEmail(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES + "whitehouse.png");
-            //image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitehouse.png");
+            //image = Image.getInstance(PATH_TO_IMAGES + "whitehouse.png");
+            image = Image.getInstance("C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/whitehouse.png");
             cell = matchImageToHeaderTable(image, 32, 32);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getCity(), Fonts.CALIBRI_NORMAL, 14));
@@ -105,12 +108,13 @@ public class PatternImpl2 implements Pattern {
     public void createBody(Document document, CvContent cvContent) {
         String methodName = "createBody";
 
-        int maxLines = 29;
+        BigDecimal maxLines = BigDecimal.valueOf(25).setScale(1, BigDecimal.ROUND_CEILING);
         String description = cvContent.getPersonalInfo().getDescription();
         List<String> skills = cvContent.getSkills();
         List<String> hobbies = cvContent.getHobbies();
 
-        if (maxLines < validateString(description) + validateList(skills) + validateList(hobbies)) {
+        if (maxLines.compareTo(validateString(description).add(validateStringList(skills)).add(validateStringList(hobbies))) < 0.0) {
+            System.out.println(maxLines.compareTo(validateString(description).add(validateStringList(skills)).add(validateStringList(hobbies))));
             LOGGER.error(CLASS_NAME + " - " + methodName + " - " + "ERROR: too much chars");
         }
 
@@ -118,7 +122,7 @@ public class PatternImpl2 implements Pattern {
             PdfPTable table = new PdfPTable(2);
             table.setWidthPercentage(100);
             table.setWidths(new float[]{1, 2});
-            table.setSpacingBefore(40);
+            table.setSpacingBefore(30);
 
             PdfPCell leftCell = createLeft(cvContent);
             PdfPCell rightCell = createRight(cvContent);
@@ -139,17 +143,20 @@ public class PatternImpl2 implements Pattern {
         cell.addElement(createHeaderForMainTable("o mnie"));
         cell.addElement(createSeparator());
         cell.addElement(createParagraph(cvContent.getPersonalInfo().getDescription()));
-        cell.addElement(createHeaderForMainTable("umiejętności"));
-        cell.addElement(createSeparator());
+        cell.addElement(new Paragraph(" "));
 
-        List<String> skills = cvContent.getSkills();
-        for (int i = 0; i < skills.size(); i++) {
-            if (i == skills.size() - 1) {
-                cell.addElement(createParagraph("- " + skills.get(i) + "."));
+        cell.addElement(createHeaderForMainTable("wykształcenie"));
+        cell.addElement(createSeparator());
+        List<Education> educations = PatternHelper.sortEducationList(cvContent.getEducationList());
+        for (int i = 0; i < educations.size(); i++) {
+            Education e = educations.get(i);
+            if (i == educations.size() - 1) {
+                cell.addElement(createParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ".")));
             } else {
-                cell.addElement(createParagraph("- " + skills.get(i) + ","));
+                cell.addElement(createParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ".")));
             }
         }
+        cell.addElement(new Paragraph(" "));
 
         cell.addElement(createHeaderForMainTable("hobby"));
         cell.addElement(createSeparator());
@@ -161,6 +168,8 @@ public class PatternImpl2 implements Pattern {
                 cell.addElement(createParagraph("- " + hobbies.get(i) + ","));
             }
         }
+        cell.addElement(new Paragraph(" "));
+
 
         return cell;
     }
@@ -179,6 +188,18 @@ public class PatternImpl2 implements Pattern {
                     + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + "."));
             cell.addElement(createParagraph("Zakres obowiązków: " + e.getJobDescription() + "."));
             cell.addElement(new Paragraph(" "));
+        }
+
+        cell.addElement(createHeaderForMainTable("umiejętności"));
+        cell.addElement(createSeparator());
+
+        List<String> skills = cvContent.getSkills();
+        for (int i = 0; i < skills.size(); i++) {
+            if (i == skills.size() - 1) {
+                cell.addElement(createParagraph("- " + skills.get(i) + "."));
+            } else {
+                cell.addElement(createParagraph("- " + skills.get(i) + ","));
+            }
         }
 
         return cell;
@@ -251,42 +272,34 @@ public class PatternImpl2 implements Pattern {
     }
 
 
-    public Paragraph createNormalPagaraphForLeftSection(String text) {
-        Paragraph p = PatternHelper.createSimpleParagraph(text, Fonts.CALIBRI_NORMAL, 14);
-        p.setLeading(2, 1);
-
-        return p;
-    }
-
-    public int validateList(List<String> list) {
-        int totalLinesForSection = 0;
+    public BigDecimal validateStringList(List<String> list) {
+        double totalLinesForSection = 0;
 
         for (int i = 0; i < list.size(); i++) {
             double itemChars = list.get(i).length();
             int linesForRecord = 1;
-            if (itemChars / 26 > 1 && itemChars / 26 < 3) {
+            if (itemChars / 26.0 > 1 && itemChars / 26.0 < 3) {
                 linesForRecord = 2;
-            } else if (itemChars / 26 > 3) {
+            } else if (itemChars / 26.0 > 3) {
                 linesForRecord = 3;
             }
             totalLinesForSection += linesForRecord;
         }
-        return totalLinesForSection;
+        return BigDecimal.valueOf(totalLinesForSection).setScale(2, BigDecimal.ROUND_CEILING);
     }
 
-    public int validateString(String s) {
-        return (s.length() / 24);
-    }
-
-    private void addList(List<String> list, PdfPTable table, PdfPCell cell) {
-        table.addCell(cell);
-        for (int i = 0; i < list.size(); i++) {
-            if (i == list.size() - 1) {
-                cell.addElement(createNormalPagaraphForLeftSection("- " + list.get(i) + "."));
-            } else {
-                cell.addElement(createNormalPagaraphForLeftSection("- " + list.get(i) + ","));
-            }
+    public BigDecimal validateEducationsList(List<Education> list){
+        double totalLines = 0;
+        for (int i = 0; i < list.size(); i++){
+            Education e = list.get(i);
+            totalLines += (23 + e.getSchoolName().length() + e.getStartDate().length() + e.getEndDate().length() + e.getSubject().length() + e.getDegree().length()) /25.0;
         }
-        table.addCell(cell);
+
+        return BigDecimal.valueOf(totalLines).setScale(2, BigDecimal.ROUND_CEILING);
     }
+
+    public BigDecimal validateString(String s) {
+        return BigDecimal.valueOf(s.length() / 23.0).setScale(2, RoundingMode.CEILING);
+    }
+
 }
