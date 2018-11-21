@@ -5,14 +5,12 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import pl.proCvGenerator.dto.CvContent;
 
-public class Pattern3Impl implements Pattern {
+public class PatternImpl3 implements Pattern {
 
     @Override
     public Document prepareDocument() {
         Document document = new Document();
-        Rectangle pageSize = new Rectangle(PageSize.A4);
-        document.setPageSize(pageSize);
-        document.setMargins(15, 15, 15, 15);
+
 
         return document;
     }

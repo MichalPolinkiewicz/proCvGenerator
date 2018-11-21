@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -39,7 +39,7 @@ public class PdfCreator {
         CvContent cvContent = new CvContent();
 
         Education urBialystok = new Education();
-        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku i okolicach 788 89 i 7890");
+        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku i okolicach");
         urBialystok.setSubject("Rozród trzody chlewnej");
         urBialystok.setDegree("inżynier");
         urBialystok.setStartDate("2010");
@@ -61,14 +61,14 @@ public class PdfCreator {
         Employment xyz = new Employment();
         xyz.setCompany("XYZ sp.z o.o");
         xyz.setPosition("murarz");
-        xyz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
+        xyz.setJobDescription("Praca przy xxxx xxx xxxx xxxx xxx xxxx xx xxxxxxxx xxxxxxxx xxxx xxxxx xxx x budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku xxxxxxxxxxx xxxxxxx");
         xyz.setStartDate("1988");
         xyz.setEndDate("2018");
 
         Employment zzz = new Employment();
         zzz.setCompany("zzz sp.z o.o");
         zzz.setPosition("murarz");
-        zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
+        zzz.setJobDescription("Praca przy budowien nnvnvnb nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
         zzz.setStartDate("2010");
         zzz.setEndDate("nadal");
 
@@ -81,20 +81,20 @@ public class PdfCreator {
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Bialystok i okolice"); //max 19
-        //System.out.println(personalInfo.getCity().length());
-        personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
-        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
-        //System.out.println(personalInfo.getEmail().length());
-        personalInfo.setPhone("678341098"); //max 9
+        personalInfo.setCity("Jelania Góra"); //max 19
+        personalInfo.setDescription("Jestem dobrym murarzem. xxxxxxxxxx. Lubie pic. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
+        personalInfo.setEmail("michal@wp.pl"); //max 30 znakow
+        personalInfo.setPhone("645-093-582"); //max 9
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
         hobbyList.add("muzyka");
         hobbyList.add("sport");
         hobbyList.add("turystyka");
-        hobbyList.add("mocny alkohol. musi byc tani");
+        hobbyList.add("mocny alkohol tttt");
         hobbyList.add("inne");
+        hobbyList.add("inne");
+
 
 
         cvContent.setHobbies(hobbyList);
@@ -102,10 +102,20 @@ public class PdfCreator {
 
         List<String> skills = new ArrayList<>();
         skills.add("prawo jazdy kat. B");
-        skills.add("umiejętność obsługi komputera");
+        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx");
+        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+        skills.add("umiejętność obsługi komputera xxxxxxxxxx xxxxxxxxx");
+        skills.add("umiejętność obsługi komputera xxxxxxxx xxxx");
+        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+
+
         skills.add("znajomość języka angielskiego - poziom B2");
-        skills.add("znajomość języka rosyjskiego - poziom B2");
-        skills.add("umiejetnośc pracy w grupie");
+        skills.add("umiejetnośc pracy w grupie xxxxxxxxxxx");
+
 
 
         cvContent.setSkills(skills);
@@ -114,7 +124,6 @@ public class PdfCreator {
                 "......................................................................" +
                 " w celu i zakresie niezbędnym w procesie rekrutacyjnym.";
         cvContent.setClause(clause);
-        System.out.println(personalInfo.getDescription().length());
         return user;
     }
 
