@@ -25,7 +25,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -70,7 +70,7 @@ public class PdfCreator {
         zzz.setPosition("murarz");
         zzz.setJobDescription("Praca przy budowien nnvnvnb nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
         zzz.setStartDate("2010");
-        zzz.setEndDate("nadal");
+        zzz.setEndDate("2017");
 
         List<Employment> employments = new ArrayList<>();
         employments.add(xyz);
@@ -83,7 +83,7 @@ public class PdfCreator {
         personalInfo.setSurname("Norlak");
         personalInfo.setCity("Jelania Góra"); //max 19
         personalInfo.setDescription("Jestem dobrym murarzem. xxxxxxxxxx. Lubie pic. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
-        personalInfo.setEmail("michal@wp.pl"); //max 30 znakow
+        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
         personalInfo.setPhone("645-093-582"); //max 9
         cvContent.setPersonalInfo(personalInfo);
 
@@ -96,26 +96,24 @@ public class PdfCreator {
         hobbyList.add("inne");
 
 
-
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
 
         List<String> skills = new ArrayList<>();
-        skills.add("prawo jazdy kat. B");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
-        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
-        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
-        skills.add("umiejętność obsługi komputera xxxxxxxxxx xxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxxxxxx xxxx");
-        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
-        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
-        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+//        skills.add("prawo jazdy kat. B");
+//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx");
+//        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+//        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+//        skills.add("umiejętność obsługi komputera xxxxxxxx xxx");
+//        skills.add("umiejętność obsługi komputera xxxxxxxxxx xxxxxxxxx");
+//        skills.add("umiejętność obsługi komputera xxxxxxxx xxxx");
+//        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+//        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
+//        skills.add("umiejętność obsługi komputera xxx xxxxx xxxxxx xxxxxx");
 
-
-        skills.add("znajomość języka angielskiego - poziom B2");
-        skills.add("umiejetnośc pracy w grupie xxxxxxxxxxx");
-
+        for (int i = 0; i < 13 ; i++){
+            skills.add("skill " + i);
+        }
 
 
         cvContent.setSkills(skills);
