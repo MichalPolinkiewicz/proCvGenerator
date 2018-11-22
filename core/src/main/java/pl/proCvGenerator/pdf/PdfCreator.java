@@ -81,9 +81,9 @@ public class PdfCreator {
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Jelania Góra"); //max 19
+        personalInfo.setCity("Jawor"); //max 19
         personalInfo.setDescription("Jestem dobrym murarzem. xxxxxxxxxx. Lubie pic. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem.");
-        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
+        personalInfo.setEmail("jan.kowalski@gmail.com"); //max 30 znakow
         personalInfo.setPhone("645-093-582"); //max 9
         cvContent.setPersonalInfo(personalInfo);
 

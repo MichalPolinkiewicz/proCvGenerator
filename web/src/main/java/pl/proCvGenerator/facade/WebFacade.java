@@ -8,6 +8,7 @@ import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
+import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.model.CvContentDto;
 import pl.proCvGenerator.patterns.Pattern;
 import pl.proCvGenerator.validator.PatternValidator;
@@ -18,6 +19,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TooManyListenersException;
 
 public class WebFacade {
 
@@ -53,7 +55,12 @@ public class WebFacade {
     private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) {
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         document.open();
-        pattern.generateCv(document, cvContent);
+        try {
+            pattern.generateCv(document, cvContent);
+
+        } catch (TooMuchCharsException e){
+
+        }
         document.close();
     }
 

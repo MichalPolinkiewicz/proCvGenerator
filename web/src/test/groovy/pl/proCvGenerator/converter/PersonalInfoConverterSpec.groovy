@@ -19,7 +19,7 @@ class PersonalInfoConverterSpec extends Specification {
     @Unroll
     def "convertToDto should return converted object with proper values"() {
         given:
-        PersonalInfo personalInfo = new PersonalInfo(name, surname, email, phone, city, description)
+        PersonalInfo personalInfo = new PersonalInfo(name, surname, position, email, page, phone, city, description)
 
         when:
         def result = personalInfoConverter.convertToDto(personalInfo)
@@ -28,21 +28,22 @@ class PersonalInfoConverterSpec extends Specification {
         result.class == PersonalInfoDto
         result.getName() == name
         result.getSurname() == surname
+        result.getPosition() == position
         result.getEmail() == email
         result.getPhone() == phone
         result.getCity() == city
         result.getDescription() == description
 
         where:
-        name | surname | email | phone | city | description
-        "x"  | "y"     | "z"   | "c"   | ""   | "b"
-        "q"  | "ł"     | "e"   | "r"   | "ą"  | null
+        name | surname | position | email | page | phone | city | description
+        "x"  | "y"     | "b"      | "z"   | "y"  | "c"   | ""   | "b"
+        "q"  | "ł"     | "c"      | "e"   | "y"  | "r"   | "ą"  | null
     }
 
     @Unroll
     def "convertToPersonalInfo should return converted object with proper values"() {
         given:
-        PersonalInfoDto personalInfoDto = new PersonalInfoDto(name, surname, email, phone, city, description)
+        PersonalInfoDto personalInfoDto = new PersonalInfoDto(name, surname, position, email, page, phone, city, description)
 
         when:
         def result = personalInfoConverter.convertToPersonalInfo(personalInfoDto)
@@ -57,8 +58,8 @@ class PersonalInfoConverterSpec extends Specification {
         result.getDescription() == description
 
         where:
-        name | surname | email | phone | city | description
-        "x"  | "y"     | "z"   | "c"   | ""   | "b"
-        "q"  | "ł"     | "e"   | "r"   | "ą"  | null
+        name | surname | position | email | page | phone | city | description
+        "x"  | "y"     | "b"      | "z"   | "y"  | "c"   | ""   | "b"
+        "q"  | "ł"     | "c"      | "e"   | "y"  | "r"   | "ą"  | null
     }
 }

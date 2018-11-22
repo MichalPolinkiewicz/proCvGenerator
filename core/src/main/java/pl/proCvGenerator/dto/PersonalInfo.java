@@ -5,6 +5,7 @@ public class PersonalInfo {
     private long id;
     private String name;
     private String surname;
+    private String position;
     private String email;
     private String page;
     private String phone;
@@ -14,9 +15,10 @@ public class PersonalInfo {
     public PersonalInfo() {
     }
 
-    public PersonalInfo(String name, String surname, String email, String page, String phone, String city, String description) {
+    public PersonalInfo(String name, String surname, String position, String email, String page, String phone, String city, String description) {
         this.name = name;
         this.surname = surname;
+        this.position = position;
         this.email = email;
         this.page = page;
         this.phone = phone;
@@ -86,5 +88,13 @@ public class PersonalInfo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
