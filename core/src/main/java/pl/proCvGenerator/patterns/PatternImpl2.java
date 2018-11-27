@@ -82,19 +82,19 @@ public class PatternImpl2 implements Pattern {
             document.add(p);
 
             PdfPTable table = createHeaderTable(personalInfo);
-            Image image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitephone.png");
+            Image image = Image.getInstance(PATH_TO_IMAGES + "whitephone.png");
             PdfPCell cell = matchImageToHeaderTable(image, 34, 34);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getPhone(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitemessage.png");
+            image = Image.getInstance(PATH_TO_IMAGES + "whitemessage.png");
             cell = matchImageToHeaderTable(image, 46, 46);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getEmail(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitehouse.png");
+            image = Image.getInstance(PATH_TO_IMAGES + "whitehouse.png");
             cell = matchImageToHeaderTable(image, 32, 32);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getCity(), Fonts.CALIBRI_NORMAL, 14));
