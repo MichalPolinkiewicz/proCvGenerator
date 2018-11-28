@@ -13,15 +13,13 @@ import pl.proCvGenerator.dto.PersonalInfo;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
-import sun.awt.image.PixelConverter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import static pl.proCvGenerator.patterns.helpers.PatternHelper.*;
-import static pl.proCvGenerator.patterns.helpers.PatternHelper.validateEmployments;
-import static pl.proCvGenerator.patterns.helpers.PatternHelper.validateStringList;
+
 
 public class PatternImpl3 implements Pattern {
 
@@ -29,13 +27,50 @@ public class PatternImpl3 implements Pattern {
     private static final String CLASS_NAME = PatternImpl3.class.getSimpleName();
     private Font normalFont = Fonts.ANTONIO_NORMAL;
     private Font boldFont = Fonts.ANTONIO_BOLD;
-    private static final int MAX_LINES_FOR_PAGE = 26;
 
-    //left side STRING max = 32
-    //right side = 80
-    //max liczba wierszy = 26
-    //extra przy employent = 27
-    //extra przy education = 20
+    private static final BigDecimal MAX_LINES_FOR_PAGE = BigDecimal.valueOf(25.6);
+    private static final int MAX_CHARS_IN_LINE_LEFT = 30;
+    private static final int MAX_CHARS_LIST_RIGHT = 80;
+    private static final int EXTRA_CHARS_LIST_RIGHT = 24;
+    private static final int EXTRA_CHARS_EDUCATION = 20;
+
+    private void validatePattern(CvContent cvContent) throws TooMuchCharsException{
+
+        BigDecimal description = validateString(cvContent.getPersonalInfo().getDescription(), MAX_CHARS_IN_LINE_LEFT);
+        BigDecimal educations = validateEducationsList(cvContent.getEducationList(), MAX_CHARS_IN_LINE_LEFT, EXTRA_CHARS_EDUCATION);
+        BigDecimal hobbies = validateStringList(cvContent.getHobbies(), MAX_CHARS_IN_LINE_LEFT);
+        List<String> contacts = new ArrayList<>();
+        contacts.add(cvContent.getPersonalInfo().getPhone());
+        contacts.add(cvContent.getPersonalInfo().getEmail());
+        contacts.add(cvContent.getPersonalInfo().getCity());
+        if (cvContent.getPersonalInfo().getPage() != null) {
+            contacts.add(cvContent.getPersonalInfo().getPage());
+        }
+        BigDecimal info = validateStringList(contacts, MAX_CHARS_IN_LINE_LEFT);
+
+        if (description.add(educations).add(hobbies).add(info).compareTo(MAX_LINES_FOR_PAGE) > 0){
+            throw new TooMuchCharsException("to much chars on the left side");
+        }
+
+        //RIGHT COLUMN VALIDATION
+        BigDecimal employments = validateEmployments(cvContent.getEmployments(), MAX_CHARS_LIST_RIGHT,EXTRA_CHARS_LIST_RIGHT);
+        BigDecimal skills = validateStringList(cvContent.getSkills(), MAX_CHARS_LIST_RIGHT);
+
+        if (employments.add(skills).compareTo(MAX_LINES_FOR_PAGE)  > 0){
+            throw new TooMuchCharsException("to much chars on the right side");
+        }
+
+        //logger
+        System.out.println("Description: " + description);
+        System.out.println("Education: " + educations);
+        System.out.println("Hobby: " + hobbies);
+        System.out.println("Info: " + info);
+        System.out.println("Result: " + description.add(educations).add(hobbies).add(info));
+        System.out.println("Empl: " + employments);
+        System.out.println("Skills: " + skills);
+        System.out.println("Result: " + employments.add(skills));
+    }
+
 
     @Override
     public Document prepareDocument() {
@@ -49,6 +84,7 @@ public class PatternImpl3 implements Pattern {
 
     @Override
     public void generateCv(Document document, CvContent cvContent) throws TooMuchCharsException {
+        validatePattern(cvContent);
         createCvStructure(document);
         createCvBody(document, cvContent);
     }
@@ -74,39 +110,6 @@ public class PatternImpl3 implements Pattern {
 
     public void createCvBody(Document document, CvContent cvContent) throws TooMuchCharsException {
         addCvHeader(document, cvContent.getPersonalInfo());
-        //walidacje
-        //left side STRING max = 32
-        //right side = 80
-        //max liczba wierszy = 26
-        //extra przy employent = 27
-        //extra przy education = 20
-        // LEFT COLUMN VALIDATION
-
-        BigDecimal desc = validateString(cvContent.getPersonalInfo().getDescription(), 29);
-        System.out.println("Description: " + desc);
-        BigDecimal edu = validateEducationsList(cvContent.getEducationList(), 26, 20);
-        System.out.println("Education: " + edu );
-        BigDecimal hobby =  validateStringList(cvContent.getHobbies(),260);
-        System.out.println("Hobby: " + hobby);
-        List<String> list = new ArrayList<>();
-        list.add(cvContent.getPersonalInfo().getPhone());
-        list.add(cvContent.getPersonalInfo().getEmail());
-        list.add(cvContent.getPersonalInfo().getCity());
-        if (cvContent.getPersonalInfo().getPage() != null){
-            list.add(cvContent.getPersonalInfo().getPage());
-        }
-        BigDecimal info = validateStringList(list,25);
-        System.out.println("Info: " + info);
-        System.out.println("Result: " + desc.add(edu).add(hobby).add(info));
-
-
-//        //RIGHT COLUMN VALIDATION
-//        if (validateStringList(skills, MAX_CHARS_IN_LINE_FOR_STRING_LIST_RIGHT)
-//                .add(validateEmployments(employments, MAX_CHARS_IN_LINE_FOR_EMPLOYMENT, EXTRA_CHARS_FOR_EMPLOYMENT))
-//                .compareTo(maxLinesForPage) > 0) {
-//            LOGGER.error(CLASS_NAME + " - " + methodName + " - " + "ERROR: too much chars in RIGHT SIDE");
-//            throw new TooMuchCharsException("Too much chars in right section");
-//        }
 
         try {
             PdfPTable table = new PdfPTable(3);
@@ -182,7 +185,7 @@ public class PatternImpl3 implements Pattern {
 
     private Paragraph addSectionHeader(String text, int aligment) {
         String textWithExtraSpace = "";
-        for (int i = 0; i < text.length(); i++){
+        for (int i = 0; i < text.length(); i++) {
             textWithExtraSpace += text.charAt(i) + " ";
         }
         boldFont.setColor(60, 93, 93);
@@ -209,7 +212,7 @@ public class PatternImpl3 implements Pattern {
         helper.setAlignment(aligment);
         p.add(helper);
 
-        if (personalInfo.getPage() != null){
+        if (personalInfo.getPage() != null) {
             helper = createSimpleParagraph(personalInfo.getPage(), normalFont, 12);
             helper.setAlignment(aligment);
             p.add(helper);
@@ -263,14 +266,14 @@ public class PatternImpl3 implements Pattern {
         return mainParagraph;
     }
 
-    private Paragraph addEmploymentSection(List<Employment> employments){
+    private Paragraph addEmploymentSection(List<Employment> employments) {
         Paragraph paragraph = new Paragraph();
         List<Employment> sorted = PatternHelper.sortEmploymentList(employments);
 
         for (int i = 0; i < sorted.size(); i++) {
             Employment e = sorted.get(i);
             paragraph.add(createSimpleParagraph(e.getPosition().toUpperCase()
-                    + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", normalFont,12));
+                    + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", normalFont, 12));
             paragraph.add(createSimpleParagraph("Zakres obowiązków: " + e.getJobDescription() + ".", normalFont, 12));
             paragraph.add(new Paragraph(" "));
         }
