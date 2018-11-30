@@ -1,16 +1,11 @@
 package pl.proCvGenerator.pdf;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
 import pl.proCvGenerator.dto.*;
 import pl.proCvGenerator.patterns.Pattern;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +20,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "12.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "12.pdf")));
             document.open();
             pattern.generateCv(document, createUser().getCvContent());
             document.close();
@@ -91,9 +86,10 @@ public class PdfCreator {
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
         personalInfo.setCity("Jawor i okolice xxxxx xxxxxxx"); //max 19
-        personalInfo.setDescription("Jestem dobrym murarzem. xxxxx xxxxxxx. Lubie pić.swwsswwswsw  Robie wsswswswsw wswswswswwsw to od dziecka i jestem niesamowitym fachowcem. Ponadto jestem Andrzejem i bogdanem. Jestem dobrym murarzem. Lubie pic i murowac. Robie to od dziecka i jestem niesamowitym fachowcem. xxxx xxxxxx Ponadto jestem Andrzejem i bogdanem. xxxxx xxxxxxxxxxxx");
+        String text = "x xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxx";
+        personalInfo.setDescription(text);
         personalInfo.setEmail("ada.nowak@wp.pl, xxxxxxxxxxxx"); //max 30 znakow
-        personalInfo.setPhone("645-093-582"); //max 9
+        personalInfo.setPhone("657-908-482"); //max 9
         personalInfo.setPosition("stróż i alkoholik");
         personalInfo.setPage("github.com/SnorliTheDog");
 
@@ -103,9 +99,7 @@ public class PdfCreator {
         hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxx ");
         hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
         hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
-       // hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
-
-
+        // hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
 
 
         cvContent.setHobbies(hobbyList);
@@ -127,7 +121,6 @@ public class PdfCreator {
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-
 
 
         cvContent.setSkills(skills);

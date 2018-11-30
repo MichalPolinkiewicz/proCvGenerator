@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.proCvGenerator.dto.CvContent;
@@ -15,10 +16,10 @@ import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static pl.proCvGenerator.patterns.helpers.PatternHelper.*;
+import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParagraph;
 
 
 public class PatternImpl3 implements Pattern {
@@ -34,43 +35,81 @@ public class PatternImpl3 implements Pattern {
     private static final int EXTRA_CHARS_LIST_RIGHT = 24;
     private static final int EXTRA_CHARS_EDUCATION = 20;
 
-    private void validatePattern(CvContent cvContent) throws TooMuchCharsException{
+    private void validatePattern(CvContent cvContent) throws TooMuchCharsException {
+        int acceptableRight = 75;
+        int maxRight = 1;
 
-        BigDecimal description = validateString(cvContent.getPersonalInfo().getDescription(), MAX_CHARS_IN_LINE_LEFT);
-        BigDecimal educations = validateEducationsList(cvContent.getEducationList(), MAX_CHARS_IN_LINE_LEFT, EXTRA_CHARS_EDUCATION);
-        BigDecimal hobbies = validateStringList(cvContent.getHobbies(), MAX_CHARS_IN_LINE_LEFT);
-        List<String> contacts = new ArrayList<>();
-        contacts.add(cvContent.getPersonalInfo().getPhone());
-        contacts.add(cvContent.getPersonalInfo().getEmail());
-        contacts.add(cvContent.getPersonalInfo().getCity());
-        if (cvContent.getPersonalInfo().getPage() != null) {
-            contacts.add(cvContent.getPersonalInfo().getPage());
-        }
-        BigDecimal info = validateStringList(contacts, MAX_CHARS_IN_LINE_LEFT);
+        int acceptableLeft = 35;
+        int maxLeft = 37;
 
-        if (description.add(educations).add(hobbies).add(info).compareTo(MAX_LINES_FOR_PAGE) > 0){
-            throw new TooMuchCharsException("to much chars on the left side");
-        }
-
-        //RIGHT COLUMN VALIDATION
-        BigDecimal employments = validateEmployments(cvContent.getEmployments(), MAX_CHARS_LIST_RIGHT,EXTRA_CHARS_LIST_RIGHT);
-        BigDecimal skills = validateStringList(cvContent.getSkills(), MAX_CHARS_LIST_RIGHT);
-
-        if (employments.add(skills).compareTo(MAX_LINES_FOR_PAGE)  > 0){
-            throw new TooMuchCharsException("to much chars on the right side");
-        }
-
-        //logger
-        System.out.println("Description: " + description);
-        System.out.println("Education: " + educations);
-        System.out.println("Hobby: " + hobbies);
-        System.out.println("Info: " + info);
-        System.out.println("Result: " + description.add(educations).add(hobbies).add(info));
-        System.out.println("Empl: " + employments);
-        System.out.println("Skills: " + skills);
-        System.out.println("Result: " + employments.add(skills));
+        int totalLeft = 962;
+        int totalRight = 1950;
     }
 
+    private static int[] calculateWhiteSpaces(String text) {
+        int spc = StringUtils.countMatches(text, " ");
+        int dot = StringUtils.countMatches(text, '.');
+        int comma = StringUtils.countMatches(text, ',');
+        int count = spc + dot + comma;
+        int[] spaces = new int[count + 1];
+        int index = 1;
+
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == ' ' || text.charAt(i) == '.' || text.charAt(i) == ',') {
+                spaces[index] = i;
+                index++;
+            }
+        }
+        return spaces;
+    }
+
+    private static int calculateLinesForSentence(String text, int maxChars) {
+        int lines = 0;
+        int counter = 0;
+        int[] whiteSpaces = calculateWhiteSpaces(text);
+        String actualSentence = "";
+
+        for (int i = 0; i < whiteSpaces.length; i++) {
+            String copy = text;
+            if (i != whiteSpaces.length - 1) {
+                actualSentence = actualSentence + copy.substring(whiteSpaces[i], whiteSpaces[i + 1]);
+            }
+            if (i == whiteSpaces.length - 1) {
+                actualSentence = actualSentence + copy.substring(whiteSpaces[i]);
+            }
+            if (actualSentence.length() > 10) {
+                counter++;
+                if (i == whiteSpaces.length - 1) {
+                    actualSentence = copy.substring(whiteSpaces[i]);
+                    if (actualSentence.length() < 10) {
+                        counter++;
+                    }
+                } else {
+                    actualSentence = copy.substring(whiteSpaces[i], whiteSpaces[i + 1]);
+                }
+            } else if (i == whiteSpaces.length - 1) {
+                actualSentence = copy.substring(whiteSpaces[i]);
+                if (actualSentence.length() < 10) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
+    public static void main(String[] args) {
+        String text = "Bogusław " +
+                "Noral to " +
+                "murarz i " +
+                "pijak";
+        System.out.println("Length: " + text.length());
+
+        int[] result = PatternImpl3.calculateWhiteSpaces(text);
+        Arrays.stream(result).forEach(System.out::println);
+
+        System.out.println("Lines: " + calculateLinesForSentence(text, 10));
+
+    }
 
     @Override
     public Document prepareDocument() {
