@@ -18,7 +18,8 @@ class RootConfigSpec extends Specification {
         expect:
         patterns.get("1")
         patterns.get("2")
-        patterns.size() == 2
+        patterns.get("3")
+        patterns.size() == 3
     }
 
     def "pdfCreator bean should be created"() {
