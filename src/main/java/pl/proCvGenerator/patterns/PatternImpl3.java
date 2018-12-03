@@ -64,7 +64,6 @@ public class PatternImpl3 implements Pattern {
     }
 
     private static int calculateLinesForSentence(String text, int maxChars) {
-        int lines = 0;
         int counter = 0;
         int[] whiteSpaces = calculateWhiteSpaces(text);
         String actualSentence = "";
@@ -77,11 +76,11 @@ public class PatternImpl3 implements Pattern {
             if (i == whiteSpaces.length - 1) {
                 actualSentence = actualSentence + copy.substring(whiteSpaces[i]);
             }
-            if (actualSentence.length() > 10) {
+            if (actualSentence.length() > maxChars) {
                 counter++;
                 if (i == whiteSpaces.length - 1) {
                     actualSentence = copy.substring(whiteSpaces[i]);
-                    if (actualSentence.length() < 10) {
+                    if (actualSentence.length() < maxChars) {
                         counter++;
                     }
                 } else {
@@ -89,7 +88,7 @@ public class PatternImpl3 implements Pattern {
                 }
             } else if (i == whiteSpaces.length - 1) {
                 actualSentence = copy.substring(whiteSpaces[i]);
-                if (actualSentence.length() < 10) {
+                if (actualSentence.length() > 0) {
                     counter++;
                 }
             }
@@ -97,19 +96,16 @@ public class PatternImpl3 implements Pattern {
         return counter;
     }
 
-    public static void main(String[] args) {
-        String text = "Bogusław " +
-                "Noral to " +
-                "murarz i " +
-                "pijak";
-        System.out.println("Length: " + text.length());
-
-        int[] result = PatternImpl3.calculateWhiteSpaces(text);
-        Arrays.stream(result).forEach(System.out::println);
-
-        System.out.println("Lines: " + calculateLinesForSentence(text, 10));
-
-    }
+//    public static void main(String[] args) {
+//        String text = "xxx xxxxxx xxx xxxxx";
+//        System.out.println("Length: " + text.length());
+//
+//        int[] result = PatternImpl3.calculateWhiteSpaces(text);
+//        Arrays.stream(result).forEach(System.out::println);
+//
+//        System.out.println("Lines: " + calculateLinesForSentence(text, 10));
+//
+//    }
 
     @Override
     public Document prepareDocument() {
@@ -143,7 +139,7 @@ public class PatternImpl3 implements Pattern {
             document.add(rectangle);
 
         } catch (DocumentException e) {
-            LOGGER.error(CLASS_NAME + " - createCvStructure() - ERROR: " + e);
+            LOGGER.error(CLASS_NAME + " - createCvBody() - ERROR: " + e);
         }
     }
 

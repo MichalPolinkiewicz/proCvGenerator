@@ -26,8 +26,8 @@ public class PatternImpl2 implements Pattern {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl2.class);
     private static final String CLASS_NAME = PatternImpl2.class.getSimpleName();
-    private static final String PATH_TO_IMAGES = "/home/michal/IdeaProjects/proCvGenerator/core/src/main/resources/images/";
-    private static final String PATH_TO_IMAGES_WINDOWS = "C:/Users/MPl/IdeaProjects/proCvGenerator/core/src/main/resources/images/";
+    private static final String PATH_TO_IMAGES = "/home/michal/IdeaProjects/proCvGenerator/src/main/resources/images/";
+    private static final String PATH_TO_IMAGES_WINDOWS = "C:/Users/MPl/IdeaProjects/proCvGenerator/src/main/resources/images/";
 
     private static final int MAX_CHARS_IN_LINE_FOR_STRING = 25;
     private static final int MAX_CHARS_IN_LINE_FOR_STRING_LIST_RIGHT = 55;
@@ -69,7 +69,7 @@ public class PatternImpl2 implements Pattern {
             document.add(rectangle);
 
         } catch (DocumentException e) {
-            LOGGER.error(CLASS_NAME + " - createCvStructure() - ERROR: " + e);
+            LOGGER.error(CLASS_NAME + " - createCvBody() - ERROR: " + e);
         }
     }
 
@@ -82,19 +82,19 @@ public class PatternImpl2 implements Pattern {
             document.add(p);
 
             PdfPTable table = createHeaderTable(personalInfo);
-            Image image = Image.getInstance(PATH_TO_IMAGES + "whitephone.png");
+            Image image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitephone.png");
             PdfPCell cell = matchImageToHeaderTable(image, 34, 34);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getPhone(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES + "whitemessage.png");
+            image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitemessage.png");
             cell = matchImageToHeaderTable(image, 46, 46);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getEmail(), Fonts.CALIBRI_NORMAL, 14));
             table.addCell(cell);
 
-            image = Image.getInstance(PATH_TO_IMAGES + "whitehouse.png");
+            image = Image.getInstance(PATH_TO_IMAGES_WINDOWS + "whitehouse.png");
             cell = matchImageToHeaderTable(image, 32, 32);
             table.addCell(cell);
             cell = matchParagraphToHeaderTable(createParagraphForHeaderTable(personalInfo.getCity(), Fonts.CALIBRI_NORMAL, 14));
