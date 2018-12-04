@@ -8,6 +8,7 @@ import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
+import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.model.CvContentDto;
 import pl.proCvGenerator.patterns.Pattern;
@@ -58,7 +59,7 @@ public class WebFacade {
         try {
             pattern.generateCv(document, cvContent);
 
-        } catch (TooMuchCharsException e){
+        } catch (PdfException e){
 
         }
         document.close();

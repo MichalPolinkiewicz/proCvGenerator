@@ -1,11 +1,14 @@
 package pl.proCvGenerator.exception;
 
-public class TooMuchCharsException extends Exception {
+public class PdfException extends Exception {
 
     private String message;
 
-    public TooMuchCharsException(String message) {
+    public PdfException(String message) {
         this.message = message;
+    }
+
+    public PdfException() {
     }
 
     @Override

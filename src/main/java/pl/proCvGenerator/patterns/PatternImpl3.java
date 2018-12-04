@@ -4,19 +4,19 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.proCvGenerator.dto.CvContent;
 import pl.proCvGenerator.dto.Education;
 import pl.proCvGenerator.dto.Employment;
 import pl.proCvGenerator.dto.PersonalInfo;
+import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
+import pl.proCvGenerator.validator.CharsValidator;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParagraph;
@@ -24,88 +24,75 @@ import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParag
 
 public class PatternImpl3 implements Pattern {
 
+    @Autowired
+    private CharsValidator charsValidator;
     public static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl3.class);
     private static final String CLASS_NAME = PatternImpl3.class.getSimpleName();
     private Font normalFont = Fonts.ANTONIO_NORMAL;
     private Font boldFont = Fonts.ANTONIO_BOLD;
+    private static final int PARAGRAPH_SIZE = 12;
+    private static final int SECTION_HEADER_SIZE = 18;
+    private static final int MAX_LINES_FOR_PAGE = 26;
+    private static final int MAX_CHARS_IN_LINE_LEFT = 37;
+    private static final int MAX_CHARS_IN_LINE_RIGHT = 80;
 
-    private static final BigDecimal MAX_LINES_FOR_PAGE = BigDecimal.valueOf(25.6);
-    private static final int MAX_CHARS_IN_LINE_LEFT = 30;
-    private static final int MAX_CHARS_LIST_RIGHT = 80;
-    private static final int EXTRA_CHARS_LIST_RIGHT = 24;
-    private static final int EXTRA_CHARS_EDUCATION = 20;
-
-    private void validatePattern(CvContent cvContent) throws TooMuchCharsException {
-        int acceptableRight = 75;
-        int maxRight = 1;
-
-        int acceptableLeft = 35;
-        int maxLeft = 37;
-
-        int totalLeft = 962;
-        int totalRight = 1950;
-    }
-
-    private static int[] calculateWhiteSpaces(String text) {
-        int spc = StringUtils.countMatches(text, " ");
-        int dot = StringUtils.countMatches(text, '.');
-        int comma = StringUtils.countMatches(text, ',');
-        int count = spc + dot + comma;
-        int[] spaces = new int[count + 1];
-        int index = 1;
-
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == ' ' || text.charAt(i) == '.' || text.charAt(i) == ',') {
-                spaces[index] = i;
-                index++;
-            }
+    @Override
+    public void validate(CvContent cvContent) throws TooMuchCharsException {
+        PersonalInfo personalInfo = cvContent.getPersonalInfo();
+        int personalInfoLines =
+                        charsValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT) +
+                        charsValidator.calculateLinesForSentence(personalInfo.getPhone(), MAX_CHARS_IN_LINE_LEFT) +
+                        charsValidator.calculateLinesForSentence(personalInfo.getCity(), MAX_CHARS_IN_LINE_LEFT) +
+                        charsValidator.calculateLinesForSentence(personalInfo.getEmail(), MAX_CHARS_IN_LINE_LEFT);
+        if (cvContent.getPersonalInfo().getPage() != null) {
+            personalInfoLines += charsValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
         }
-        return spaces;
-    }
+        LOGGER.info("Personal info lines = " + personalInfoLines);
 
-    private static int calculateLinesForSentence(String text, int maxChars) {
-        int counter = 0;
-        int[] whiteSpaces = calculateWhiteSpaces(text);
-        String actualSentence = "";
-
-        for (int i = 0; i < whiteSpaces.length; i++) {
-            String copy = text;
-            if (i != whiteSpaces.length - 1) {
-                actualSentence = actualSentence + copy.substring(whiteSpaces[i], whiteSpaces[i + 1]);
-            }
-            if (i == whiteSpaces.length - 1) {
-                actualSentence = actualSentence + copy.substring(whiteSpaces[i]);
-            }
-            if (actualSentence.length() > maxChars) {
-                counter++;
-                if (i == whiteSpaces.length - 1) {
-                    actualSentence = copy.substring(whiteSpaces[i]);
-                    if (actualSentence.length() < maxChars) {
-                        counter++;
-                    }
-                } else {
-                    actualSentence = copy.substring(whiteSpaces[i], whiteSpaces[i + 1]);
-                }
-            } else if (i == whiteSpaces.length - 1) {
-                actualSentence = copy.substring(whiteSpaces[i]);
-                if (actualSentence.length() > 0) {
-                    counter++;
-                }
-            }
+        List<Education> educations = cvContent.getEducationList();
+        int educationLines = 0;
+        for (int i = 0; i < educations.size(); i++) {
+            Education e = educations.get(i);
+            educationLines += charsValidator.calculateLinesForSentence("- " + e.getSchoolName() + ", "
+                    + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree(), MAX_CHARS_IN_LINE_LEFT);
         }
-        return counter;
-    }
+        LOGGER.info("Education lines = " + educationLines);
 
-//    public static void main(String[] args) {
-//        String text = "xxx xxxxxx xxx xxxxx";
-//        System.out.println("Length: " + text.length());
-//
-//        int[] result = PatternImpl3.calculateWhiteSpaces(text);
-//        Arrays.stream(result).forEach(System.out::println);
-//
-//        System.out.println("Lines: " + calculateLinesForSentence(text, 10));
-//
-//    }
+        List<String> hobbies = cvContent.getHobbies();
+        int hobbiesLines = 0;
+        for (int i = 0; i < hobbies.size(); i++) {
+            hobbiesLines += charsValidator.calculateLinesForSentence("- " + hobbies.get(i) + ",", MAX_CHARS_IN_LINE_LEFT);
+        }
+        int totalLinesForLeftSection = personalInfoLines + educationLines + hobbiesLines;
+        LOGGER.info("Hobbies lines = " + hobbiesLines);
+        LOGGER.info("TOTAL LINES IN LEFT SECTION = " + totalLinesForLeftSection);
+
+        List<Employment> employments = cvContent.getEmployments();
+        int employmentLines = 0;
+        for (int i = 0; i < employments.size(); i++) {
+            Employment e = employments.get(i);
+            employmentLines += charsValidator.calculateLinesForSentence(e.getPosition() + ", " + e.getCompany()
+                    + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", MAX_CHARS_IN_LINE_RIGHT);
+            employmentLines += charsValidator.calculateLinesForSentence("Zakres obowiązków: " + e.getJobDescription(), MAX_CHARS_IN_LINE_RIGHT);
+        }
+        LOGGER.info("Emplyments lines : " + employmentLines);
+
+        List<String> skills = cvContent.getSkills();
+        int skillsLines = 0;
+        for (int i = 0; i < skills.size(); i++) {
+            skillsLines += charsValidator.calculateLinesForSentence("- " + skills.get(i) + ",", MAX_CHARS_IN_LINE_RIGHT);
+        }
+        int totalLinesForRightSection = employmentLines + skillsLines;
+        LOGGER.info("Skills : " + skillsLines);
+        LOGGER.info("TOTAL LINES IN RIGHT SECTION = " + totalLinesForRightSection);
+
+        if (totalLinesForLeftSection > MAX_LINES_FOR_PAGE){
+            throw new TooMuchCharsException("too much chars inf left section");
+        }
+        if (totalLinesForRightSection > MAX_LINES_FOR_PAGE){
+            throw new TooMuchCharsException("too much chars inf right section");
+        }
+    }
 
     @Override
     public Document prepareDocument() {
@@ -118,35 +105,10 @@ public class PatternImpl3 implements Pattern {
     }
 
     @Override
-    public void generateCv(Document document, CvContent cvContent) throws TooMuchCharsException {
-        validatePattern(cvContent);
-        createCvStructure(document);
-        createCvBody(document, cvContent);
-    }
-
-    public void createCvStructure(Document document) {
+    public void generateCv(Document document, CvContent cvContent) throws PdfException {
         try {
-            Rectangle rectangle = new Rectangle(0, 0, 199, 842);
-            rectangle.setBackgroundColor(BaseColor.WHITE);
-            document.add(rectangle);
+            addCvHeader(document, cvContent.getPersonalInfo());
 
-            rectangle = new Rectangle(202, 0, 595, 842);
-            rectangle.setBackgroundColor(BaseColor.WHITE);
-            document.add(rectangle);
-
-            rectangle = new Rectangle(0, 680, 595, 842);
-            rectangle.setBackgroundColor(BaseColor.WHITE);
-            document.add(rectangle);
-
-        } catch (DocumentException e) {
-            LOGGER.error(CLASS_NAME + " - createCvBody() - ERROR: " + e);
-        }
-    }
-
-    public void createCvBody(Document document, CvContent cvContent) throws TooMuchCharsException {
-        addCvHeader(document, cvContent.getPersonalInfo());
-
-        try {
             PdfPTable table = new PdfPTable(3);
             table.setWidthPercentage(100);
             table.setSpacingBefore(35);
@@ -154,9 +116,11 @@ public class PatternImpl3 implements Pattern {
 
             PdfPCell leftCell = createLeftSection(cvContent);
             leftCell.setBorder(Rectangle.NO_BORDER);
+
             PdfPCell space = new PdfPCell(new Phrase(" "));
             space.setBorder(Rectangle.NO_BORDER);
             space.addElement(new LineSeparator(660, 10, new BaseColor(60, 93, 93), 100, -330));
+
             PdfPCell rightCell = createRightSection(cvContent);
             rightCell.setBorder(Rectangle.NO_BORDER);
 
@@ -166,12 +130,13 @@ public class PatternImpl3 implements Pattern {
 
             document.add(table);
         } catch (DocumentException e) {
-
+            String message = CLASS_NAME + " - createCvBody() - ERROR: " + e;
+            LOGGER.error(message);
+            throw new PdfException(message);
         }
     }
 
-    private void addCvHeader(Document document, PersonalInfo personalInfo) {
-
+    private void addCvHeader(Document document, PersonalInfo personalInfo) throws PdfException {
         try {
             boldFont.setColor(60, 93, 93);
             Paragraph p = createSimpleParagraph((personalInfo.getName() + " " + personalInfo.getSurname()).toUpperCase(), boldFont, 44);
@@ -184,9 +149,10 @@ public class PatternImpl3 implements Pattern {
             p.setIndentationRight(150);
             p.setIndentationLeft(150);
             document.add(p);
-
         } catch (DocumentException e) {
-            LOGGER.error(CLASS_NAME + "- addCvHeader() - " + "ERROR: " + e);
+            String message = CLASS_NAME + " - addCvHeader() - ERROR: " + e;
+            LOGGER.error(message);
+            throw new PdfException(message);
         }
     }
 
@@ -201,7 +167,7 @@ public class PatternImpl3 implements Pattern {
         cell.addElement(addSectionHeader("wykształcenie", aligment));
         cell.addElement(addEducationSection(cvContent.getEducationList()));
         cell.addElement(addSectionHeader("hobby", aligment));
-        cell.addElement(addSectionFromList(cvContent.getHobbies(), Element.ALIGN_RIGHT));
+        cell.addElement(addSectionFromStringList(cvContent.getHobbies(), Element.ALIGN_RIGHT));
 
         return cell;
     }
@@ -213,7 +179,7 @@ public class PatternImpl3 implements Pattern {
         cell.addElement(addSectionHeader("doświadczenie zawodowe", aligment));
         cell.addElement(addEmploymentSection(cvContent.getEmployments()));
         cell.addElement(addSectionHeader("umiejętności", aligment));
-        cell.addElement(addSectionFromList(cvContent.getSkills(), aligment));
+        cell.addElement(addSectionFromStringList(cvContent.getSkills(), aligment));
 
         return cell;
     }
@@ -224,7 +190,7 @@ public class PatternImpl3 implements Pattern {
             textWithExtraSpace += text.charAt(i) + " ";
         }
         boldFont.setColor(60, 93, 93);
-        Paragraph p = createSimpleParagraph(textWithExtraSpace.toUpperCase(), boldFont, 18);
+        Paragraph p = createSimpleParagraph(textWithExtraSpace.toUpperCase(), boldFont, SECTION_HEADER_SIZE);
         p.setSpacingAfter(5);
         p.setAlignment(aligment);
 
@@ -235,20 +201,20 @@ public class PatternImpl3 implements Pattern {
         Paragraph p = new Paragraph();
         int aligment = Element.ALIGN_RIGHT;
 
-        Paragraph helper = createSimpleParagraph(personalInfo.getPhone(), normalFont, 12);
+        Paragraph helper = createSimpleParagraph(personalInfo.getPhone(), normalFont, PARAGRAPH_SIZE);
         helper.setAlignment(aligment);
         p.add(helper);
 
-        helper = createSimpleParagraph(personalInfo.getEmail(), normalFont, 12);
+        helper = createSimpleParagraph(personalInfo.getEmail(), normalFont, PARAGRAPH_SIZE);
         helper.setAlignment(aligment);
         p.add(helper);
 
-        helper = createSimpleParagraph(personalInfo.getCity(), normalFont, 12);
+        helper = createSimpleParagraph(personalInfo.getCity(), normalFont, PARAGRAPH_SIZE);
         helper.setAlignment(aligment);
         p.add(helper);
 
         if (personalInfo.getPage() != null) {
-            helper = createSimpleParagraph(personalInfo.getPage(), normalFont, 12);
+            helper = createSimpleParagraph(personalInfo.getPage(), normalFont, PARAGRAPH_SIZE);
             helper.setAlignment(aligment);
             p.add(helper);
         }
@@ -258,7 +224,7 @@ public class PatternImpl3 implements Pattern {
     }
 
     private Paragraph addAboutMeSection(String text) {
-        Paragraph p = createSimpleParagraph(text, normalFont, 12);
+        Paragraph p = createSimpleParagraph(text, normalFont, PARAGRAPH_SIZE);
         p.setAlignment(Element.ALIGN_RIGHT);
         p.setSpacingAfter(15);
 
@@ -273,9 +239,13 @@ public class PatternImpl3 implements Pattern {
             Education e = sorted.get(i);
             Paragraph helperParagraph;
             if (i == sorted.size() - 1) {
-                helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + "."), normalFont, 12);
+                helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - "
+                        + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + "."),
+                        normalFont, PARAGRAPH_SIZE);
             } else {
-                helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ","), normalFont, 12);
+                helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - "
+                        + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ","),
+                        normalFont, PARAGRAPH_SIZE);
                 helperParagraph.setSpacingAfter(5);
             }
             helperParagraph.setAlignment(Element.ALIGN_RIGHT);
@@ -285,15 +255,15 @@ public class PatternImpl3 implements Pattern {
         return mainParagraph;
     }
 
-    private Paragraph addSectionFromList(List<String> list, int aligment) {
+    private Paragraph addSectionFromStringList(List<String> list, int aligment) {
         Paragraph mainParagraph = new Paragraph();
 
         for (int i = 0; i < list.size(); i++) {
             Paragraph helperParagraph;
             if (i == list.size() - 1) {
-                helperParagraph = createSimpleParagraph("- " + list.get(i) + ".", normalFont, 12);
+                helperParagraph = createSimpleParagraph("- " + list.get(i) + ".", normalFont, PARAGRAPH_SIZE);
             } else {
-                helperParagraph = createSimpleParagraph("- " + list.get(i) + ",", normalFont, 12);
+                helperParagraph = createSimpleParagraph("- " + list.get(i) + ",", normalFont, PARAGRAPH_SIZE);
             }
             helperParagraph.setAlignment(aligment);
             mainParagraph.add(helperParagraph);
@@ -308,11 +278,10 @@ public class PatternImpl3 implements Pattern {
         for (int i = 0; i < sorted.size(); i++) {
             Employment e = sorted.get(i);
             paragraph.add(createSimpleParagraph(e.getPosition().toUpperCase()
-                    + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", normalFont, 12));
-            paragraph.add(createSimpleParagraph("Zakres obowiązków: " + e.getJobDescription() + ".", normalFont, 12));
+                    + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", normalFont, PARAGRAPH_SIZE));
+            paragraph.add(createSimpleParagraph("Zakres obowiązków: " + e.getJobDescription() + ".", normalFont, PARAGRAPH_SIZE));
             paragraph.add(new Paragraph(" "));
         }
         return paragraph;
     }
-
 }

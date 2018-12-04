@@ -38,6 +38,11 @@ public class PatternImpl2 implements Pattern {
     private static final int EXTRA_CHARS_FOR_EDUCATION = 27;
 
     @Override
+    public void validate(CvContent cvContent) throws TooMuchCharsException {
+
+    }
+
+    @Override
     public Document prepareDocument() {
         Document document = new Document();
         Rectangle pageSize = new Rectangle(PageSize.A4);
@@ -48,10 +53,10 @@ public class PatternImpl2 implements Pattern {
     }
 
     @Override
-    public void generateCv(Document document, CvContent cvContent) throws TooMuchCharsException {
+    public void generateCv(Document document, CvContent cvContent) {
         createCvStructure(document);
         createCvHeaderSection(document, cvContent.getPersonalInfo());
-        createCvBody(document, cvContent);
+        //createCvBody(document, cvContent);
     }
 
     public void createCvStructure(Document document) {

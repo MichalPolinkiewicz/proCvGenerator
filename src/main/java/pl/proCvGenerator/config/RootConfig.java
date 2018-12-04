@@ -2,11 +2,12 @@ package pl.proCvGenerator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.Pattern;
 import pl.proCvGenerator.patterns.PatternImpl1;
+import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.PatternImpl3;
 import pl.proCvGenerator.pdf.PdfCreator;
+import pl.proCvGenerator.validator.CharsValidator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,11 +36,14 @@ public class RootConfig {
     }
 
     @Bean(name = "3")
-    public Pattern pattern3(){ return new PatternImpl3(); }
+    public Pattern pattern3() { return new PatternImpl3(); }
 
     @Bean
     public PdfCreator pdfCreator() {
         return new PdfCreator();
     }
+
+    @Bean
+    public CharsValidator charsValidator() { return new CharsValidator();}
 
 }
