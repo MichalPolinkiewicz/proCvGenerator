@@ -15,7 +15,7 @@ import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
-import pl.proCvGenerator.validator.CharsValidator;
+import pl.proCvGenerator.validator.TextValidator;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParag
 public class PatternImpl3 implements Pattern {
 
     @Autowired
-    private CharsValidator charsValidator;
+    private TextValidator textValidator;
     public static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl3.class);
     private static final String CLASS_NAME = PatternImpl3.class.getSimpleName();
     private Font normalFont = Fonts.ANTONIO_NORMAL;
@@ -33,54 +33,48 @@ public class PatternImpl3 implements Pattern {
     private static final int PARAGRAPH_SIZE = 12;
     private static final int SECTION_HEADER_SIZE = 18;
     private static final int MAX_LINES_FOR_PAGE = 26;
-    private static final int MAX_CHARS_IN_LINE_LEFT = 37;
-    private static final int MAX_CHARS_IN_LINE_RIGHT = 80;
+    private static final int MAX_CHARS_IN_LINE_LEFT = 35;
+    private static final int MAX_CHARS_IN_LINE_RIGHT = 78;
 
     @Override
     public void validate(CvContent cvContent) throws TooMuchCharsException {
         PersonalInfo personalInfo = cvContent.getPersonalInfo();
         int personalInfoLines =
-                        charsValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getPhone(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getCity(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getEmail(), MAX_CHARS_IN_LINE_LEFT);
+                        textValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT) +
+                        textValidator.calculateLinesForSentence(personalInfo.getPhone(), MAX_CHARS_IN_LINE_LEFT) +
+                        textValidator.calculateLinesForSentence(personalInfo.getCity(), MAX_CHARS_IN_LINE_LEFT) +
+                        textValidator.calculateLinesForSentence(personalInfo.getEmail(), MAX_CHARS_IN_LINE_LEFT);
         if (cvContent.getPersonalInfo().getPage() != null) {
-            personalInfoLines += charsValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
+            personalInfoLines += textValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
         }
         LOGGER.info("Personal info lines = " + personalInfoLines);
 
-        List<Education> educations = cvContent.getEducationList();
         int educationLines = 0;
-        for (int i = 0; i < educations.size(); i++) {
-            Education e = educations.get(i);
-            educationLines += charsValidator.calculateLinesForSentence("- " + e.getSchoolName() + ", "
+        for (Education e : cvContent.getEducationList()) {
+            educationLines += textValidator.calculateLinesForSentence("- " + e.getSchoolName() + ", "
                     + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree(), MAX_CHARS_IN_LINE_LEFT);
         }
         LOGGER.info("Education lines = " + educationLines);
 
-        List<String> hobbies = cvContent.getHobbies();
         int hobbiesLines = 0;
-        for (int i = 0; i < hobbies.size(); i++) {
-            hobbiesLines += charsValidator.calculateLinesForSentence("- " + hobbies.get(i) + ",", MAX_CHARS_IN_LINE_LEFT);
+        for (String h : cvContent.getHobbies()) {
+            hobbiesLines += textValidator.calculateLinesForSentence("- " + h + ",", MAX_CHARS_IN_LINE_LEFT);
         }
         int totalLinesForLeftSection = personalInfoLines + educationLines + hobbiesLines;
         LOGGER.info("Hobbies lines = " + hobbiesLines);
         LOGGER.info("TOTAL LINES IN LEFT SECTION = " + totalLinesForLeftSection);
 
-        List<Employment> employments = cvContent.getEmployments();
         int employmentLines = 0;
-        for (int i = 0; i < employments.size(); i++) {
-            Employment e = employments.get(i);
-            employmentLines += charsValidator.calculateLinesForSentence(e.getPosition() + ", " + e.getCompany()
+        for (Employment e : cvContent.getEmployments()) {
+            employmentLines += textValidator.calculateLinesForSentence(e.getPosition() + ", " + e.getCompany()
                     + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", MAX_CHARS_IN_LINE_RIGHT);
-            employmentLines += charsValidator.calculateLinesForSentence("Zakres obowiązków: " + e.getJobDescription(), MAX_CHARS_IN_LINE_RIGHT);
+            employmentLines += textValidator.calculateLinesForSentence("Zakres obowiązków: " + e.getJobDescription(), MAX_CHARS_IN_LINE_RIGHT);
         }
         LOGGER.info("Emplyments lines : " + employmentLines);
 
-        List<String> skills = cvContent.getSkills();
         int skillsLines = 0;
-        for (int i = 0; i < skills.size(); i++) {
-            skillsLines += charsValidator.calculateLinesForSentence("- " + skills.get(i) + ",", MAX_CHARS_IN_LINE_RIGHT);
+        for (String s : cvContent.getSkills()) {
+            skillsLines += textValidator.calculateLinesForSentence("- " + s + ",", MAX_CHARS_IN_LINE_RIGHT);
         }
         int totalLinesForRightSection = employmentLines + skillsLines;
         LOGGER.info("Skills : " + skillsLines);

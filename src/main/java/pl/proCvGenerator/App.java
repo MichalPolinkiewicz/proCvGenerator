@@ -8,6 +8,6 @@ public class App {
 
     public static void main(String[] args) {
         PdfCreator pdfCreator = new PdfCreator();
-        pdfCreator.generate(new PatternImpl1());
+        pdfCreator.generate(new PatternImpl3());
     }
 }

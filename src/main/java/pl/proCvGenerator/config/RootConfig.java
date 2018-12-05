@@ -7,7 +7,7 @@ import pl.proCvGenerator.patterns.PatternImpl1;
 import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.PatternImpl3;
 import pl.proCvGenerator.pdf.PdfCreator;
-import pl.proCvGenerator.validator.CharsValidator;
+import pl.proCvGenerator.validator.TextValidator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +44,6 @@ public class RootConfig {
     }
 
     @Bean
-    public CharsValidator charsValidator() { return new CharsValidator();}
+    public TextValidator charsValidator() { return new TextValidator();}
 
 }

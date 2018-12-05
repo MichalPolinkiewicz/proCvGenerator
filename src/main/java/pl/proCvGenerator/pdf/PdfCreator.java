@@ -45,7 +45,7 @@ public class PdfCreator {
         Education loBialystok = new Education();
         loBialystok.setSchoolName("II LO w Białymstoku");
         loBialystok.setSubject("ogólny");
-        loBialystok.setDegree("wyksztalcenie srednie xxxxxxxxx xxxxxxxx");
+        loBialystok.setDegree("wyksztalcenie srednie xxxxxxxxxxxxxxxx");
         loBialystok.setStartDate("2007");
         loBialystok.setEndDate("2010");
 
@@ -64,7 +64,7 @@ public class PdfCreator {
 
         Employment zzz = new Employment();
         zzz.setCompany("zzz sp.z o.o");
-        zzz.setPosition("murarzxxxxxxxxxxxxxx");
+        zzz.setPosition("murarz");
         zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
         zzz.setStartDate("2010");
         zzz.setEndDate("2017");
@@ -72,7 +72,7 @@ public class PdfCreator {
         Employment aaa = new Employment();
         aaa.setCompany("zzz sp.z o.o");
         aaa.setPosition("murarz");
-        aaa.setJobDescription("Nadzór nad pracownikami. xxxxxxxxxxxxxxxxxxxxxxxx");
+        aaa.setJobDescription("Nadzór nad pracownikami. xx x xxxxx xxx xx xx xx xxxx xxx xx xx xx xx xx");
         aaa.setStartDate("2000");
         aaa.setEndDate("2003");
 
@@ -88,7 +88,7 @@ public class PdfCreator {
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
         personalInfo.setCity("Jawor"); //max 19
-        String text = "xxxxxxxxxxxxxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxx xxxxxx xxxxx xxxxxx xxxxx, x";
+        String text = "xxxxxxxx xxxxxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxx xxxxxx xxxxx xxxxxx xxxxx, xx abcdefg hijklmnop abcdefghi jklmnopr";
         personalInfo.setDescription(text);
         personalInfo.setEmail("ada.nowak@wp.pl"); //max 30 znakow
         personalInfo.setPhone("657-908-482"); //max 9
@@ -103,9 +103,11 @@ public class PdfCreator {
         hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
         hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
         hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
-        hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
         hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-
+        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
+        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
+        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
+        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
 
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
@@ -116,10 +118,6 @@ public class PdfCreator {
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
