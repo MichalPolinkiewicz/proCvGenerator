@@ -21,7 +21,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.validate(content);
             pattern.generateCv(document, content);
@@ -36,8 +36,8 @@ public class PdfCreator {
         CvContent cvContent = new CvContent();
 
         Education urBialystok = new Education();
-        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku i okolicach");
-        urBialystok.setSubject("Rozród trzody chlewnej");
+        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białym stokuw i ww okolicach");
+        urBialystok.setSubject("Rozród trzody chlewnej parx xxx xxxxx");
         urBialystok.setDegree("inżynier i magister");
         urBialystok.setStartDate("2010");
         urBialystok.setEndDate("2014");
@@ -45,7 +45,7 @@ public class PdfCreator {
         Education loBialystok = new Education();
         loBialystok.setSchoolName("II LO w Białymstoku");
         loBialystok.setSubject("ogólny");
-        loBialystok.setDegree("wyksztalcenie srednie xxxxxxxxxxxxxxxx");
+        loBialystok.setDegree("wyksztalcenie srednie xxxxxx xxx xx xxx xx xxx srednie xxx xxx xxxxx xx xxx xxx xx");
         loBialystok.setStartDate("2007");
         loBialystok.setEndDate("2010");
 
@@ -88,7 +88,7 @@ public class PdfCreator {
         personalInfo.setName("Bogusław");
         personalInfo.setSurname("Norlak");
         personalInfo.setCity("Jawor"); //max 19
-        String text = "xxxxxxxx xxxxxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxx xxxxxx xxxxx xxxxxx xxxxx, xx abcdefg hijklmnop abcdefghi jklmnopr";
+        String text = "abcde fgh ijkl opr stuxy abc defgh, abcde fgh ijkl opr stuxy abc defgh, abcde fgh ijkl opr stuxy abc defgh";
         personalInfo.setDescription(text);
         personalInfo.setEmail("ada.nowak@wp.pl"); //max 30 znakow
         personalInfo.setPhone("657-908-482"); //max 9
@@ -98,24 +98,19 @@ public class PdfCreator {
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
-        hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
+        for (int i = 0; i < 11; i++){
+            hobbyList.add("abcde fgh ijkl opr stuxy abc efg");
+        }
 
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
 
         List<String> skills = new ArrayList<>();
         skills.add("prawo jazdy kat. B");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
+        String a = "umiejętność obsługi komp utera xxxx xxxx xxx xxxxx xxxx xxxx xx xxx xxx xx xxx xx";
+        System.out.println(a.length());
+        skills.add(a);
+        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxx xxx xxxxxxxx xxxx xxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
         skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");

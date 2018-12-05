@@ -34,20 +34,22 @@ public class PatternImpl3 implements Pattern {
     private static final int SECTION_HEADER_SIZE = 18;
     private static final int MAX_LINES_FOR_PAGE = 26;
     private static final int MAX_CHARS_IN_LINE_LEFT = 35;
-    private static final int MAX_CHARS_IN_LINE_RIGHT = 78;
+    private static final int MAX_CHARS_IN_LINE_RIGHT = 83;
 
     @Override
     public void validate(CvContent cvContent) throws TooMuchCharsException {
         PersonalInfo personalInfo = cvContent.getPersonalInfo();
-        int personalInfoLines =
-                        textValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT) +
+        int contactLines =
                         textValidator.calculateLinesForSentence(personalInfo.getPhone(), MAX_CHARS_IN_LINE_LEFT) +
                         textValidator.calculateLinesForSentence(personalInfo.getCity(), MAX_CHARS_IN_LINE_LEFT) +
                         textValidator.calculateLinesForSentence(personalInfo.getEmail(), MAX_CHARS_IN_LINE_LEFT);
         if (cvContent.getPersonalInfo().getPage() != null) {
-            personalInfoLines += textValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
+            contactLines += textValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
         }
-        LOGGER.info("Personal info lines = " + personalInfoLines);
+        LOGGER.info("Contact lines = " + contactLines);
+
+        int descriptionLines = textValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT);
+        LOGGER.info("Description lines = " + descriptionLines);
 
         int educationLines = 0;
         for (Education e : cvContent.getEducationList()) {
@@ -60,7 +62,7 @@ public class PatternImpl3 implements Pattern {
         for (String h : cvContent.getHobbies()) {
             hobbiesLines += textValidator.calculateLinesForSentence("- " + h + ",", MAX_CHARS_IN_LINE_LEFT);
         }
-        int totalLinesForLeftSection = personalInfoLines + educationLines + hobbiesLines;
+        int totalLinesForLeftSection = contactLines + descriptionLines + educationLines + hobbiesLines;
         LOGGER.info("Hobbies lines = " + hobbiesLines);
         LOGGER.info("TOTAL LINES IN LEFT SECTION = " + totalLinesForLeftSection);
 
