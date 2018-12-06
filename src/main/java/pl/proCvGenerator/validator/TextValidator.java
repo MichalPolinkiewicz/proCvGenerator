@@ -16,7 +16,7 @@ public class TextValidator {
             String copy = text;
             if (i == 0) {
                 if (whiteSpaces.length == 1) {
-                    actualSentence = text;
+                    actualSentence = copy;
                 } else {
                     actualSentence = copy.substring(i, whiteSpaces[i + 1]);
                 }

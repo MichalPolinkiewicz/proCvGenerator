@@ -21,7 +21,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
             document.open();
             pattern.validate(content);
             pattern.generateCv(document, content);
@@ -37,15 +37,15 @@ public class PdfCreator {
 
         Education urBialystok = new Education();
         urBialystok.setSchoolName("Uniwersytet Rolniczy w Białym stokuw i ww okolicach");
-        urBialystok.setSubject("Rozród trzody chlewnej parx xxx xxxxx");
+        urBialystok.setSubject("Rozród trzody chlewnej");
         urBialystok.setDegree("inżynier i magister");
         urBialystok.setStartDate("2010");
         urBialystok.setEndDate("2014");
 
         Education loBialystok = new Education();
         loBialystok.setSchoolName("II LO w Białymstoku");
-        loBialystok.setSubject("ogólny");
-        loBialystok.setDegree("wyksztalcenie srednie xxxxxx xxx xx xxx xx xxx srednie xxx xxx xxxxx xx xxx xxx xx");
+        loBialystok.setSubject("profil ogólny");
+        loBialystok.setDegree("wyksztalcenie srednie");
         loBialystok.setStartDate("2007");
         loBialystok.setEndDate("2010");
 
@@ -65,14 +65,14 @@ public class PdfCreator {
         Employment zzz = new Employment();
         zzz.setCompany("zzz sp.z o.o");
         zzz.setPosition("murarz");
-        zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
+        zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach.");
         zzz.setStartDate("2010");
         zzz.setEndDate("2017");
 
         Employment aaa = new Employment();
         aaa.setCompany("zzz sp.z o.o");
         aaa.setPosition("murarz");
-        aaa.setJobDescription("Nadzór nad pracownikami. xx x xxxxx xxx xx xx xx xxxx xxx xx xx xx xx xx");
+        aaa.setJobDescription("Nadzór nad pracownikami");
         aaa.setStartDate("2000");
         aaa.setEndDate("2003");
 
@@ -86,33 +86,51 @@ public class PdfCreator {
 
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName("Bogusław");
-        personalInfo.setSurname("Norlak");
+        personalInfo.setSurname("Norlak Nowakowski Rakieta");
         personalInfo.setCity("Jawor"); //max 19
-        String text = "abcde fgh ijkl opr stuxy abc defgh, abcde fgh ijkl opr stuxy abc defgh, abcde fgh ijkl opr stuxy abc defgh";
+        String text = "Tym tekstem zwalidujemy dokładną poprawność wyliczeń jednej z metod programu który jest fajny i stosunkowo tani";
         personalInfo.setDescription(text);
-        personalInfo.setEmail("ada.nowak@wp.pl"); //max 30 znakow
-        personalInfo.setPhone("657-908-482"); //max 9
-        personalInfo.setPosition("stróż i alkoholik");
+        personalInfo.setEmail("obi.1@wp"); //max 30 znakow
+        personalInfo.setPhone("657-908-482 grgrgrg rgrghdggrghgh"); //max 9
+        personalInfo.setPosition("stróż i alkoholik wrtyuom");
         personalInfo.setPage("github.com/SnorliTheDog");
 
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
-        for (int i = 0; i < 11; i++){
-            hobbyList.add("abcde fgh ijkl opr stuxy abc efg");
+        for (int i = 0; i < 7; i++){
+            hobbyList.add("abcmw fgh ijkl wrjkjkdfejfdj kfd");
         }
 
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
 
         List<String> skills = new ArrayList<>();
-        skills.add("prawo jazdy kat. B");
-        String a = "umiejętność obsługi komp utera xxxx xxxx xxx xxxxx xxxx xxxx xx xxx xxx xx xxx xx";
-        System.out.println(a.length());
+        String a = "To jest przykładowe zdanie testowe. Ze wwwwwwwww wwwwwwwwww";
         skills.add(a);
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxx xxx xxxxxxxx xxxx xxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
+        String b = "To kolejne zdanie która ma za zadan wwwwwwwww wwwwwwwww";
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(b);
+        skills.add(a);
+        skills.add(a);
+       // skills.add(b);
+       // skills.add("umiejętność obsługi komputera xxxx xxxx xxxxx xxx xxxxxxxx xxxx xxxxxxxxxxxx");
+       // skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
+        //skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
 //        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");

@@ -1,8 +1,10 @@
 package pl.proCvGenerator.config;
 
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,6 +16,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import pl.proCvGenerator.converter.*;
 import pl.proCvGenerator.facade.WebFacade;
 import pl.proCvGenerator.validator.PatternValidator;
+
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -87,5 +92,4 @@ public class WebConfig implements WebMvcConfigurer {
     public WebFacade webFacade() {
         return new WebFacade();
     }
-
 }

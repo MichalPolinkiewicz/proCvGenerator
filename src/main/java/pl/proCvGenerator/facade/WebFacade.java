@@ -57,9 +57,10 @@ public class WebFacade {
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         document.open();
         try {
+            pattern.validate(cvContent);
             pattern.generateCv(document, cvContent);
 
-        } catch (PdfException e){
+        } catch (PdfException | TooMuchCharsException e){
 
         }
         document.close();
