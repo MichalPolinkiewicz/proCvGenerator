@@ -2,12 +2,15 @@ package pl.proCvGenerator.validator
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.config.RootConfig
+import pl.proCvGenerator.config.WebConfig
 import pl.proCvGenerator.exception.TooMuchCharsException
 import spock.lang.Specification
 import spock.lang.Unroll
 
-@ContextConfiguration(classes = [RootConfig])
+@ContextConfiguration(classes = [RootConfig, WebConfig])
+@WebAppConfiguration
 class TextValidatorSpec extends Specification {
 
     @Autowired

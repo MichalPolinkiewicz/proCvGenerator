@@ -40,9 +40,7 @@ public class RootConfig {
     }
 
     @Bean(name = "3")
-    public Pattern pattern3() {
-        return new PatternImpl3();
-    }
+    public Pattern pattern3() { return new PatternImpl3(); }
 
     @Bean
     public PdfCreator pdfCreator() {
@@ -55,7 +53,7 @@ public class RootConfig {
     }
 
     @Bean(name = "myProperties")
-    public Properties propertiesFactoryBean() {
+    public Properties properties() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource("messages.properties"));
         Properties properties = null;
@@ -68,5 +66,4 @@ public class RootConfig {
         }
         return properties;
     }
-
 }

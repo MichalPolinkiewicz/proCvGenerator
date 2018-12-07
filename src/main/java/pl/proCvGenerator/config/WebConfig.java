@@ -1,18 +1,26 @@
 package pl.proCvGenerator.config;
 
+import org.codehaus.groovy.runtime.ArrayUtil;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import pl.proCvGenerator.converter.*;
 import pl.proCvGenerator.facade.WebFacade;
 import pl.proCvGenerator.validator.PatternValidator;
@@ -32,7 +40,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/fonts",
+                "classpath:/static/images", "classpath:/static/js");
     }
 
     @Bean
@@ -92,4 +101,5 @@ public class WebConfig implements WebMvcConfigurer {
     public WebFacade webFacade() {
         return new WebFacade();
     }
+
 }

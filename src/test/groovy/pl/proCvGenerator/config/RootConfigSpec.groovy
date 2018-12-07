@@ -2,11 +2,13 @@ package pl.proCvGenerator.config
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.patterns.Pattern
 import pl.proCvGenerator.pdf.PdfCreator
 import spock.lang.Specification
 
-@ContextConfiguration(classes = [RootConfig])
+@ContextConfiguration(classes = [RootConfig, WebConfig])
+@WebAppConfiguration
 class RootConfigSpec extends Specification {
 
     @Autowired
