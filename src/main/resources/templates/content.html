@@ -7,20 +7,63 @@
 </head>
 
 <script>
-    function addRow() {
-        var table = document.getElementById('educationsTable');
-        var newRow = table.insertRow(-1);
-        var newCell1 = newRow.insertCell(0);
-        var newCell2 = newRow.insertCell(1);
-        var newCell3 = newRow.insertCell(2);
-        var newCell4 = newRow.insertCell(3);
-        var newCell5 = newRow.insertCell(4);
+    function addEducationRow() {
+        let table = document.getElementById('educationsTable');
+        let max = 5;
+        let i = table.rows.length - 1;
 
-        newCell1.innerHTML = "<th><input type='text' th:field='*{schoolName}'></th>";
-        newCell2.innerHTML = "<th><input type='text' th:field='*{subject}'></th>";
-        newCell3.innerHTML = "<th><input type='text' th:field='*{degree}'></th>";
-        newCell4.innerHTML = "<th><input type='text' th:field='*{startDate}'></th>";
-        newCell5.innerHTML = "<th><input type='text' th:field='*{endDate}'></th>";
+        if (i < max) {
+            let newRow = table.insertRow(-1);
+            let newCell1 = newRow.insertCell(0);
+            let newCell2 = newRow.insertCell(1);
+            let newCell3 = newRow.insertCell(2);
+            let newCell4 = newRow.insertCell(3);
+            let newCell5 = newRow.insertCell(4);
+
+            newCell1.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.schoolName" name="educationListWrapperDto.educationList[' + i + '].schoolName"></tr>';
+            newCell2.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.subject" name="educationListWrapperDto.educationList[' + i + '].subject"></tr>';
+            newCell3.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.degree" name="educationListWrapperDto.educationList[' + i + '].degree"></tr>';
+            newCell4.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.startDate" name="educationListWrapperDto.educationList[' + i + '].startDate"></tr>';
+            newCell5.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.endDate" name="educationListWrapperDto.educationList[' + i + '].endDate"></tr>';
+        } else {
+            document.getElementById('educationsButton').style.visibility = "hidden";
+        }
+    }
+
+    function addEmploymentRow() {
+        let table = document.getElementById('employmentsTable');
+        let max = 5;
+        let i = table.rows.length - 1;
+
+        if (i < max) {
+            let newRow = table.insertRow(-1);
+            let newCell1 = newRow.insertCell(0);
+            let newCell2 = newRow.insertCell(1);
+            let newCell3 = newRow.insertCell(2);
+            let newCell4 = newRow.insertCell(3);
+            let newCell5 = newRow.insertCell(4);
+
+            newCell1.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.company" name="employmentListWrapperDto.employmentList[' + i + '].company"></tr>';
+            newCell2.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.position" name="employmentListWrapperDto.employmentList[' + i + '].position"></tr>';
+            newCell3.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.jobDescription" name="employmentListWrapperDto.employmentList[' + i + '].jobDescription"></tr>';
+            newCell4.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.startDate" name="employmentListWrapperDto.employmentList[' + i + '].startDate"></tr>';
+            newCell5.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.endDate" name="employmentListWrapperDto.employmentList[' + i + '].endDate"></tr>';
+        } else {
+            document.getElementById('employmentsButton').style.visibility = "hidden";
+        }
+    }
+
+    function addSkill() {
+        // let table = document.getElementById('skillsTable');
+        // let i = table.rows.length - 1;
+        // let max = 7;
+        //
+        // if (i < max) {
+        //     let newCell = table.insertRow(-1);
+        //     newCell.innerText = '<td> <input id="skillsListWrapperDto.skills' + i +'" name="skillsListWrapperDto.skills[' + i + ']"></td>';
+        // } else {
+        //     document.getElementById("skillsButton").style.visibility = 'hidden';
+        // }
     }
 </script>
 
@@ -28,6 +71,7 @@
 <div class="container" id="container">
     <div id="cvContent">
         <form action="#" th:action="@{/generate}" th:object="${cvContentDto}" method="post">
+
             <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
                 <h3>Personal informations</h3>
                 <table>
@@ -53,9 +97,11 @@
                     </tr>
                 </table>
             </div>
+
             <div id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
-                <h3>Education informations</h3>
-                <button onclick="addRow()" type="button"></button>
+                <h3>Education informations
+                    <button id="educationsButton" onclick="addEducationRow()" type="button">Add</button>
+                </h3>
                 <table id="educationsTable">
                     <tr>
                         <th>School</th>
@@ -73,9 +119,12 @@
                     </tr>
                 </table>
             </div>
+
             <div id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
-                <h3>Employment informations</h3>
-                <table>
+                <h3>Employment informations
+                    <button id="employmentsButton" onclick="addEmploymentRow()" type="button">Add</button>
+                </h3>
+                <table id="employmentsTable">
                     <tr>
                         <th>Company</th>
                         <th>Position</th>
@@ -84,34 +133,33 @@
                         <th>End date</th>
                     </tr>
                     <tr th:each="employment, iter : *{employmentList}">
-                        <td><input th:field="*{employmentList[__${iter.index}__].company}"/></td>
-                        <td><input th:field="*{employmentList[__${iter.index}__].position}"/></td>
-                        <td><input th:field="*{employmentList[__${iter.index}__].jobDescription}"/></td>
-                        <td><input th:field="*{employmentList[__${iter.index}__].startDate}"/></td>
-                        <td><input th:field="*{employmentList[__${iter.index}__].endDate}"/></td>
+                        <td id="company"><input th:field="*{employmentList[__${iter.index}__].company}"/></td>
+                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}"/></td>
+                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}"/>
+                        </td>
+                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}"/></td>
+                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}"/></td>
                     </tr>
                 </table>
             </div>
             <div id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
-                <h3>Skills:</h3>
-                <table>
+                <h3>Skills: <button id="skillsButton" type="button" onclick="addSkill()">Add</button></h3>
+                <table id="skillsTable">
                     <tr>
-                        <td th:each="skill, iter : *{skills}"><input th:field="*{skills[__${iter.index}__]}"/></td>
+                        <td id="skill" th:each="skill, iter : *{skills}">
+                            <input th:field="*{skills[__${iter.index}__]}"/></td>
                     </tr>
                 </table>
             </div>
             <div id="hobbiesList" th:object="${cvContentDto.hobbiesListWrapperDto}">
                 <h3>Hobbies</h3>
-                <table>
+                <table id="hobbiesList">
                     <tr>
-                        <td th:each="hobby, iter : *{hobbyList}"><input th:field="*{hobbyList[__${iter.index}__]}"/>
+                        <td id="hobby" th:each="hobby, iter : *{hobbyList}"><input
+                                th:field="*{hobbyList[__${iter.index}__]}"/>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div id="clause">
-                <h3>Klauzula</h3>
-                <p><input th:field="${cvContentDto.clause}"></p>
             </div>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
             <button th:type="submit">Send</button>
