@@ -1,7 +1,7 @@
 package pl.proCvGenerator.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.proCvGenerator.dto.CvContent;
+import pl.proCvGenerator.dao.CvContent;
 import pl.proCvGenerator.model.CvContentDto;
 
 public class CvContentConverter {

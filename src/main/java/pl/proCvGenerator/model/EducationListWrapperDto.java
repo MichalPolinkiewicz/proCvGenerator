@@ -1,6 +1,6 @@
 package pl.proCvGenerator.model;
 
-import pl.proCvGenerator.dto.Education;
+import pl.proCvGenerator.dao.Education;
 
 import java.util.ArrayList;
 import java.util.List;

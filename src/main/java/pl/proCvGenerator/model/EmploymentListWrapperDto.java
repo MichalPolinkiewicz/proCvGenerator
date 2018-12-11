@@ -1,6 +1,6 @@
 package pl.proCvGenerator.model;
 
-import pl.proCvGenerator.dto.Employment;
+import pl.proCvGenerator.dao.Employment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.proCvGenerator.dto;
+package pl.proCvGenerator.dao;
 
 import java.util.List;
 

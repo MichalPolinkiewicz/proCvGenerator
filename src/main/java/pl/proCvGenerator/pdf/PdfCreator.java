@@ -2,7 +2,7 @@ package pl.proCvGenerator.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
-import pl.proCvGenerator.dto.*;
+import pl.proCvGenerator.dao.*;
 import pl.proCvGenerator.patterns.Pattern;
 
 import java.io.File;

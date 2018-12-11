@@ -2,8 +2,8 @@ package pl.proCvGenerator.patterns.helpers;
 
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import pl.proCvGenerator.dto.Education;
-import pl.proCvGenerator.dto.Employment;
+import pl.proCvGenerator.dao.Education;
+import pl.proCvGenerator.dao.Employment;
 
 import java.util.Comparator;
 import java.util.List;

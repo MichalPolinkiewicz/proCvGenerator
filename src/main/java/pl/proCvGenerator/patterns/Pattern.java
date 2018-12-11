@@ -1,7 +1,7 @@
 package pl.proCvGenerator.patterns;
 
 import com.itextpdf.text.Document;
-import pl.proCvGenerator.dto.CvContent;
+import pl.proCvGenerator.dao.CvContent;
 import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 

@@ -1,6 +1,6 @@
 package pl.proCvGenerator.converter;
 
-import pl.proCvGenerator.dto.PersonalInfo;
+import pl.proCvGenerator.dao.PersonalInfo;
 import pl.proCvGenerator.model.PersonalInfoDto;
 
 public class PersonalInfoConverter {

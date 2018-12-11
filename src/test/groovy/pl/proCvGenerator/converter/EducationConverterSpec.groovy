@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.config.WebConfig
-import pl.proCvGenerator.dto.Education
+import pl.proCvGenerator.dao.Education
 import pl.proCvGenerator.model.EducationListWrapperDto
 import spock.lang.Specification
 import spock.lang.Unroll

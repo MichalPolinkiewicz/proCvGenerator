@@ -8,18 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
-import pl.proCvGenerator.dto.CvContent;
-import pl.proCvGenerator.dto.Education;
-import pl.proCvGenerator.dto.Employment;
-import pl.proCvGenerator.dto.PersonalInfo;
+import pl.proCvGenerator.dao.CvContent;
+import pl.proCvGenerator.dao.Education;
+import pl.proCvGenerator.dao.Employment;
+import pl.proCvGenerator.dao.PersonalInfo;
 import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
 import pl.proCvGenerator.validator.TextValidator;
 
-import java.util.Locale;
 import java.util.Properties;
 
 public class PatternImpl1 implements Pattern {
