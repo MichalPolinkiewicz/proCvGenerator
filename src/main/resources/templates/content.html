@@ -26,6 +26,7 @@
             newCell4.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.startDate" name="educationListWrapperDto.educationList[' + i + '].startDate"></tr>';
             newCell5.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.endDate" name="educationListWrapperDto.educationList[' + i + '].endDate"></tr>';
         } else {
+            window.alert("Max value for this section is 5")
             document.getElementById('educationsButton').style.visibility = "hidden";
         }
     }
@@ -49,6 +50,7 @@
             newCell4.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.startDate" name="employmentListWrapperDto.employmentList[' + i + '].startDate"></tr>';
             newCell5.innerHTML = '<tr> <input id="employmentListWrapperDto.employmentList' + i + '.endDate" name="employmentListWrapperDto.employmentList[' + i + '].endDate"></tr>';
         } else {
+            window.alert("Max value for this section is 5")
             document.getElementById('employmentsButton').style.visibility = "hidden";
         }
     }
@@ -70,8 +72,7 @@
 <body>
 <div class="container" id="container">
     <div id="cvContent">
-        <form action="#" th:action="@{/generate}" th:object="${cvContentDto}" method="post">
-
+        <form action="#" th:object="${cvContentDto}" method="post">
             <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
                 <h3>Personal informations</h3>
                 <table>
@@ -162,7 +163,8 @@
                 </table>
             </div>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
-            <button th:type="submit">Send</button>
+            <button th:formaction="@{/generate}" th:type="submit">Send</button>
+            <button th:formaction="@{/save}" th:type="submit">Save</button>
         </form>
     </div>
 </div>

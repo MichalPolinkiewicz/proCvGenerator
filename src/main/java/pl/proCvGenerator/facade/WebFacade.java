@@ -1,7 +1,10 @@
 package pl.proCvGenerator.facade;
 
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.proCvGenerator.converter.CvContentConverter;
 import pl.proCvGenerator.dto.CvContent;
@@ -20,16 +23,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TooManyListenersException;
 
 public class WebFacade {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebFacade.class);
 
     @Autowired
     private CvContentConverter cvContentConverter;
     @Autowired
     private PatternValidator patternValidator;
 
-    public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) {
+    public void generatePdf(String patternId, CvContentDto cvContentDto, HttpServletResponse response) throws TooMuchCharsException, PdfException {
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
         Pattern pattern = patternValidator.choosePattern(patternId);
         Document document = pattern.prepareDocument();
@@ -53,16 +57,11 @@ public class WebFacade {
         }
     }
 
-    private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) {
+    private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) throws TooMuchCharsException, PdfException {
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         document.open();
-        try {
-            pattern.validate(cvContent);
-            pattern.generateCv(document, cvContent);
-
-        } catch (PdfException | TooMuchCharsException e){
-
-        }
+        pattern.validate(cvContent);
+        pattern.generateCv(document, cvContent);
         document.close();
     }
 
@@ -127,6 +126,7 @@ public class WebFacade {
         personalInfo.setEmail("zlotoreki69@gmail.com");
         personalInfo.setPage("www.page.pl");
         personalInfo.setPhone("678-341-098");
+        personalInfo.setPosition("Kierownik");
 
         cvContent.setPersonalInfo(personalInfo);
         List<String> hobbies = new ArrayList<>();
@@ -134,10 +134,6 @@ public class WebFacade {
         hobbies.add("sport");
         hobbies.add("muzyka");
         cvContent.setHobbies(hobbies);
-        cvContent.setClause("Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
-                "......................................................................" +
-                " w celu i zakresie niezbędnym w procesie rekrutacyjnym.");
-
         List<String> skills = new ArrayList<>();
         skills.add("umiejętność obsługi komputera");
         skills.add("prawo jazdy kat b");
@@ -149,7 +145,8 @@ public class WebFacade {
         return cvContentConverter.convertToDto(cvContent);
     }
 
-    public void persist() {
-
+    public void persist(CvContentDto cvContentDto) {
+        CvContent content = cvContentConverter.convertToContent(cvContentDto);
+        //save content to db
     }
 }

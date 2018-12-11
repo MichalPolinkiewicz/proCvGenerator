@@ -39,7 +39,7 @@ public class PatternImpl1 implements Pattern {
 
     private static int maxLinesForLeft = 26;
     private static int maxLinesForRight = 22;
-    private static int maxCharsInLineForSkills = 41;
+    private static int maxCharsInLineForSkills = 40;
     private static int maxCharsInLineForEducation = 22;
     private static int maxCharsInLineForRightSection = 33;
     private static int maxCharsForNameAndSurname = 25;

@@ -10,18 +10,16 @@ public class CvContent {
     private List<Employment> employments;
     private List<String> skills;
     private List<String> hobbies;
-    private String clause;
 
     public CvContent() {
     }
 
-    public CvContent(PersonalInfo personalInfo, List<Education> educationList, List<Employment> employments, List<String> skills, List<String> hobbies, String clause) {
+    public CvContent(PersonalInfo personalInfo, List<Education> educationList, List<Employment> employments, List<String> skills, List<String> hobbies) {
         this.personalInfo = personalInfo;
         this.educationList = educationList;
         this.employments = employments;
         this.skills = skills;
         this.hobbies = hobbies;
-        this.clause = clause;
     }
 
     public long getId() {
@@ -70,13 +68,5 @@ public class CvContent {
 
     public void setHobbies(List<String> hobbies) {
         this.hobbies = hobbies;
-    }
-
-    public String getClause() {
-        return clause;
-    }
-
-    public void setClause(String clause) {
-        this.clause = clause;
     }
 }

@@ -124,11 +124,6 @@ public class PdfCreator {
         skills.add("znajomość języka angielskiego - poziom B1");
 
         cvContent.setSkills(skills);
-
-        String clause = "Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
-                "......................................................................" +
-                " w celu i zakresie niezbędnym w procesie rekrutacyjnym.";
-        cvContent.setClause(clause);
         return user;
     }
 

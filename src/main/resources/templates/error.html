@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<p>Error</p>
+<p th:text="${e}"> </p>
+<p><a th:href="@{'/patterns?pattern=' + ${pattern}}">Click here to back</a> </p>
+</body>
+</html>
