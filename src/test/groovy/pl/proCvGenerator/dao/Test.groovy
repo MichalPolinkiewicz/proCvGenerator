@@ -9,6 +9,7 @@ import pl.proCvGenerator.config.RootConfig
 import pl.proCvGenerator.config.WebConfig
 import pl.proCvGenerator.dao.Dog
 import pl.proCvGenerator.repository.DogRepository
+import pl.proCvGenerator.service.DbService
 import spock.lang.Specification
 
 @ContextConfiguration(classes = [PersistenceConfig, RootConfig, WebConfig])
@@ -17,16 +18,16 @@ import spock.lang.Specification
 class Test extends Specification{
 
     @Autowired
-    DogRepository dogRepository
+    DbService dbService
 
     def "simple test"(){
         given:
         Dog dog = new Dog("Snorli")
 
         when:
-        def result = dogRepository.save(dog)
+        dbService.save(dog)
 
         then:
-        result
+        dbService.getAllDogs().size() == 1
     }
 }

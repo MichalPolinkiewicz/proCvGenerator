@@ -12,6 +12,7 @@ import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.PatternImpl3;
 import pl.proCvGenerator.pdf.PdfCreator;
 import pl.proCvGenerator.repository.DogRepository;
+import pl.proCvGenerator.service.DbService;
 import pl.proCvGenerator.validator.TextValidator;
 
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class RootConfig {
         return new TextValidator();
     }
 
-    @Bean(name = "myProperties")
+    @Bean(name = "messages")
     public Properties properties() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource("messages.properties"));

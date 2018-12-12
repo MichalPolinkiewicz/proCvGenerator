@@ -31,7 +31,7 @@ public class PatternImpl2 implements Pattern {
     @Autowired
     private TextValidator textValidator;
     @Autowired
-    @Qualifier("myProperties")
+    @Qualifier("messages")
     private Properties properties;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl2.class);

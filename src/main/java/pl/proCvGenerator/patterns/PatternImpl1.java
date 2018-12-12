@@ -25,7 +25,7 @@ public class PatternImpl1 implements Pattern {
     @Autowired
     private TextValidator textValidator;
     @Autowired
-    @Qualifier("myProperties")
+    @Qualifier("messages")
     private Properties properties;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl1.class);

@@ -29,7 +29,7 @@ public class PatternImpl3 implements Pattern {
     @Autowired
     private TextValidator textValidator;
     @Autowired
-    @Qualifier("myProperties")
+    @Qualifier("messages")
     private Properties properties;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl3.class);

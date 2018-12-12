@@ -1,32 +1,20 @@
 package pl.proCvGenerator.config;
 
-import org.codehaus.groovy.runtime.ArrayUtil;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import pl.proCvGenerator.converter.*;
 import pl.proCvGenerator.facade.WebFacade;
+import pl.proCvGenerator.service.DbService;
 import pl.proCvGenerator.validator.PatternValidator;
-
-import java.io.IOException;
-import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -100,6 +88,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public WebFacade webFacade() {
         return new WebFacade();
+    }
+
+    @Bean
+    public DbService dbService() {
+        return new DbService();
     }
 
 }

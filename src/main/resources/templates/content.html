@@ -5,7 +5,6 @@
     <meta charset="UTF-8" lang="pl" th:formenctype="UTF-8">
     <title>cv content</title>
 </head>
-
 <script>
     function addEducationRow() {
         let table = document.getElementById('educationsTable');
@@ -56,21 +55,38 @@
     }
 
     function addSkill() {
-        // let table = document.getElementById('skillsTable');
-        // let i = table.rows.length - 1;
-        // let max = 7;
-        //
-        // if (i < max) {
-        //     let newCell = table.insertRow(-1);
-        //     newCell.innerText = '<td> <input id="skillsListWrapperDto.skills' + i +'" name="skillsListWrapperDto.skills[' + i + ']"></td>';
-        // } else {
-        //     document.getElementById("skillsButton").style.visibility = 'hidden';
-        // }
+        let skillsRow = document.getElementById('skillsRow');
+        let i = skillsRow.getElementsByTagName('td').length;
+        let newCell = skillsRow.insertCell(-1)
+
+        if (i < 6) {
+            newCell.innerHTML = '<td> <input id="skillsListWrapperDto.skills' + i + '" name="skillsListWrapperDto.skills[' + i + ']"></td>';
+        } else {
+            window.alert("Max value for this section is 6")
+            document.getElementById('skillsButton').style.visibility = "hidden";
+        }
+    }
+
+    function addHobby(){
+        let hobbiesRow = document.getElementById('hobbiesRow');
+        let i = hobbiesRow.getElementsByTagName('td').length;
+        let newCell = hobbiesRow.insertCell(-1)
+
+        if (i < 6) {
+            newCell.innerHTML = '<td> <input id="hobbiesListWrapperDto.hobbies' + i + '" name="hobbiesListWrapperDto.hobbies[' + i + ']"></td>';
+        } else {
+            window.alert("Max value for this section is 6")
+            document.getElementById('hobbiesButton').style.visibility = "hidden";
+        }
     }
 </script>
 
 <body>
 <div class="container" id="container">
+    <div id="header">
+        <h4>Your pattern is: <span th:text="${pattern}"/></h4>
+        <h4><a th:href="@{/patterns}">Choose another pattern</a></h4>
+    </div>
     <div id="cvContent">
         <form action="#" th:object="${cvContentDto}" method="post">
             <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
@@ -144,18 +160,20 @@
                 </table>
             </div>
             <div id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
-                <h3>Skills: <button id="skillsButton" type="button" onclick="addSkill()">Add</button></h3>
+                <h3>Skills:
+                    <button id="skillsButton" type="button" onclick="addSkill()">Add</button>
+                </h3>
                 <table id="skillsTable">
-                    <tr>
+                    <tr id="skillsRow">
                         <td id="skill" th:each="skill, iter : *{skills}">
                             <input th:field="*{skills[__${iter.index}__]}"/></td>
                     </tr>
                 </table>
             </div>
             <div id="hobbiesList" th:object="${cvContentDto.hobbiesListWrapperDto}">
-                <h3>Hobbies</h3>
+                <h3>Hobbies <button id="hobbiesButton" type="button" onclick="addHobby()">Add</button></h3>
                 <table id="hobbiesList">
-                    <tr>
+                    <tr id="hobbiesRow">
                         <td id="hobby" th:each="hobby, iter : *{hobbyList}"><input
                                 th:field="*{hobbyList[__${iter.index}__]}"/>
                         </td>
