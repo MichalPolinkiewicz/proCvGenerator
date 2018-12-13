@@ -28,8 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/fonts",
-                "classpath:/static/images", "classpath:/static/js");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
     }
 
     @Bean
