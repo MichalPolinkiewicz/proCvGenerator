@@ -11,11 +11,11 @@ function addEducationRow() {
         let newCell4 = newRow.insertCell(3);
         let newCell5 = newRow.insertCell(4);
 
-        newCell1.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.schoolName" name="educationListWrapperDto.educationList[' + i + '].schoolName"></tr>';
-        newCell2.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.subject" name="educationListWrapperDto.educationList[' + i + '].subject"></tr>';
-        newCell3.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.degree" name="educationListWrapperDto.educationList[' + i + '].degree"></tr>';
-        newCell4.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.startDate" name="educationListWrapperDto.educationList[' + i + '].startDate"></tr>';
-        newCell5.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.endDate" name="educationListWrapperDto.educationList[' + i + '].endDate"></tr>';
+        newCell1.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.schoolName" name="educationListWrapperDto.educationList[' + i + '].schoolName" required></tr>';
+        newCell2.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.subject" name="educationListWrapperDto.educationList[' + i + '].subject" required></tr>';
+        newCell3.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.degree" name="educationListWrapperDto.educationList[' + i + '].degree" required></tr>';
+        newCell4.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.startDate" name="educationListWrapperDto.educationList[' + i + '].startDate" required></tr>';
+        newCell5.innerHTML = '<tr> <input id="educationListWrapperDto.educationList' + i + '.endDate" name="educationListWrapperDto.educationList[' + i + '].endDate" required></tr>';
     } else {
         window.alert("Max value for this section is 5")
         document.getElementById('educationsButton').style.visibility = "hidden";
@@ -52,7 +52,7 @@ function addSkill() {
     let newCell = skillsRow.insertCell(-1)
 
     if (i < 6) {
-        newCell.innerHTML = '<td> <input id="skillsListWrapperDto.skills' + i + '" name="skillsListWrapperDto.skills[' + i + ']"></td>';
+        newCell.innerHTML = '<td> <input id="skillsListWrapperDto.skills' + i + '" name="skillsListWrapperDto.skills[' + i + ']" required></td>';
     } else {
         window.alert("Max value for this section is 6")
         document.getElementById('skillsButton').style.visibility = "hidden";
@@ -65,7 +65,7 @@ function addHobby(){
     let newCell = hobbiesRow.insertCell(-1)
 
     if (i < 6) {
-        newCell.innerHTML = '<td> <input id="hobbiesListWrapperDto.hobbies' + i + '" name="hobbiesListWrapperDto.hobbies[' + i + ']"></td>';
+        newCell.innerHTML = '<td> <input id="hobbiesListWrapperDto.hobbies' + i + '" name="hobbiesListWrapperDto.hobbies[' + i + ']" required></td>';
     } else {
         window.alert("Max value for this section is 6")
         document.getElementById('hobbiesButton').style.visibility = "hidden";

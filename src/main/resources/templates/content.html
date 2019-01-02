@@ -29,14 +29,14 @@
                         <th>Description</th>
                     </tr>
                     <tr>
-                        <td><input type="text" th:required="required" th:field="*{name}"></td>
-                        <td><input type="text" th:field="*{surname}"></td>
-                        <td><input type="text" th:field="*{position}"></td>
-                        <td><input type="text" th:field="*{email}"></td>
-                        <td><input type="text" th:field="*{page}"></td>
-                        <td><input type="text" th:field="*{phone}"></td>
-                        <td><input type="text" th:field="*{city}"></td>
-                        <td><input type="text" th:field="*{description}"></td>
+                        <td><input type="text" th:required="required" th:field="*{name}" required></td>
+                        <td><input type="text" th:field="*{surname}" required></td>
+                        <td><input type="text" th:field="*{position}" required></td>
+                        <td><input type="text" th:field="*{email}" required></td>
+                        <td><input type="text" th:field="*{page}" required></td>
+                        <td><input type="text" th:field="*{phone}" required></td>
+                        <td><input type="text" th:field="*{city}" required></td>
+                        <td><input type="text" th:field="*{description}" required></td>
                     </tr>
                 </table>
             </div>
@@ -53,11 +53,11 @@
                         <th>End date</th>
                     </tr>
                     <tr th:each="education, iter : *{educationList}">
-                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].subject}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].degree}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].startDate}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].endDate}"/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].subject}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].degree}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].startDate}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].endDate}" required/></td>
                     </tr>
                 </table>
             </div>
@@ -75,11 +75,10 @@
                     </tr>
                     <tr th:each="employment, iter : *{employmentList}">
                         <td id="company"><input th:field="*{employmentList[__${iter.index}__].company}" required/></td>
-                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}"/></td>
-                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}"/>
-                        </td>
-                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}"/></td>
-                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}"/></td>
+                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}" required/></td>
+                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}" required/></td>
+                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}" required/></td>
+                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}" required/></td>
                     </tr>
                 </table>
             </div>
@@ -90,7 +89,7 @@
                 <table id="skillsTable">
                     <tr id="skillsRow">
                         <td id="skill" th:each="skill, iter : *{skills}">
-                            <input th:field="*{skills[__${iter.index}__]}"/></td>
+                            <input th:field="*{skills[__${iter.index}__]}" required/></td>
                     </tr>
                 </table>
             </div>
@@ -99,14 +98,14 @@
                 <table id="hobbiesList">
                     <tr id="hobbiesRow">
                         <td id="hobby" th:each="hobby, iter : *{hobbyList}"><input
-                                th:field="*{hobbyList[__${iter.index}__]}"/>
+                                th:field="*{hobbyList[__${iter.index}__]}" required/>
                         </td>
                     </tr>
                 </table>
             </div>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
-            <button th:formaction="@{/generate}" th:type="submit">Send</button>
-            <button th:formaction="@{/save}" th:type="submit">Save</button>
+            <button th:formaction="@{/generate}" th:type="submit">Generuj</button>
+            <button th:formaction="@{/save}" th:type="submit">Zapisz</button>
         </form>
     </div>
 </div>

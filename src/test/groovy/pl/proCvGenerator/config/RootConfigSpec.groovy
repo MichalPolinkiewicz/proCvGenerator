@@ -1,6 +1,7 @@
 package pl.proCvGenerator.config
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.patterns.Pattern
@@ -9,6 +10,7 @@ import spock.lang.Specification
 
 @ContextConfiguration(classes = [RootConfig, WebConfig])
 @WebAppConfiguration
+@ActiveProfiles("test")
 class RootConfigSpec extends Specification {
 
     @Autowired
