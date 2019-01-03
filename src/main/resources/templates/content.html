@@ -3,46 +3,53 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" lang="pl" th:formenctype="UTF-8">
-    <title>cv content</title>
+    <title>ProCvGenerator - content</title>
 </head>
 <script type="text/javascript" th:src="@{/resources/js/script.js}"></script>
-
+<!--<link rel="stylesheet" type="text/css" th:href="@{/resources/styles/bootstrap.min.css}">-->
+<link rel="stylesheet" type="text/css" th:href="@{/resources/styles/style.css}"/>
 <body>
 <div class="container" id="container">
-    <div id="header">
-        <h4>Your pattern is: <span th:text="${pattern}"/></h4>
-        <h4><a th:href="@{/patterns}">Choose another pattern</a></h4>
+    <div class="mainHeader">
+        <h>You choose pattern: <span th:text="${pattern}"/>&nbsp;<a th:href="@{/patterns}">Change</a> </h>
     </div>
     <div id="cvContent">
         <form action="#" th:object="${cvContentDto}" method="post">
             <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
-                <h3>Personal informations</h3>
+                <h3 class="sectionHeader">Personal informations:</h3>
                 <table>
                     <tr>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Position</th>
+                        <th>City</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text"  th:field="*{name}" required></td>
+                        <td><input type="text" th:field="*{surname}" required></td>
+                        <td><input type="text" th:field="*{position}" required></td>
+                        <td><input type="text" th:field="*{city}" required></td>
+                    </tr>
+                </table>
+                <table>
+                    <h3 class="sectionHeader">Contact:</h3>
+                    <tr>
                         <th>Email</th>
                         <th>Page</th>
                         <th>Phone</th>
-                        <th>City</th>
-                        <th>Description</th>
                     </tr>
                     <tr>
-                        <td><input type="text" th:required="required" th:field="*{name}"></td>
-                        <td><input type="text" th:field="*{surname}"></td>
-                        <td><input type="text" th:field="*{position}"></td>
-                        <td><input type="text" th:field="*{email}"></td>
+                        <td><input type="text" th:field="*{email}" required></td>
                         <td><input type="text" th:field="*{page}"></td>
-                        <td><input type="text" th:field="*{phone}"></td>
-                        <td><input type="text" th:field="*{city}"></td>
-                        <td><input type="text" th:field="*{description}"></td>
+                        <td><input type="text" th:field="*{phone}" required></td>
                     </tr>
                 </table>
+                <h3 class="sectionHeader">About me:</h3>
+                <p class="inputArea"><textarea rows="4" cols="100" style="resize: none" type="text" th:field="*{description}"/></p>
             </div>
+
             <div id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
-                <h3>Education informations
-                    <button id="educationsButton" onclick="addEducationRow()" type="button">Add</button>
+                <h3 class="sectionHeader">Education informations: <button id="educationsButton" onclick="addEducationRow()" type="button">Add</button>
                 </h3>
                 <table id="educationsTable">
                     <tr>
@@ -52,18 +59,19 @@
                         <th>Start date</th>
                         <th>End date</th>
                     </tr>
-                    <tr th:each="education, iter : *{educationList}">
-                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].subject}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].degree}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].startDate}"/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].endDate}"/></td>
+                    <tr th:each="education, iter : *{educationList}" th:id="${'education' + iter.index}">
+                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].subject}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].degree}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].startDate}" required/></td>
+                        <td><input th:field="*{educationList[__${iter.index}__].endDate}" required/></td>
+                        <td><button type="button" th:onclick="|deleteRow('educationsTable','${'education' + iter.index}', 2);|"/>Usuń</td>
                     </tr>
                 </table>
             </div>
+
             <div id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
-                <h3>Employment informations
-                    <button id="employmentsButton" onclick="addEmploymentRow()" type="button">Add</button>
+                <h3 class="sectionHeader">Employment informations: <button id="employmentsButton" onclick="addEmploymentRow()" type="button">Add</button>
                 </h3>
                 <table id="employmentsTable">
                     <tr>
@@ -73,40 +81,39 @@
                         <th>Start date</th>
                         <th>End date</th>
                     </tr>
-                    <tr th:each="employment, iter : *{employmentList}">
+                    <tr th:each="employment, iter : *{employmentList}" th:id="${'employment' + iter.index}">
                         <td id="company"><input th:field="*{employmentList[__${iter.index}__].company}" required/></td>
-                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}"/></td>
-                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}"/>
-                        </td>
-                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}"/></td>
-                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}"/></td>
+                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}" required/></td>
+                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}" required/></td>
+                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}" required/></td>
+                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}" required/></td>
+                        <td><button type="button" th:onclick="|deleteRow('employmentsTable','${'employment' + iter.index}', 2);|"/>Usuń</td>
                     </tr>
                 </table>
             </div>
+
             <div id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
-                <h3>Skills:
-                    <button id="skillsButton" type="button" onclick="addSkill()">Add</button>
-                </h3>
-                <table id="skillsTable">
-                    <tr id="skillsRow">
-                        <td id="skill" th:each="skill, iter : *{skills}">
-                            <input th:field="*{skills[__${iter.index}__]}"/></td>
-                    </tr>
+                <h3 class="sectionHeader">Skills: <button id="skillsButton" type="button" onclick="addSkill()">Add</button></h3>
+                <table id="skillsList">
+                        <tr th:each="skill, iter : *{skills}" th:id="${'skill' + iter.index}">
+                           <td><input th:field="*{skills[__${iter.index}__]}" size="50" required/> <button type="button" th:onclick="|deleteRow('skillsList','${'skill' + iter.index}', 1);|"/> Usuń</td>
+                        </tr>
                 </table>
             </div>
-            <div id="hobbiesList" th:object="${cvContentDto.hobbiesListWrapperDto}">
-                <h3>Hobbies <button id="hobbiesButton" type="button" onclick="addHobby()">Add</button></h3>
+
+            <div id="hobbies" th:object="${cvContentDto.hobbiesListWrapperDto}">
+                <h3 class="sectionHeader">Hobbies: <button id="hobbiesButton" type="button" onclick="addHobby()">Add</button></h3>
                 <table id="hobbiesList">
-                    <tr id="hobbiesRow">
-                        <td id="hobby" th:each="hobby, iter : *{hobbyList}"><input
-                                th:field="*{hobbyList[__${iter.index}__]}"/>
-                        </td>
-                    </tr>
+                        <tr th:each="hobby, iter : *{hobbyList}" th:id="${'hobby' + iter.index}">
+                           <td><input th:field="*{hobbyList[__${iter.index}__]}" required/> <button type="button" th:onclick="|deleteRow('hobbiesList','${'hobby' + iter.index}', 1);|"/>Usuń</td>
+                        </tr>
                 </table>
             </div>
+
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
-            <button th:formaction="@{/generate}" th:type="submit">Send</button>
-            <button th:formaction="@{/save}" th:type="submit">Save</button>
+            <div class="buttons">
+                <button class="btn btn-primary btn-lg" th:formaction="@{/generate}" th:type="submit">Send</button> <button class="btn btn-primary btn-lg" th:formaction="@{/save}" th:type="submit">Save</button>
+            </div>
         </form>
     </div>
 </div>

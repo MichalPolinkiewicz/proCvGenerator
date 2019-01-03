@@ -2,6 +2,7 @@ package pl.proCvGenerator.config
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.converter.CvContentConverter
@@ -12,8 +13,9 @@ import pl.proCvGenerator.validator.PatternValidator
 import spock.lang.Specification
 import spock.lang.Unroll
 
-@ContextConfiguration(classes = [WebConfig])
+@ContextConfiguration(classes = [WebConfig, RootConfig])
 @WebAppConfiguration
+@ActiveProfiles("test")
 class WebConfigSpec extends Specification {
 
     @Autowired
@@ -27,7 +29,7 @@ class WebConfigSpec extends Specification {
     @Autowired
     EmploymentConverter employmentConverter
     @Autowired
-    @Qualifier("myProperties")
+    @Qualifier("messages")
     Properties properties
 
     def "beans should be initialized"() {
