@@ -1,56 +1,28 @@
 body {
-    background-color: #d1e0e0;
     font-family: "Calibri Light";
-    padding-top: 5px;
-    padding-left: 1px;
-    padding-right: 1px;
-    padding-bottom: 1px;
-    border: 2px solid black;
+}
+.container {
+    padding: 5px;
+    text-align: left;
+    text-shadow: 0.5px 0.5px black;
+}
+.navbar {
+    box-shadow: 10px 10px 5px grey;
 }
 
-table {
-    text-align: center;
-    padding: 1px;
-    border: 2px solid #92b9b9;
-    width: 80%;
-    margin: auto;
-}
-
-textarea {
-    display: block;
-    margin: auto;
-}
-
-input {
-    margin: auto;
-}
-
-.mainHeader {
-    height: 100%;
-    background-color: #669999;
-    color: white;
-    font-size: 20px;
-    padding: 3px;
-    text-align: right;
-}
-
-.sectionHeader {
-    background-color: #b3cbcb;
-    width: 30%;
-    margin-left: 32.5%;
-    margin-right: 32.5%;
-    height: 6%;
-    padding: 1px;
-    text-align: center;
-    border: 2px solid #92b9b9;
-}
-
-.buttons {
+.btn {
     text-align: center;
 }
 
-button {
-    height: 20px;
-    width: 80px;
+#logout {
+    width: 20px;
+}
 
+.d-block {
+    width: 200px;
+    height: 200px;
+}
+
+.welcome {
+    text-align: center;
 }

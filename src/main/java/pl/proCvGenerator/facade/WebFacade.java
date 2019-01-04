@@ -81,35 +81,39 @@ public class WebFacade {
 
         CvContent cvContent = new CvContent();
         Education urBialystok = new Education();
-        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku");
-        urBialystok.setSubject("Rozród trzody chlewnej");
-        urBialystok.setDegree("inżynier");
+        urBialystok.setSchoolName("Ut enim ad minima veniam");
+        urBialystok.setSubject("quis nostrum");
+        urBialystok.setDegree("exercitationem");
         urBialystok.setStartDate("2010");
         urBialystok.setEndDate("2014");
+
         Education loBialystok = new Education();
-        loBialystok.setSchoolName("II LO w Białymstoku");
-        loBialystok.setSubject("ogólny");
-        loBialystok.setDegree("wyksztalcenie srednie");
+        loBialystok.setSchoolName("ullam corporis suscipit ");
+        loBialystok.setSubject("laboriosam");
+        loBialystok.setDegree(" nisi ut aliquid");
         loBialystok.setStartDate("2007");
         loBialystok.setEndDate("2010");
         List<Education> educationList = new ArrayList<>();
         educationList.add(loBialystok);
         educationList.add(urBialystok);
         cvContent.setEducationList(educationList);
+
         Employment xyz = new Employment();
-        xyz.setCompany("XYZ sp.z o.o");
-        xyz.setPosition("murarz");
-        xyz.setJobDescription("murowanie i picie");
+        xyz.setCompany("ex ea commodi");
+        xyz.setPosition("consequatur");
+        xyz.setJobDescription("Quis autem vel eum iure reprehenderit");
         xyz.setStartDate("1988");
         xyz.setEndDate("2006");
+
         Employment zzz = new Employment();
-        zzz.setCompany("zzz sp.z o.o");
-        zzz.setPosition("murarz");
-        zzz.setJobDescription("murowanie i picie");
+        zzz.setCompany("qui in ea voluptate");
+        zzz.setPosition("velit esse quam");
+        zzz.setJobDescription("nihil molestiae consequatur, vel illum qui dolorem");
         zzz.setStartDate("2007");
         zzz.setEndDate("2016");
-        Employment xxx = new Employment("Firma x", "specjalista ds. bhp", "nadzór nad przestrzeganiem ogolnych zasad bhp",
-                "2016", "nadal");
+
+        Employment xxx = new Employment("eum fugiat quo voluptas", "nulla pariatur", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem",
+                "2016", "2019");
 
         List<Employment> employments = new ArrayList<>();
         employments.add(xyz);
@@ -119,27 +123,32 @@ public class WebFacade {
         cvContent.setEmployments(employments);
 
         PersonalInfo personalInfo = new PersonalInfo();
-        personalInfo.setName("Bogusław");
-        personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Bialystok");
-        personalInfo.setDescription("Jestem dobrym murarzem. Lubie pic i murowac");
-        personalInfo.setEmail("zlotoreki69@gmail.com");
-        personalInfo.setPage("www.page.pl");
+        personalInfo.setName("John");
+        personalInfo.setSurname("Smith");
+        personalInfo.setCity("Los Angeles");
+        personalInfo.setDescription("Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo");
+        personalInfo.setEmail("john.smith@gmail.com");
+        personalInfo.setPage("www.johnsmith.com");
         personalInfo.setPhone("678-341-098");
-        personalInfo.setPosition("Kierownik");
+        personalInfo.setPosition("Production Manager");
 
         cvContent.setPersonalInfo(personalInfo);
         List<String> hobbies = new ArrayList<>();
-        hobbies.add("mechanika");
-        hobbies.add("sport");
-        hobbies.add("muzyka");
+        hobbies.add("Nemo enim");
+        hobbies.add("ipsam voluptatem");
+        hobbies.add("quia voluptas sit");
+        hobbies.add("aspernatur aut");
+        hobbies.add("et quasi architecto beatae");
         cvContent.setHobbies(hobbies);
+
         List<String> skills = new ArrayList<>();
-        skills.add("umiejętność obsługi komputera");
-        skills.add("prawo jazdy kat b");
-        skills.add("znajomość języka angielskiego - poziom b2");
-        skills.add("znajomsc jezyka niemieckigo - poziom a2");
-        skills.add("znajomosc prawa pracy");
+        skills.add("odit aut fugit");
+        skills.add("sed quia consequuntur magni");
+        skills.add("dolores eos qui ratione");
+        skills.add("voluptatem sequi nesciunt");
+        skills.add("Neque porro quisquam est");
+        skills.add("qui dolorem ipsum quia dolor sit amet");
+        skills.add("dolore magnam aliquam quaerat");
         cvContent.setSkills(skills);
 
         return cvContentConverter.convertToDto(cvContent);

@@ -4,118 +4,145 @@
 <head>
     <meta charset="UTF-8" lang="pl" th:formenctype="UTF-8">
     <title>ProCvGenerator - content</title>
+    <script type="text/javascript" th:src="@{/resources/js/script.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery-3.3.1.slim.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/styles/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/styles/style.css}"/>
 </head>
-<script type="text/javascript" th:src="@{/resources/js/script.js}"></script>
-<!--<link rel="stylesheet" type="text/css" th:href="@{/resources/styles/bootstrap.min.css}">-->
-<link rel="stylesheet" type="text/css" th:href="@{/resources/styles/style.css}"/>
+
 <body>
 <div class="container" id="container">
     <div class="mainHeader">
-        <h>You choose pattern: <span th:text="${pattern}"/>&nbsp;<a th:href="@{/patterns}">Change</a> </h>
+        <nav class="navbar fixed-top navbar-dark bg-primary">
+            <a class="navbar-brand" th:href="@{/patterns}">Change pattern</a><a class="navbar-brand" th:href="@{/patterns}">logged as janusz <img id="logout" src="/resources/images/exit.svg"/></a>
+        </nav>
     </div>
-    <div id="cvContent">
+    <br>
+    <br>
+    <br>
+    <div class="container" id="cvContent">
         <form action="#" th:object="${cvContentDto}" method="post">
-            <div id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
+            <div class="container" id="personalInfo" th:object="${cvContentDto.personalInfoDto}">
                 <h3 class="sectionHeader">Personal informations:</h3>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Position</th>
-                        <th>City</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text"  th:field="*{name}" required></td>
-                        <td><input type="text" th:field="*{surname}" required></td>
-                        <td><input type="text" th:field="*{position}" required></td>
-                        <td><input type="text" th:field="*{city}" required></td>
-                    </tr>
-                </table>
-                <table>
-                    <h3 class="sectionHeader">Contact:</h3>
-                    <tr>
-                        <th>Email</th>
-                        <th>Page</th>
-                        <th>Phone</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" th:field="*{email}" required></td>
-                        <td><input type="text" th:field="*{page}"></td>
-                        <td><input type="text" th:field="*{phone}" required></td>
-                    </tr>
-                </table>
-                <h3 class="sectionHeader">About me:</h3>
-                <p class="inputArea"><textarea rows="4" cols="100" style="resize: none" type="text" th:field="*{description}"/></p>
-            </div>
-
-            <div id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
-                <h3 class="sectionHeader">Education informations: <button id="educationsButton" onclick="addEducationRow()" type="button">Add</button>
-                </h3>
-                <table id="educationsTable">
-                    <tr>
-                        <th>School</th>
-                        <th>Subject</th>
-                        <th>Degree</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                    </tr>
-                    <tr th:each="education, iter : *{educationList}" th:id="${'education' + iter.index}">
-                        <td><input th:field="*{educationList[__${iter.index}__].schoolName}" required/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].subject}" required/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].degree}" required/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].startDate}" required/></td>
-                        <td><input th:field="*{educationList[__${iter.index}__].endDate}" required/></td>
-                        <td><button type="button" th:onclick="|deleteRow('educationsTable','${'education' + iter.index}', 2);|"/>Usuń</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
-                <h3 class="sectionHeader">Employment informations: <button id="employmentsButton" onclick="addEmploymentRow()" type="button">Add</button>
-                </h3>
-                <table id="employmentsTable">
-                    <tr>
-                        <th>Company</th>
-                        <th>Position</th>
-                        <th>Job description</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                    </tr>
-                    <tr th:each="employment, iter : *{employmentList}" th:id="${'employment' + iter.index}">
-                        <td id="company"><input th:field="*{employmentList[__${iter.index}__].company}" required/></td>
-                        <td id="position"><input th:field="*{employmentList[__${iter.index}__].position}" required/></td>
-                        <td id="jobDescription"><input th:field="*{employmentList[__${iter.index}__].jobDescription}" required/></td>
-                        <td id="startDate"><input th:field="*{employmentList[__${iter.index}__].startDate}" required/></td>
-                        <td id="" endDate><input th:field="*{employmentList[__${iter.index}__].endDate}" required/></td>
-                        <td><button type="button" th:onclick="|deleteRow('employmentsTable','${'employment' + iter.index}', 2);|"/>Usuń</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
-                <h3 class="sectionHeader">Skills: <button id="skillsButton" type="button" onclick="addSkill()">Add</button></h3>
-                <table id="skillsList">
-                        <tr th:each="skill, iter : *{skills}" th:id="${'skill' + iter.index}">
-                           <td><input th:field="*{skills[__${iter.index}__]}" size="50" required/> <button type="button" th:onclick="|deleteRow('skillsList','${'skill' + iter.index}', 1);|"/> Usuń</td>
+                <hr>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Position</th>
+                            <th scope="col">City</th>
                         </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{name}" required></td>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{surname}" required></td>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{position}" required></td>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{city}" required></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th>Page</th>
+                            <th>Phone</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{email}" required></td>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{page}"></td>
+                            <td><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{phone}" required></td>
+                        </tr>
+                    </thead>
+                </table>
+
+                <br>
+                <h3 class="sectionHeader">About me:</h3>
+                <hr>
+                <p><textarea class="form-control" rows="3" cols="100" style="resize: none" type="text" th:field="*{description}"/></p>
+            </div>
+            <br>
+
+            <div class="container" id="educationList" th:object="${cvContentDto.educationListWrapperDto}">
+                <h3 class="sectionHeader">Educations: <button id="educationsButton" class="btn btn-primary" onclick="addEducationRow()" type="button">Add</button></h3>
+                <hr>
+                <table class="table" id="educationsTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">School</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Degree</th>
+                            <th scope="col">Start date</th>
+                            <th scope="col">End date</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr th:each="education, iter : *{educationList}" th:id="${'education' + iter.index}">
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{educationList[__${iter.index}__].schoolName}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{educationList[__${iter.index}__].subject}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{educationList[__${iter.index}__].degree}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{educationList[__${iter.index}__].startDate}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{educationList[__${iter.index}__].endDate}" required/></td>
+                            <td><button type="button" class="btn btn-danger" th:onclick="|deleteRow('educationsTable','${'education' + iter.index}', 2);|"/>Usuń</td>
+                        </tr>
+                    </thead>
                 </table>
             </div>
+            <br>
 
-            <div id="hobbies" th:object="${cvContentDto.hobbiesListWrapperDto}">
-                <h3 class="sectionHeader">Hobbies: <button id="hobbiesButton" type="button" onclick="addHobby()">Add</button></h3>
+            <div class="container" id="employmentList" th:object="${cvContentDto.employmentListWrapperDto}">
+                <h3 class="sectionHeader">Employments: <button id="employmentsButton" class="btn btn-primary" onclick="addEmploymentRow()" type="button">Add</button></h3>
+                <hr>
+                <table class="table" id="employmentsTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Company</th>
+                            <th scope="col">Position</th>
+                            <th scope="col">Job description</th>
+                            <th scope="col">Start date</th>
+                            <th scope="col">End date</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr th:each="employment, iter : *{employmentList}" th:id="${'employment' + iter.index}">
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{employmentList[__${iter.index}__].company}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{employmentList[__${iter.index}__].position}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{employmentList[__${iter.index}__].jobDescription}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{employmentList[__${iter.index}__].startDate}" required/></td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{employmentList[__${iter.index}__].endDate}" required/></td>
+                            <td><button type="button" class="btn btn-danger" th:onclick="|deleteRow('employmentsTable','${'employment' + iter.index}', 2);|"/>Usuń</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <br>
+
+            <div class="container" id="skills" th:object="${cvContentDto.skillsListWrapperDto}">
+                <h3 class="sectionHeader">Skills: <button id="skillsButton" class="btn btn-primary" type="button" onclick="addSkill()">Add</button></h3>
+                <hr>
+                    <table id="skillsList">
+                        <tr th:each="skill, iter : *{skills}" th:id="${'skill' + iter.index}">
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{skills[__${iter.index}__]}" size="50" required/></td>
+                            <td><button type="button" class="btn btn-danger" th:onclick="|deleteRow('skillsList','${'skill' + iter.index}', 1);|"/> Usuń</td>
+                        </tr>
+                    </table>
+            </div>
+            <br>
+
+            <div class="container" id="hobbies" th:object="${cvContentDto.hobbiesListWrapperDto}">
+                <h3 class="sectionHeader">Hobbies: <button id="hobbiesButton" type="button" class="btn btn-primary" onclick="addHobby()">Add</button></h3>
+                <hr>
                 <table id="hobbiesList">
                         <tr th:each="hobby, iter : *{hobbyList}" th:id="${'hobby' + iter.index}">
-                           <td><input th:field="*{hobbyList[__${iter.index}__]}" required/> <button type="button" th:onclick="|deleteRow('hobbiesList','${'hobby' + iter.index}', 1);|"/>Usuń</td>
+                            <td><input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" th:field="*{hobbyList[__${iter.index}__]}" required/></td>
+                            <td><button type="button" class="btn btn-danger" th:onclick="|deleteRow('hobbiesList','${'hobby' + iter.index}', 1);|"/>Usuń</td>
                         </tr>
                 </table>
             </div>
-
+            <br>
             <p><input th:type="hidden" th:name="pattern" th:value="${pattern}"></p>
-            <div class="buttons">
+            <div class="container">
                 <button class="btn btn-primary btn-lg" th:formaction="@{/generate}" th:type="submit">Send</button> <button class="btn btn-primary btn-lg" th:formaction="@{/save}" th:type="submit">Save</button>
             </div>
         </form>
     </div>
+    <br>
 </div>
 </body>
 </html>
