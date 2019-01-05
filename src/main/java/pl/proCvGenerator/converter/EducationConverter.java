@@ -1,6 +1,6 @@
 package pl.proCvGenerator.converter;
 
-import pl.proCvGenerator.dto.Education;
+import pl.proCvGenerator.dao.Education;
 import pl.proCvGenerator.model.EducationListWrapperDto;
 
 import java.util.ArrayList;

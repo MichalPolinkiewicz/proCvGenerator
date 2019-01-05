@@ -1,6 +1,6 @@
 package pl.proCvGenerator.converter;
 
-import pl.proCvGenerator.dto.Employment;
+import pl.proCvGenerator.dao.Employment;
 import pl.proCvGenerator.model.EmploymentListWrapperDto;
 
 import java.util.ArrayList;

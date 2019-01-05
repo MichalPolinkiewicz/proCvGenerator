@@ -2,6 +2,7 @@ package pl.proCvGenerator.validator
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.config.WebConfig
@@ -10,6 +11,7 @@ import spock.lang.Unroll
 
 @ContextConfiguration(classes = [WebConfig])
 @WebAppConfiguration
+@ActiveProfiles("test")
 class PatternValidatorSpec extends Specification {
 
     @Autowired

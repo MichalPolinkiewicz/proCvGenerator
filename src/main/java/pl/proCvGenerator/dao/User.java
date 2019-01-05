@@ -1,10 +1,17 @@
-package pl.proCvGenerator.dto;
+package pl.proCvGenerator.dao;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
     private long id;
     private String login;
     private String password;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cvContentId")
     private CvContent cvContent;
 
     public User() {

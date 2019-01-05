@@ -1,16 +1,18 @@
 package pl.proCvGenerator.converter
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 import pl.proCvGenerator.config.WebConfig
-import pl.proCvGenerator.dto.Employment
+import pl.proCvGenerator.dao.Employment
 import pl.proCvGenerator.model.EmploymentListWrapperDto
 import spock.lang.Specification
 import spock.lang.Unroll
 
 @ContextConfiguration(classes = [WebConfig])
 @WebAppConfiguration
+@ActiveProfiles("test")
 class EmploymentConverterSpec extends Specification {
 
     @Autowired

@@ -1,7 +1,16 @@
-package pl.proCvGenerator.dto;
+package pl.proCvGenerator.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Objects;
+
+@Entity
 public class Employment {
 
+    @Id
+    @GeneratedValue
     private long id;
     private String company;
     private String position;
@@ -66,5 +75,22 @@ public class Employment {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employment that = (Employment) o;
+        return Objects.equals(company, that.company) &&
+                Objects.equals(position, that.position) &&
+                Objects.equals(jobDescription, that.jobDescription) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(company, position, jobDescription, startDate, endDate);
     }
 }

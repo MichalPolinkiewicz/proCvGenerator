@@ -1,7 +1,16 @@
-package pl.proCvGenerator.dto;
+package pl.proCvGenerator.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Objects;
+
+@Entity
 public class PersonalInfo {
 
+    @Id
+    @GeneratedValue
     private long id;
     private String name;
     private String surname;
@@ -96,5 +105,25 @@ public class PersonalInfo {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonalInfo that = (PersonalInfo) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(surname, that.surname) &&
+                Objects.equals(position, that.position) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(page, that.page) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, position, email, page, phone, city, description);
     }
 }

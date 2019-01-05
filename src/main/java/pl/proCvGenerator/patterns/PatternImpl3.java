@@ -7,17 +7,19 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.proCvGenerator.dto.CvContent;
-import pl.proCvGenerator.dto.Education;
-import pl.proCvGenerator.dto.Employment;
-import pl.proCvGenerator.dto.PersonalInfo;
+import org.springframework.beans.factory.annotation.Qualifier;
+import pl.proCvGenerator.dao.CvContent;
+import pl.proCvGenerator.dao.Education;
+import pl.proCvGenerator.dao.Employment;
+import pl.proCvGenerator.dao.PersonalInfo;
 import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
 import pl.proCvGenerator.fonts.Fonts;
 import pl.proCvGenerator.patterns.helpers.PatternHelper;
-import pl.proCvGenerator.validator.CharsValidator;
+import pl.proCvGenerator.validator.TextValidator;
 
 import java.util.List;
+import java.util.Properties;
 
 import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParagraph;
 
@@ -25,71 +27,84 @@ import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParag
 public class PatternImpl3 implements Pattern {
 
     @Autowired
-    private CharsValidator charsValidator;
+    private TextValidator textValidator;
+    @Autowired
+    @Qualifier("messages")
+    private Properties properties;
+
     public static final Logger LOGGER = LoggerFactory.getLogger(PatternImpl3.class);
     private static final String CLASS_NAME = PatternImpl3.class.getSimpleName();
     private Font normalFont = Fonts.ANTONIO_NORMAL;
     private Font boldFont = Fonts.ANTONIO_BOLD;
     private static final int PARAGRAPH_SIZE = 12;
     private static final int SECTION_HEADER_SIZE = 18;
-    private static final int MAX_LINES_FOR_PAGE = 26;
-    private static final int MAX_CHARS_IN_LINE_LEFT = 37;
-    private static final int MAX_CHARS_IN_LINE_RIGHT = 80;
+
+    private static int maxLinesLeft = 25;
+    private static int maxLinesRight = 29;
+    private static int maxCharsInLineLeft = 35;
+    private static int maxCharsInLineRight = 78;
 
     @Override
     public void validate(CvContent cvContent) throws TooMuchCharsException {
         PersonalInfo personalInfo = cvContent.getPersonalInfo();
-        int personalInfoLines =
-                        charsValidator.calculateLinesForSentence(personalInfo.getDescription(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getPhone(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getCity(), MAX_CHARS_IN_LINE_LEFT) +
-                        charsValidator.calculateLinesForSentence(personalInfo.getEmail(), MAX_CHARS_IN_LINE_LEFT);
-        if (cvContent.getPersonalInfo().getPage() != null) {
-            personalInfoLines += charsValidator.calculateLinesForSentence(personalInfo.getPage(), MAX_CHARS_IN_LINE_LEFT);
-        }
-        LOGGER.info("Personal info lines = " + personalInfoLines);
 
-        List<Education> educations = cvContent.getEducationList();
+        if ((personalInfo.getName() + " " + personalInfo.getSurname()).length() > 25 && (personalInfo.getName() + " " + personalInfo.getSurname()).length() < 48) {
+            maxLinesLeft = 22;
+            maxLinesRight = 25;
+        } else if ((personalInfo.getName() + " " + personalInfo.getSurname()).length() > 48) {
+            throw new TooMuchCharsException(CLASS_NAME + " validate() - Too mach chars for name and surname, max is 47");
+        }
+        if (personalInfo.getPosition().length() > 25) {
+            throw new TooMuchCharsException(CLASS_NAME + " validate() - Too mach chars for position, max is 25");
+        }
+
+        int contactLines =
+                textValidator.calculateLinesForSentence(personalInfo.getPhone(), maxCharsInLineLeft) +
+                        textValidator.calculateLinesForSentence(personalInfo.getCity(), maxCharsInLineLeft) +
+                        textValidator.calculateLinesForSentence(personalInfo.getEmail(), maxCharsInLineLeft);
+        if (cvContent.getPersonalInfo().getPage() != null) {
+            contactLines += textValidator.calculateLinesForSentence(personalInfo.getPage(), maxCharsInLineLeft);
+        }
+        LOGGER.info("Contact lines = " + contactLines);
+
+        int descriptionLines = textValidator.calculateLinesForSentence(personalInfo.getDescription(), maxCharsInLineLeft);
+        LOGGER.info("Description lines = " + descriptionLines);
+
         int educationLines = 0;
-        for (int i = 0; i < educations.size(); i++) {
-            Education e = educations.get(i);
-            educationLines += charsValidator.calculateLinesForSentence("- " + e.getSchoolName() + ", "
-                    + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree(), MAX_CHARS_IN_LINE_LEFT);
+        for (Education e : cvContent.getEducationList()) {
+            educationLines += textValidator.calculateLinesForSentence("- " + e.getSchoolName() + ", "
+                    + e.getStartDate() + " - " + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree(), maxCharsInLineLeft);
         }
         LOGGER.info("Education lines = " + educationLines);
 
-        List<String> hobbies = cvContent.getHobbies();
         int hobbiesLines = 0;
-        for (int i = 0; i < hobbies.size(); i++) {
-            hobbiesLines += charsValidator.calculateLinesForSentence("- " + hobbies.get(i) + ",", MAX_CHARS_IN_LINE_LEFT);
+        for (String h : cvContent.getHobbies()) {
+            hobbiesLines += textValidator.calculateLinesForSentence("- " + h + ",", maxCharsInLineLeft);
         }
-        int totalLinesForLeftSection = personalInfoLines + educationLines + hobbiesLines;
+        int totalLinesForLeftSection = contactLines + descriptionLines + educationLines + hobbiesLines;
         LOGGER.info("Hobbies lines = " + hobbiesLines);
         LOGGER.info("TOTAL LINES IN LEFT SECTION = " + totalLinesForLeftSection);
 
-        List<Employment> employments = cvContent.getEmployments();
         int employmentLines = 0;
-        for (int i = 0; i < employments.size(); i++) {
-            Employment e = employments.get(i);
-            employmentLines += charsValidator.calculateLinesForSentence(e.getPosition() + ", " + e.getCompany()
-                    + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", MAX_CHARS_IN_LINE_RIGHT);
-            employmentLines += charsValidator.calculateLinesForSentence("Zakres obowiązków: " + e.getJobDescription(), MAX_CHARS_IN_LINE_RIGHT);
+        for (Employment e : cvContent.getEmployments()) {
+            employmentLines += textValidator.calculateLinesForSentence(e.getPosition() + ", " + e.getCompany()
+                    + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", maxCharsInLineRight);
+            employmentLines += textValidator.calculateLinesForSentence("Zakres obowiązków: " + e.getJobDescription(), maxCharsInLineRight);
         }
         LOGGER.info("Emplyments lines : " + employmentLines);
 
-        List<String> skills = cvContent.getSkills();
         int skillsLines = 0;
-        for (int i = 0; i < skills.size(); i++) {
-            skillsLines += charsValidator.calculateLinesForSentence("- " + skills.get(i) + ",", MAX_CHARS_IN_LINE_RIGHT);
+        for (String s : cvContent.getSkills()) {
+            skillsLines += textValidator.calculateLinesForSentence("- " + s + ",", maxCharsInLineRight);
         }
         int totalLinesForRightSection = employmentLines + skillsLines;
         LOGGER.info("Skills : " + skillsLines);
         LOGGER.info("TOTAL LINES IN RIGHT SECTION = " + totalLinesForRightSection);
 
-        if (totalLinesForLeftSection > MAX_LINES_FOR_PAGE){
+        if (totalLinesForLeftSection > maxLinesLeft) {
             throw new TooMuchCharsException("too much chars inf left section");
         }
-        if (totalLinesForRightSection > MAX_LINES_FOR_PAGE){
+        if (totalLinesForRightSection > maxLinesRight) {
             throw new TooMuchCharsException("too much chars inf right section");
         }
     }
@@ -119,7 +134,7 @@ public class PatternImpl3 implements Pattern {
 
             PdfPCell space = new PdfPCell(new Phrase(" "));
             space.setBorder(Rectangle.NO_BORDER);
-            space.addElement(new LineSeparator(660, 10, new BaseColor(60, 93, 93), 100, -330));
+            space.addElement(new LineSeparator(660, 10, new BaseColor(60, 93, 93), 100, -318));
 
             PdfPCell rightCell = createRightSection(cvContent);
             rightCell.setBorder(Rectangle.NO_BORDER);
@@ -240,11 +255,11 @@ public class PatternImpl3 implements Pattern {
             Paragraph helperParagraph;
             if (i == sorted.size() - 1) {
                 helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - "
-                        + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + "."),
+                                + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + "."),
                         normalFont, PARAGRAPH_SIZE);
             } else {
                 helperParagraph = createSimpleParagraph(("- " + e.getSchoolName() + ", " + e.getStartDate() + " - "
-                        + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ","),
+                                + e.getEndDate() + ", kierunek: " + e.getSubject() + ", " + e.getDegree() + ","),
                         normalFont, PARAGRAPH_SIZE);
                 helperParagraph.setSpacingAfter(5);
             }

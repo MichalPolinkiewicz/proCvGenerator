@@ -1,16 +1,21 @@
 package pl.proCvGenerator.config;
 
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import pl.proCvGenerator.patterns.Pattern;
 import pl.proCvGenerator.patterns.PatternImpl1;
 import pl.proCvGenerator.patterns.PatternImpl2;
 import pl.proCvGenerator.patterns.PatternImpl3;
 import pl.proCvGenerator.pdf.PdfCreator;
-import pl.proCvGenerator.validator.CharsValidator;
+import pl.proCvGenerator.validator.CvContentValidator;
+import pl.proCvGenerator.validator.TextValidator;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Configuration
 public class RootConfig {
@@ -44,6 +49,27 @@ public class RootConfig {
     }
 
     @Bean
-    public CharsValidator charsValidator() { return new CharsValidator();}
+    public TextValidator charsValidator() {
+        return new TextValidator();
+    }
 
+    @Bean
+    public CvContentValidator cvContentValidator(){
+        return new CvContentValidator();
+    }
+
+    @Bean(name = "messages")
+    public Properties properties() {
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+        propertiesFactoryBean.setLocation(new ClassPathResource("messages.properties"));
+        Properties properties = null;
+
+        try {
+            propertiesFactoryBean.afterPropertiesSet();
+            properties = propertiesFactoryBean.getObject();
+        } catch (IOException e) {
+
+        }
+        return properties;
+    }
 }

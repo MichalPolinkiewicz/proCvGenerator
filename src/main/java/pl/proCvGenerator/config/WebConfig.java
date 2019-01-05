@@ -13,6 +13,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import pl.proCvGenerator.converter.*;
 import pl.proCvGenerator.facade.WebFacade;
+import pl.proCvGenerator.service.DbService;
 import pl.proCvGenerator.validator.PatternValidator;
 
 @Configuration
@@ -86,6 +87,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public WebFacade webFacade() {
         return new WebFacade();
+    }
+
+    @Bean
+    public DbService dbService() {
+        return new DbService();
     }
 
 }

@@ -2,7 +2,7 @@ package pl.proCvGenerator.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
-import pl.proCvGenerator.dto.*;
+import pl.proCvGenerator.dao.*;
 import pl.proCvGenerator.patterns.Pattern;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public class PdfCreator {
 
         try {
             Document document = pattern.prepareDocument();
-            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE_WINDOWS + "11.pdf")));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(PATH_TO_FILE + "11.pdf")));
             document.open();
             pattern.validate(content);
             pattern.generateCv(document, content);
@@ -36,16 +36,16 @@ public class PdfCreator {
         CvContent cvContent = new CvContent();
 
         Education urBialystok = new Education();
-        urBialystok.setSchoolName("Uniwersytet Rolniczy w Białymstoku i okolicach");
-        urBialystok.setSubject("Rozród trzody chlewnej");
-        urBialystok.setDegree("inżynier i magister");
-        urBialystok.setStartDate("2010");
+        urBialystok.setSchoolName("PWSZ Legnica");
+        urBialystok.setSubject("Zarządanie kadrami");
+        urBialystok.setDegree("studia licencjackie");
+        urBialystok.setStartDate("2011");
         urBialystok.setEndDate("2014");
 
         Education loBialystok = new Education();
-        loBialystok.setSchoolName("II LO w Białymstoku");
-        loBialystok.setSubject("ogólny");
-        loBialystok.setDegree("wyksztalcenie srednie xxxxxxxxx xxxxxxxx");
+        loBialystok.setSchoolName("I LO w Jaworze");
+        loBialystok.setSubject("profil ogólny");
+        loBialystok.setDegree("wykształcenie średnie");
         loBialystok.setStartDate("2007");
         loBialystok.setEndDate("2010");
 
@@ -55,84 +55,75 @@ public class PdfCreator {
 
         cvContent.setEducationList(educationList);
 
-//        Employment xyz = new Employment();
-//        xyz.setCompany("XYZ sp.z o.o");
-//        xyz.setPosition("murarz");
-//        xyz.setJobDescription("Praca przy xxxx xxx xxxx xxxx xxx xxxx xx xxxxxxxx xxxxxxxx xxxx xxxxx xxx x budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku xxxxxxxxxxx xxxxxxx");
-//        xyz.setStartDate("1988");
-//        xyz.setEndDate("2018");
+        Employment xyz = new Employment();
+        xyz.setCompany("Empirica S.A");
+        xyz.setPosition("Junior Java Developer");
+        xyz.setJobDescription("Praca przy utrzymaniu i rozwoju aplikacji biznesowych dla jednego z największych banków w Polsce. Implementacja zmian zgodnie ze specyfikacją, przeprowadzanie testów jednostkowych, tworzenie dokumentacji, code-review. Główne technologie: Java, Spring, Spock, Struts, Jenkins, WebSphere, DB2");
+        xyz.setStartDate("2018-03");
+        xyz.setEndDate("nadal");
 
         Employment zzz = new Employment();
-        zzz.setCompany("zzz sp.z o.o");
-        zzz.setPosition("murarzxxxxxxxxxxxxxx");
-        zzz.setJobDescription("Praca przy budowie nowoczesnej fabryki mokrej karmy. Nadzór nad pracownikami, wykonywanie prac związanych z wykończeniem wnętrz, spozywanie alkoholu w duzych ilościach. Kradzież materiałów budowlanych i sprzedaż na czarnym rynku");
-        zzz.setStartDate("2010");
-        zzz.setEndDate("2017");
+        zzz.setCompany("Trenkwalder & Partner sp. z o.o");
+        zzz.setPosition("Specjalista ds. kadr");
+        zzz.setJobDescription("Kompleksowa obsługa płacowo-kadrowa (szkolenia BHP, wynagrodzenia, urlopy) pracowników, udział w procesach rekrutacyjnych na stanowiska różnego szczebla, przeprowadzanie szkoleń z zakresu użytkowania programu TETA-2000");
+        zzz.setStartDate("2014-10");
+        zzz.setEndDate("2016-10");
 
         Employment aaa = new Employment();
-        aaa.setCompany("zzz sp.z o.o");
-        aaa.setPosition("murarz");
-        aaa.setJobDescription("Nadzór nad pracownikami. xxxxxxxxxxxxxxxxxxxxxxxx");
-        aaa.setStartDate("2000");
-        aaa.setEndDate("2003");
+        aaa.setCompany("Biznes Partner sp. z o.o");
+        aaa.setPosition("Koordynator projektów");
+        aaa.setJobDescription("Koordynacja w zakresie obsługi płacowej projektów oraz rozliczania pracowników, nadzór nad dokumentacją");
+        aaa.setStartDate("2016-11");
+        aaa.setEndDate("2018-03");
 
 
         List<Employment> employments = new ArrayList<>();
-       // employments.add(xyz);
+        employments.add(xyz);
         employments.add(aaa);
         employments.add(zzz);
 
         cvContent.setEmployments(employments);
 
         PersonalInfo personalInfo = new PersonalInfo();
-        personalInfo.setName("Bogusław");
-        personalInfo.setSurname("Norlak");
-        personalInfo.setCity("Jawor"); //max 19
-        String text = "xxxxxxxxxxxxxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxx xxxxxx xxxxx xxxxxx xxxxx, x";
+        personalInfo.setName("Michał");
+        personalInfo.setSurname("Polinkiewicz");
+        personalInfo.setCity("Wrocław"); //max 19
+        String text = "Programowaniem na poważnie zajmuję się od połowy 2017 roku. Moimi wiodącymi technologiami są Java i Spring, aczkolwiek nie obcy jest mi również front-end z JavaScript i HTML. " +
+                "Moje wcześniejsze doświadczenia zawodowe są związane z szeroko rozumianym HR w rolach specjalisty kadrowego oraz koordynatora projektów.";
         personalInfo.setDescription(text);
-        personalInfo.setEmail("ada.nowak@wp.pl"); //max 30 znakow
-        personalInfo.setPhone("657-908-482"); //max 9
-        personalInfo.setPosition("stróż i alkoholik");
-        personalInfo.setPage("github.com/SnorliTheDog");
+        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
+        personalInfo.setPhone("570-740-169"); //max 9
+        personalInfo.setPosition("Java Developer");
+        personalInfo.setPage("github.com/MichalPolinkiewicz");
 
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
-        hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
-        hobbyList.add("sport xxxxxxxxxx xxxxxxxxxxx");
-        hobbyList.add("inne xxxxxxxxxxxxxx xxxxxxxxx");
-        hobbyList.add("muzyka xxxxxxxxx xxxxxxxxxxxxxx");
+        hobbyList.add("programowanie");
+        hobbyList.add("sport: boks, żużel, piłka nożna");
+        hobbyList.add("psy");
+        hobbyList.add("astronomia");
+        hobbyList.add("muzyka");
 
 
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
 
         List<String> skills = new ArrayList<>();
-        skills.add("prawo jazdy kat. B");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-        skills.add("umiejętność obsługi komputera");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-//        skills.add("umiejętność obsługi komputera xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx");
-
+        skills.add("programowanie w języku Java");
+        skills.add("znajmość frameworka Spring oraz jego modułów (Spring MVC, Spring JPA, Spring Security oraz SpringBoot)");
+        skills.add("testowanie oprogramowania z wykorzystaniem Spock Framework, języka Groovy oraz JUnit");
+        skills.add("korzystanie z narzędzi ORM takich jak Hibernate oraz znajomość języka SQL");
+        skills.add("praca z narzędziami Maven i Gradle");
+        skills.add("znajomość wzorców projektowych");
+        skills.add("znajomość HTML i JavaScript");
+        skills.add("praca z system kontroli wersji GIT");
+        skills.add("korzystanie z JIRA");
+        skills.add("praca w metodologii SCRUM");
+        skills.add("obsługa programów: InteliJ Idea, Eclipse, STS, Visual Studio Code");
+        skills.add("znajomość języka angielskiego - poziom B1");
 
         cvContent.setSkills(skills);
-
-        String clause = "Wyrażam zgodę na przetwarzanie danych osobowych przez firmę " +
-                "......................................................................" +
-                " w celu i zakresie niezbędnym w procesie rekrutacyjnym.";
-        cvContent.setClause(clause);
         return user;
     }
 
