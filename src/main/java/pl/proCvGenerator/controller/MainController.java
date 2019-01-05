@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.proCvGenerator.exception.PdfException;
 import pl.proCvGenerator.exception.TooMuchCharsException;
+import pl.proCvGenerator.exception.UserNotFoundException;
 import pl.proCvGenerator.facade.WebFacade;
 import pl.proCvGenerator.model.CvContentDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Controller
 @CrossOrigin(origins = "*")

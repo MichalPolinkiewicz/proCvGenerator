@@ -1,7 +1,15 @@
 package pl.proCvGenerator.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Objects;
+
+@Entity
 public class Education {
 
+    @Id
+    @GeneratedValue
     private long id;
     private String schoolName;
     private String subject;
@@ -66,5 +74,22 @@ public class Education {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Education education = (Education) o;
+        return Objects.equals(schoolName, education.schoolName) &&
+                Objects.equals(subject, education.subject) &&
+                Objects.equals(degree, education.degree) &&
+                Objects.equals(startDate, education.startDate) &&
+                Objects.equals(endDate, education.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(schoolName, subject, degree, startDate, endDate);
     }
 }

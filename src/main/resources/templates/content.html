@@ -97,8 +97,8 @@
                 <h3>Hobbies <button id="hobbiesButton" type="button" onclick="addHobby()">Add</button></h3>
                 <table id="hobbiesList">
                     <tr id="hobbiesRow">
-                        <td id="hobby" th:each="hobby, iter : *{hobbyList}"><input
-                                th:field="*{hobbyList[__${iter.index}__]}" required/>
+                        <td id="hobby" th:each="hobby, iter : *{hobbyList}">
+                            <input th:field="*{hobbyList[__${iter.index}__]}" required/>
                         </td>
                     </tr>
                 </table>

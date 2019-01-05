@@ -1,14 +1,37 @@
 package pl.proCvGenerator.dao;
 
-import java.util.List;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
+
+@Entity
 public class CvContent {
 
+    @Id
+    @GeneratedValue
     private long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "cvContentId")
     private PersonalInfo personalInfo;
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "cvContentId")
     private List<Education> educationList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "cvContentId")
     private List<Employment> employments;
+    @ElementCollection()
+    @CollectionTable()
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<String> skills;
+    @ElementCollection()
+    @CollectionTable()
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<String> hobbies;
 
     public CvContent() {
@@ -68,5 +91,22 @@ public class CvContent {
 
     public void setHobbies(List<String> hobbies) {
         this.hobbies = hobbies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CvContent cvContent = (CvContent) o;
+        return Objects.equals(personalInfo, cvContent.personalInfo) &&
+                Objects.equals(educationList, cvContent.educationList) &&
+                Objects.equals(employments, cvContent.employments) &&
+                Objects.equals(skills, cvContent.skills) &&
+                Objects.equals(hobbies, cvContent.hobbies);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personalInfo, educationList, employments, skills, hobbies);
     }
 }

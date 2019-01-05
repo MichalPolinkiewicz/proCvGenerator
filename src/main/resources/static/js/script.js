@@ -65,7 +65,7 @@ function addHobby(){
     let newCell = hobbiesRow.insertCell(-1)
 
     if (i < 6) {
-        newCell.innerHTML = '<td> <input id="hobbiesListWrapperDto.hobbies' + i + '" name="hobbiesListWrapperDto.hobbies[' + i + ']" required></td>';
+        newCell.innerHTML = '<td> <input id="hobbiesListWrapperDto.hobbyList' + i + '" name="hobbiesListWrapperDto.hobbyList[' + i + ']" required></td>';
     } else {
         window.alert("Max value for this section is 6")
         document.getElementById('hobbiesButton').style.visibility = "hidden";
