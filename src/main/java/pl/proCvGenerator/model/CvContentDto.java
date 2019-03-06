@@ -1,5 +1,8 @@
 package pl.proCvGenerator.model;
 
+import lombok.ToString;
+
+@ToString
 public class CvContentDto {
 
     private PersonalInfoDto personalInfoDto;

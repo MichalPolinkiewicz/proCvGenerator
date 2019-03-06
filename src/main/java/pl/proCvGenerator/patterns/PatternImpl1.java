@@ -4,6 +4,7 @@ package pl.proCvGenerator.patterns;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import pl.proCvGenerator.validator.TextValidator;
 
 import java.util.Properties;
 
+@ToString
 public class PatternImpl1 implements Pattern {
 
     @Autowired

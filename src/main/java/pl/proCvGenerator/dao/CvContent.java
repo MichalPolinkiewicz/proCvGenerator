@@ -1,7 +1,10 @@
 package pl.proCvGenerator.dao;
 
+import lombok.ToString;
+
 import java.util.List;
 
+@ToString
 public class CvContent {
 
     private long id;

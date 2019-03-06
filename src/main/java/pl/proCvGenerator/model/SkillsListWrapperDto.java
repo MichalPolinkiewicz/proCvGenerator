@@ -1,8 +1,11 @@
 package pl.proCvGenerator.model;
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 public class SkillsListWrapperDto {
 
     private List<String> skills;

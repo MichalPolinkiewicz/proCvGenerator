@@ -1,10 +1,12 @@
 package pl.proCvGenerator.model;
 
+import lombok.ToString;
 import pl.proCvGenerator.dao.Education;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 public class EducationListWrapperDto {
 
     private List<Education> educationList;

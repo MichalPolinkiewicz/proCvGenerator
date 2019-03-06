@@ -1,5 +1,8 @@
 package pl.proCvGenerator.dao;
 
+import lombok.ToString;
+
+@ToString
 public class PersonalInfo {
 
     private long id;

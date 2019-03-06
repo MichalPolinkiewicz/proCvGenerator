@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin(origins = "*")
 public class MainController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
+    private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private WebFacade facade;
@@ -42,7 +42,9 @@ public class MainController {
 
     @PostMapping(path = "/generate")
     public void generate(String pattern, CvContentDto cvContentDto, HttpServletResponse response) throws TooMuchCharsException, PdfException {
-        LOGGER.info("generating pattern " + pattern + " for user: ");
+        String methodName = "generate()...";
+        log.info(methodName + "generating pattern " + pattern + " for user: ");
+        log.info(methodName + "CvContentDto = {}", cvContentDto);
         facade.generatePdf(pattern, cvContentDto, response);
     }
 
@@ -54,7 +56,7 @@ public class MainController {
 
     @ExceptionHandler({TooMuchCharsException.class, PdfException.class})
     public String handleException(Model model, HttpServletRequest request, Exception e) {
-        LOGGER.error("exception has been thrown: " + e);
+        log.error("exception has been thrown: " + e);
         model.addAttribute("pattern", request.getParameter("pattern"));
         model.addAttribute("e", e.getMessage());
 

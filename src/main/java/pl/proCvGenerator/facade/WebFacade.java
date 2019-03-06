@@ -3,6 +3,7 @@ package pl.proCvGenerator.facade;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class WebFacade {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebFacade.class);
@@ -58,6 +60,10 @@ public class WebFacade {
     }
 
     private void fillPattern(Pattern pattern, Document document, CvContentDto cvContentDto) throws TooMuchCharsException, PdfException {
+        String methodName = "fillPattern()...";
+        log.info(methodName + "Pattern = {}", pattern);
+        log.info(methodName + "CvContent = {}", cvContentDto);
+
         CvContent cvContent = cvContentConverter.convertToContent(cvContentDto);
         document.open();
         pattern.validate(cvContent);

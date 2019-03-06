@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.Properties;
 
 import static pl.proCvGenerator.patterns.helpers.PatternHelper.createSimpleParagraph;
 
-
+@ToString
 public class PatternImpl3 implements Pattern {
 
     @Autowired
