@@ -10,13 +10,13 @@ import java.util.List;
 public class CvContentValidator {
 
     public CvContent validateCvContent(CvContent cvContent) {
-        return new CvContent(
-                validatePersonalInfo(cvContent.getPersonalInfo()),
-                validateEducationList(cvContent.getEducationList()),
-                validateEmploymentList(cvContent.getEmployments()),
-                validateStringList(cvContent.getSkills()),
-                validateStringList(cvContent.getHobbies())
-        );
+        return CvContent.builder()
+                .personalInfo(validatePersonalInfo(cvContent.getPersonalInfo()))
+                .educationList(validateEducationList(cvContent.getEducationList()))
+                .employments(validateEmploymentList(cvContent.getEmployments()))
+                .skills(validateStringList(cvContent.getSkills()))
+                .hobbies(validateStringList(cvContent.getHobbies()))
+                .build();
     }
 
     private PersonalInfo validatePersonalInfo(PersonalInfo personalInfo) {
@@ -41,23 +41,20 @@ public class CvContentValidator {
     }
 
     private List<Education> validateEducationList(List<Education> educationList) {
-        List<Education> educations = educationList;
-        if (educations.size() == 0) {
-            educations.add(new Education("", "", "", "", ""));
+        if (educationList.size() == 0) {
+            educationList.add(Education.builder().build());
         }
-        return educations;
+        return educationList;
     }
 
     private List<Employment> validateEmploymentList(List<Employment> employmentList) {
-        List<Employment> employments = employmentList;
-        if (employments.size() == 0) {
-            employments.add(new Employment("", "", "", "", ""));
+        if (employmentList.size() == 0) {
+            employmentList.add(Employment.builder().build());
         }
-        return employments;
+        return employmentList;
     }
 
-    private List<String> validateStringList(List<String> stringList) {
-        List<String> strings = stringList;
+    private List<String> validateStringList(List<String> strings) {
         if (strings.size() == 0) {
             strings.add("");
         }

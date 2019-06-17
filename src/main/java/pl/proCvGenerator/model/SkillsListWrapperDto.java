@@ -1,8 +1,15 @@
 package pl.proCvGenerator.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class SkillsListWrapperDto {
 
     private List<String> skills;
@@ -15,11 +22,4 @@ public class SkillsListWrapperDto {
         skills.add(skill);
     }
 
-    public List<String> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
 }

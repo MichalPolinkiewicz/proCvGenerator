@@ -1,10 +1,16 @@
 package pl.proCvGenerator.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import pl.proCvGenerator.dao.Education;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class EducationListWrapperDto {
 
     private List<Education> educationList;
@@ -17,11 +23,4 @@ public class EducationListWrapperDto {
         educationList.add(education);
     }
 
-    public List<Education> getEducationList() {
-        return educationList;
-    }
-
-    public void setEducationList(List<Education> educationList) {
-        this.educationList = educationList;
-    }
 }

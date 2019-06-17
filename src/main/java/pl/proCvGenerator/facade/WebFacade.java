@@ -72,8 +72,15 @@ public class WebFacade {
     }
 
     public CvContentDto init() throws UserNotFoundException {
+        PersonalInfo personalInfo = PersonalInfo.builder().build();
 
-        CvContent cvContent = new CvContent(new PersonalInfo(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        CvContent cvContent = CvContent.builder()
+                .personalInfo(personalInfo)
+                .employments(new ArrayList<>())
+                .educationList(new ArrayList<>())
+                .hobbies(new ArrayList<>())
+                .skills(new ArrayList<>())
+                .build();
 
         //if auth != null{uzupelnia model danymi z bazy}
         User user = dbService.getUserByLogin("janusz123").orElseThrow(() -> new UserNotFoundException(""));

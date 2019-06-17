@@ -12,9 +12,6 @@ public class SkillsConverter {
     }
 
     public SkillsListWrapperDto convertToWrapper(List<String> skills){
-        SkillsListWrapperDto wrapperDto = new SkillsListWrapperDto();
-        wrapperDto.setSkills(skills);
-
-        return wrapperDto;
+        return new SkillsListWrapperDto(skills);
     }
 }

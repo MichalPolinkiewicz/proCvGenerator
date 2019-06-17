@@ -36,7 +36,7 @@ public class MainController {
     }
 
     @GetMapping(path = "/pattern")
-    public String pattern(@RequestParam(name = "pattern") String pattern, Model model) {
+    public String pattern(@RequestParam(name = "pattern") String pattern, Model model) throws UserNotFoundException {
         model.addAttribute("cvContentDto", facade.init());
         model.addAttribute("pattern", pattern);
         return "content";

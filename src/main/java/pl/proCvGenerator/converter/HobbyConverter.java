@@ -12,9 +12,6 @@ public class HobbyConverter {
     }
 
     public HobbiesListWrapperDto convertToWrapper(List<String> hobbies){
-        HobbiesListWrapperDto hobbiesListWrapperDto = new HobbiesListWrapperDto();
-        hobbiesListWrapperDto.setHobbyList(hobbies);
-
-        return hobbiesListWrapperDto;
+       return new HobbiesListWrapperDto(hobbies);
     }
 }

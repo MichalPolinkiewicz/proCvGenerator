@@ -18,22 +18,23 @@ public class CvContentConverter {
     private HobbyConverter hobbyConverter;
 
     public CvContent convertToContent(CvContentDto cvContentDto) {
-        return new CvContent(
-                personalInfoConverter.convertToPersonalInfo(cvContentDto.getPersonalInfoDto()),
-                educationConverter.convertToList(cvContentDto.getEducationListWrapperDto()),
-                employmentConverter.convertToList(cvContentDto.getEmploymentListWrapperDto()),
-                skillsConverter.convertToList(cvContentDto.getSkillsListWrapperDto()),
-                hobbyConverter.convertToList(cvContentDto.getHobbiesListWrapperDto())
-        );
+        return CvContent.builder()
+                .personalInfo(personalInfoConverter.convertToPersonalInfo(cvContentDto.getPersonalInfoDto()))
+                .educationList(educationConverter.convertToList(cvContentDto.getEducationListWrapperDto()))
+                .employments(employmentConverter.convertToList(cvContentDto.getEmploymentListWrapperDto()))
+                .skills(skillsConverter.convertToList(cvContentDto.getSkillsListWrapperDto()))
+                .hobbies(hobbyConverter.convertToList(cvContentDto.getHobbiesListWrapperDto()))
+                .build();
     }
 
     public CvContentDto convertToDto(CvContent cvContent) {
-        return new CvContentDto(
-                personalInfoConverter.convertToDto(cvContent.getPersonalInfo()),
-                educationConverter.convertToWrapper(cvContent.getEducationList()),
-                employmentConverter.convertToWrapper(cvContent.getEmployments()),
-                skillsConverter.convertToWrapper(cvContent.getSkills()),
-                hobbyConverter.convertToWrapper(cvContent.getHobbies())
-        );
+        return CvContentDto.builder()
+                .personalInfoDto(personalInfoConverter.convertToDto(cvContent.getPersonalInfo()))
+                .educationListWrapperDto(educationConverter.convertToWrapper(cvContent.getEducationList()))
+                .employmentListWrapperDto(employmentConverter.convertToWrapper(cvContent.getEmployments()))
+                .skillsListWrapperDto(skillsConverter.convertToWrapper(cvContent.getSkills()))
+                .hobbiesListWrapperDto(hobbyConverter.convertToWrapper(cvContent.getHobbies()))
+                .build();
     }
+
 }

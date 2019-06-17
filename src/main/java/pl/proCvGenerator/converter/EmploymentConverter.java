@@ -13,9 +13,6 @@ public class EmploymentConverter {
     }
 
     public EmploymentListWrapperDto convertToWrapper(List<Employment> employmentList){
-        EmploymentListWrapperDto wrapper = new EmploymentListWrapperDto();
-        wrapper.setEmploymentList(employmentList);
-
-        return wrapper;
+        return new EmploymentListWrapperDto(employmentList);
     }
 }

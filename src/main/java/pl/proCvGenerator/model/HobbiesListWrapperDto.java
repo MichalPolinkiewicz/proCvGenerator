@@ -1,8 +1,15 @@
 package pl.proCvGenerator.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class HobbiesListWrapperDto {
 
     private List<String> hobbyList;
@@ -15,11 +22,4 @@ public class HobbiesListWrapperDto {
         hobbyList.add(hobby);
     }
 
-    public List<String> getHobbyList() {
-        return hobbyList;
-    }
-
-    public void setHobbyList(List<String> hobbies) {
-        this.hobbyList = hobbies;
-    }
 }

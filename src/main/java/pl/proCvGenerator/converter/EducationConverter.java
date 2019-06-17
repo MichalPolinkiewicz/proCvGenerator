@@ -13,9 +13,6 @@ public class EducationConverter {
     }
 
     public EducationListWrapperDto convertToWrapper(List<Education> educationList) {
-        EducationListWrapperDto wrapper = new EducationListWrapperDto();
-        wrapper.setEducationList(educationList);
-
-        return wrapper;
+        return new EducationListWrapperDto(educationList);
     }
 }

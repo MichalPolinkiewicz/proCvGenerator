@@ -32,69 +32,78 @@ public class PdfCreator {
     }
 
     public static User createUser() {
-        User user = new User();
-        CvContent cvContent = new CvContent();
+        CvContent cvContent = CvContent.builder().build();
 
-        Education urBialystok = new Education();
-        urBialystok.setSchoolName("PWSZ Legnica");
-        urBialystok.setSubject("Zarządanie kadrami");
-        urBialystok.setDegree("studia licencjackie");
-        urBialystok.setStartDate("2011");
-        urBialystok.setEndDate("2014");
+        User user = User.builder()
+                .login("login")
+                .password("pass")
+                .build();
 
-        Education loBialystok = new Education();
-        loBialystok.setSchoolName("I LO w Jaworze");
-        loBialystok.setSubject("profil ogólny");
-        loBialystok.setDegree("wykształcenie średnie");
-        loBialystok.setStartDate("2007");
-        loBialystok.setEndDate("2010");
+        Education edu1 = Education.builder()
+                .schoolName("PWSZ Legnica")
+                .subject("Zarządanie kadrami")
+                .degree("studia licencjackie")
+                .startDate("2011")
+                .endDate("2014")
+                .build();
+
+        Education edu2 = Education.builder()
+                .schoolName("I LO w Jaworze")
+                .subject("I LO w Jaworze")
+                .degree("wykształcenie średnie")
+                .startDate("2007")
+                .endDate("2010")
+                .build();
 
         List<Education> educationList = new ArrayList<>();
-        educationList.add(loBialystok);
-        educationList.add(urBialystok);
+        educationList.add(edu2);
+        educationList.add(edu1);
 
         cvContent.setEducationList(educationList);
 
-        Employment xyz = new Employment();
-        xyz.setCompany("Empirica S.A");
-        xyz.setPosition("Junior Java Developer");
-        xyz.setJobDescription("Praca przy utrzymaniu i rozwoju aplikacji biznesowych dla jednego z największych banków w Polsce. Implementacja zmian zgodnie ze specyfikacją, przeprowadzanie testów jednostkowych, tworzenie dokumentacji, code-review. Główne technologie: Java, Spring, Spock, Struts, Jenkins, WebSphere, DB2");
-        xyz.setStartDate("2018-03");
-        xyz.setEndDate("nadal");
+        Employment emp1 = Employment.builder()
+                .company("Empirica S.A")
+                .position("Junior Java Developer")
+                .jobDescription("Praca przy utrzymaniu i rozwoju aplikacji biznesowych dla jednego z największych banków w Polsce. Implementacja zmian zgodnie ze specyfikacją, przeprowadzanie testów jednostkowych, tworzenie dokumentacji, code-review. Główne technologie: Java, Spring, Spock, Struts, Jenkins, WebSphere, DB2")
+                .startDate("2018-03")
+                .endDate("nadal")
+                .build();
 
-        Employment zzz = new Employment();
-        zzz.setCompany("Trenkwalder & Partner sp. z o.o");
-        zzz.setPosition("Specjalista ds. kadr");
-        zzz.setJobDescription("Kompleksowa obsługa płacowo-kadrowa (szkolenia BHP, wynagrodzenia, urlopy) pracowników, udział w procesach rekrutacyjnych na stanowiska różnego szczebla, przeprowadzanie szkoleń z zakresu użytkowania programu TETA-2000");
-        zzz.setStartDate("2014-10");
-        zzz.setEndDate("2016-10");
 
-        Employment aaa = new Employment();
-        aaa.setCompany("Biznes Partner sp. z o.o");
-        aaa.setPosition("Koordynator projektów");
-        aaa.setJobDescription("Koordynacja w zakresie obsługi płacowej projektów oraz rozliczania pracowników, nadzór nad dokumentacją");
-        aaa.setStartDate("2016-11");
-        aaa.setEndDate("2018-03");
+        Employment emp2 = Employment.builder()
+                .company("Trenkwalder & Partner sp. z o.o")
+                .position("Specjalista ds. kadr")
+                .jobDescription("Kompleksowa obsługa płacowo-kadrowa (szkolenia BHP, wynagrodzenia, urlopy) pracowników, udział w procesach rekrutacyjnych na stanowiska różnego szczebla, przeprowadzanie szkoleń z zakresu użytkowania programu TETA-2000")
+                .startDate("2014-10")
+                .endDate("2016-10")
+                .build();
 
+
+        Employment emp3 = Employment.builder()
+                .company("Biznes Partner sp. z o.o")
+                .position("Koordynator projektów")
+                .jobDescription("Koordynacja w zakresie obsługi płacowej projektów oraz rozliczania pracowników, nadzór nad dokumentacją")
+                .startDate("2016-11")
+                .endDate("2018-03")
+                .build();
 
         List<Employment> employments = new ArrayList<>();
-        employments.add(xyz);
-        employments.add(aaa);
-        employments.add(zzz);
+        employments.add(emp1);
+        employments.add(emp3);
+        employments.add(emp2);
 
         cvContent.setEmployments(employments);
 
-        PersonalInfo personalInfo = new PersonalInfo();
-        personalInfo.setName("Michał");
-        personalInfo.setSurname("Polinkiewicz");
-        personalInfo.setCity("Wrocław"); //max 19
-        String text = "Programowaniem na poważnie zajmuję się od połowy 2017 roku. Moimi wiodącymi technologiami są Java i Spring, aczkolwiek nie obcy jest mi również front-end z JavaScript i HTML. " +
-                "Moje wcześniejsze doświadczenia zawodowe są związane z szeroko rozumianym HR w rolach specjalisty kadrowego oraz koordynatora projektów.";
-        personalInfo.setDescription(text);
-        personalInfo.setEmail("michal.polinkiewicz@gmail.com"); //max 30 znakow
-        personalInfo.setPhone("570-740-169"); //max 9
-        personalInfo.setPosition("Java Developer");
-        personalInfo.setPage("github.com/MichalPolinkiewicz");
+        PersonalInfo personalInfo = PersonalInfo.builder()
+                .name("Michał")
+                .surname("Polinkiewicz")
+                .city("Wrocław")
+                .description("Programowaniem na poważnie zajmuję się od połowy 2017 roku. Moimi wiodącymi technologiami są Java i Spring, aczkolwiek nie obcy jest mi również front-end z JavaScript i HTML. " +
+                        "Moje wcześniejsze doświadczenia zawodowe są związane z szeroko rozumianym HR w rolach specjalisty kadrowego oraz koordynatora projektów.")
+                .email("michal.polinkiewicz@gmail.com")
+                .phone("570-740-169")
+                .page("github.com/MichalPolinkiewicz")
+                .build();
 
         cvContent.setPersonalInfo(personalInfo);
 
@@ -104,7 +113,6 @@ public class PdfCreator {
         hobbyList.add("psy");
         hobbyList.add("astronomia");
         hobbyList.add("muzyka");
-
 
         cvContent.setHobbies(hobbyList);
         user.setCvContent(cvContent);
@@ -124,6 +132,7 @@ public class PdfCreator {
         skills.add("znajomość języka angielskiego - poziom B1");
 
         cvContent.setSkills(skills);
+
         return user;
     }
 
