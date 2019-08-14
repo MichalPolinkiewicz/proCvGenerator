@@ -321,4 +321,9 @@ public class PatternImpl2 implements Pattern {
 
         return cell;
     }
+
+    @Override
+    public Paragraph createClauseParagraph(String clause) {
+        return null;
+    }
 }

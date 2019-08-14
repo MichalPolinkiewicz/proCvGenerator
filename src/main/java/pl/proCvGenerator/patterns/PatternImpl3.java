@@ -36,6 +36,7 @@ public class PatternImpl3 implements Pattern {
     private static final String CLASS_NAME = PatternImpl3.class.getSimpleName();
     private Font normalFont = Fonts.ANTONIO_NORMAL;
     private Font boldFont = Fonts.ANTONIO_BOLD;
+    private static final int PARAGRAPH_HEADER_SIZE = 14;
     private static final int PARAGRAPH_SIZE = 12;
     private static final int SECTION_HEADER_SIZE = 18;
 
@@ -134,7 +135,7 @@ public class PatternImpl3 implements Pattern {
 
             PdfPCell space = new PdfPCell(new Phrase(" "));
             space.setBorder(Rectangle.NO_BORDER);
-            space.addElement(new LineSeparator(660, 10, new BaseColor(60, 93, 93), 100, -318));
+            space.addElement(new LineSeparator(580, 10, new BaseColor(60, 93, 93), 100, -315));
 
             PdfPCell rightCell = createRightSection(cvContent);
             rightCell.setBorder(Rectangle.NO_BORDER);
@@ -142,8 +143,10 @@ public class PatternImpl3 implements Pattern {
             table.addCell(leftCell);
             table.addCell(space);
             table.addCell(rightCell);
-
             document.add(table);
+
+            //document.add(createClauseParagraph("Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb obecnych oraz przyszłych procesów rekrutacyjnych prowadzonych przez Citycom, zgodnie z przepisami ustawy z dnia 29.08.1997 r. o ochronie danych osobowych (Dz.U. Nr 133, poz. 883 z późn. zm.)"));
+
         } catch (DocumentException e) {
             String message = CLASS_NAME + " - createCvBody() - ERROR: " + e;
             LOGGER.error(message);
@@ -292,11 +295,23 @@ public class PatternImpl3 implements Pattern {
 
         for (int i = 0; i < sorted.size(); i++) {
             Employment e = sorted.get(i);
+            //paragraph.setSpacingAfter(16);
             paragraph.add(createSimpleParagraph(e.getPosition().toUpperCase()
                     + ", " + e.getCompany() + ", " + e.getStartDate() + " - " + e.getEndDate() + ".", normalFont, PARAGRAPH_SIZE));
+            //paragraph.setSpacingAfter(0);
             paragraph.add(createSimpleParagraph("Zakres obowiązków: " + e.getJobDescription() + ".", normalFont, PARAGRAPH_SIZE));
             paragraph.add(new Paragraph(" "));
         }
         return paragraph;
+    }
+
+    @Override
+    public Paragraph createClauseParagraph(String clause) {
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(createSimpleParagraph(clause, normalFont, 6));
+        paragraph.setSpacingBefore(24);
+
+        return paragraph;
+
     }
 }

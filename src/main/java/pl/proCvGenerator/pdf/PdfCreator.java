@@ -43,13 +43,13 @@ public class PdfCreator {
                 .schoolName("PWSZ Legnica")
                 .subject("Zarządanie kadrami")
                 .degree("studia licencjackie")
-                .startDate("2011")
-                .endDate("2014")
+                .startDate("2010")
+                .endDate("2013")
                 .build();
 
         Education edu2 = Education.builder()
                 .schoolName("I LO w Jaworze")
-                .subject("I LO w Jaworze")
+                .subject("ogólny")
                 .degree("wykształcenie średnie")
                 .startDate("2007")
                 .endDate("2010")
@@ -63,8 +63,12 @@ public class PdfCreator {
 
         Employment emp1 = Employment.builder()
                 .company("Empirica S.A")
-                .position("Junior Java Developer")
-                .jobDescription("Praca przy utrzymaniu i rozwoju aplikacji biznesowych dla jednego z największych banków w Polsce. Implementacja zmian zgodnie ze specyfikacją, przeprowadzanie testów jednostkowych, tworzenie dokumentacji, code-review. Główne technologie: Java, Spring, Spock, Struts, Jenkins, WebSphere, DB2")
+                .position("MŁODSZY PROGRAMISTA JAVA")
+                .jobDescription("Utrzymywanie oraz tworzenie oprogramowania dla Klienta" +
+                        "będącego jednym z największych dostawcą usług leasingowych w Polsce. Praca" +
+                        "zarówno z warstwą serwerową aplikacji jak i frontową. Tworzenie dokumentacji," +
+                        "code review. Główne technologie: Java(1.5 – 1.8), Spring, Spock, Hibernate," +
+                        "Thymeleaf, JSP, Struts, DB2")
                 .startDate("2018-03")
                 .endDate("nadal")
                 .build();
@@ -73,7 +77,7 @@ public class PdfCreator {
         Employment emp2 = Employment.builder()
                 .company("Trenkwalder & Partner sp. z o.o")
                 .position("Specjalista ds. kadr")
-                .jobDescription("Kompleksowa obsługa płacowo-kadrowa (szkolenia BHP, wynagrodzenia, urlopy) pracowników, udział w procesach rekrutacyjnych na stanowiska różnego szczebla, przeprowadzanie szkoleń z zakresu użytkowania programu TETA-2000")
+                .jobDescription("Kompleksowa obsługa płacowo-kadrowa (badania, szkolenia BHP, wynagrodzenia, urlopy) pracowników, udział w procesach rekrutacyjnych na stanowiska różnego szczebla, przeprowadzanie szkoleń z zakresu użytkowania programu TETA-2000")
                 .startDate("2014-10")
                 .endDate("2016-10")
                 .build();
@@ -82,7 +86,9 @@ public class PdfCreator {
         Employment emp3 = Employment.builder()
                 .company("Biznes Partner sp. z o.o")
                 .position("Koordynator projektów")
-                .jobDescription("Koordynacja w zakresie obsługi płacowej projektów oraz rozliczania pracowników, nadzór nad dokumentacją")
+                .jobDescription("Koordynacja procesów kadrowo-płacowych w firmie z" +
+                        "branży HR, utrzymywanie kontaktów z Klientami, nadzorowanie i rekrutacja" +
+                        "pracowników, wykonywanie rozliczeń, kontakty z UW i UP")
                 .startDate("2016-11")
                 .endDate("2018-03")
                 .build();
@@ -98,19 +104,27 @@ public class PdfCreator {
                 .name("Michał")
                 .surname("Polinkiewicz")
                 .city("Wrocław")
-                .description("Programowaniem na poważnie zajmuję się od połowy 2017 roku. Moimi wiodącymi technologiami są Java i Spring, aczkolwiek nie obcy jest mi również front-end z JavaScript i HTML. " +
-                        "Moje wcześniejsze doświadczenia zawodowe są związane z szeroko rozumianym HR w rolach specjalisty kadrowego oraz koordynatora projektów.")
+                .description("Programowaniem zajmuję się " +
+                        "zawodowo od 1.5 roku, wcześniej " +
+                        "pracowałem w branży HR w " +
+                        "charakterze specjalisty ds. " +
+                        "personalnych oraz koordynatora " +
+                        "projektów. Poszukuję pracy jako " +
+                        "programista, najchętniej Java lub " +
+                        "Go która umożliwi mi rozwijanie " +
+                        "posiadanych już umiejętności oraz " +
+                        "pozwoli zdobyć nowe.")
                 .email("michal.polinkiewicz@gmail.com")
                 .phone("570-740-169")
                 .page("github.com/MichalPolinkiewicz")
+                .position("SOFTWARE DEVELOPER")
                 .build();
 
         cvContent.setPersonalInfo(personalInfo);
 
         List<String> hobbyList = new ArrayList<>();
         hobbyList.add("programowanie");
-        hobbyList.add("sport: boks, żużel, piłka nożna");
-        hobbyList.add("psy");
+        hobbyList.add("sport: boks, piłka nożna");
         hobbyList.add("astronomia");
         hobbyList.add("muzyka");
 
@@ -118,18 +132,15 @@ public class PdfCreator {
         user.setCvContent(cvContent);
 
         List<String> skills = new ArrayList<>();
-        skills.add("programowanie w języku Java");
-        skills.add("znajmość frameworka Spring oraz jego modułów (Spring MVC, Spring JPA, Spring Security oraz SpringBoot)");
-        skills.add("testowanie oprogramowania z wykorzystaniem Spock Framework, języka Groovy oraz JUnit");
-        skills.add("korzystanie z narzędzi ORM takich jak Hibernate oraz znajomość języka SQL");
-        skills.add("praca z narzędziami Maven i Gradle");
-        skills.add("znajomość wzorców projektowych");
-        skills.add("znajomość HTML i JavaScript");
-        skills.add("praca z system kontroli wersji GIT");
-        skills.add("korzystanie z JIRA");
-        skills.add("praca w metodologii SCRUM");
-        skills.add("obsługa programów: InteliJ Idea, Eclipse, STS, Visual Studio Code");
-        skills.add("znajomość języka angielskiego - poziom B1");
+        skills.add("znajomość języka Java i frameworków: Spring, Spring Boot, Hibernate");
+        skills.add("testowanie kodu Java z wykorzystaniem m.in. JUnit i Spock Framework");
+        skills.add("znajomość języka Go oraz frameworków: Gin, GORM");
+        skills.add("front-end: JS, HTML, CSS");
+        skills.add("znajomość języka SQL oraz baz danych: MySQL, MSSQL");
+        skills.add("NOSQL: Redis, MongoDB");
+        skills.add("praca z serwerami Tomcat i WAS");
+        skills.add("inne : Docker, Jenkins, Sonar, Maven, Gradle, Git, Jira");
+        skills.add("języka angielski: B1");
 
         cvContent.setSkills(skills);
 

@@ -2,6 +2,7 @@ package pl.proCvGenerator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.proCvGenerator.dao.Education;
 

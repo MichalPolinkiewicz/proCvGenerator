@@ -14,7 +14,6 @@ import pl.proCvGenerator.model.CvContentDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Controller
 @CrossOrigin(origins = "*")

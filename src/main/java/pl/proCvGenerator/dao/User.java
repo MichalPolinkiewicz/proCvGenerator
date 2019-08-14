@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -18,5 +20,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cvContentId")
     private CvContent cvContent;
+
 
 }
